@@ -1,2 +1,0 @@
-# wiesiu
-Wiesiu.pl
