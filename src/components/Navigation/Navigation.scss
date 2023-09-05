@@ -49,11 +49,12 @@
     transition: all 1s ease-in-out;
   }
 .cart-button {
+    cursor: pointer;
     font-size: 18px;
     color: index.$white;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 992px) {
 
     .menu {
         background-color: #000000c9;
