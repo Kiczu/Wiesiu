@@ -4,5 +4,5 @@ $lg: 992px;
 $xl: 1200px;
 
 @function at-breakpoint($breakpoint) {
-    @return (min-width: $breakpoint);
+    @return (max-width: $breakpoint);
   }
