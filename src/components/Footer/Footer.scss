@@ -1,0 +1,15 @@
+@use "../../styles//index.scss";
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 35px 0;
+    background-color: index.$yellow;
+    color: index.$white;
+    font-weight: 500;
+
+    a {
+        color: index.$white;
+        text-decoration: none;
+    }
+}
