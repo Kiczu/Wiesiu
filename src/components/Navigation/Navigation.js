@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Navigation.scss";
 import logo from "../../assets/logo_wieslaw.webp";
 import { HiMenu } from "react-icons/hi";
 import { FaShoppingCart } from "react-icons/fa";
 
+const scrollMenu = 0;
+
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const location = useLocation();
+  
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
-  const scrollMenu = 1;
-
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > scrollMenu) {
@@ -25,38 +27,42 @@ const Navigation = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
-    <nav className={`menu ${isSticky ? "scrolled-menu" : ""}`}>
+    <nav className={`menu ${location.pathname === '/' && !isSticky ? 'menu-home' : ''}`}>
       <ul className="menu-list">
         <FaShoppingCart className="cart-button" />
         <li className="menu-element">
-          <Link path="/">Komiksy</Link>
+          <Link to="/">Komiksy</Link>
         </li>
         <li className="menu-element">
-          <Link path="/">Spotkania</Link>
+          <Link to="/">Spotkania</Link>
         </li>
         <li className="menu-element">
-          <Link path="/">Kolekcje</Link>
+          <Link to="/">Kolekcje</Link>
         </li>
-        <li className={`menu-element ${isSticky ? "logo-animation" : ""}`}>
-          <Link className={`${isSticky ? "logo-animation" : ""}`} path="/">
+        <li className="menu-element">
+          <Link to="/">
             <img
-              className={`${isSticky ? "logo-animation" : ""}`}
+              className={`logo-image ${isSticky ? "logo-animation" : ""}`}
               src={logo}
               alt="logo"
             />
           </Link>
         </li>
         <li className="menu-element">
-          <Link path="/">Gadżety</Link>
+          <Link to="/">Gadżety</Link>
         </li>
         <li className="menu-element">
-          <Link path="/">Kontakt</Link>
+          <Link to="/">Kontakt</Link>
         </li>
         <li className="menu-element menu-shop">
-          <Link path="/">Sklep</Link>
+          <Link to="/shop">Sklep</Link>
         </li>
       </ul>
       <div className="mobile-menu">
@@ -70,25 +76,25 @@ const Navigation = () => {
           className={`mobile-menu-list ${isMenuOpen ? "active" : "inactive"} `}
         >
           <li className="mobile-menu-element">
-            <Link path="/">Komiksy</Link>
+            <Link to="/">Komiksy</Link>
           </li>
           <li className="mobile-menu-element">
-            <Link path="/">Spotkania</Link>
+            <Link to="/">Spotkania</Link>
           </li>
           <li className="mobile-menu-element">
-            <Link path="/">Kolekcje</Link>
+            <Link to="/">Kolekcje</Link>
           </li>
           <li className="mobile-menu-element">
-            <Link path="/">Gadżety</Link>
+            <Link to="/">Gadżety</Link>
           </li>
           <li className="mobile-menu-element">
-            <Link path="/">Kontakt</Link>
+            <Link to="/">Kontakt</Link>
           </li>
           <li className="mobile-menu-element">
-            <Link path="/">Sklep</Link>
+            <Link to="/">Sklep</Link>
           </li>
           <li className="mobile-menu-element">
-            <Link path="/">
+            <Link to="/">
               <FaShoppingCart className="cart-button" />
             </Link>
           </li>
