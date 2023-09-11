@@ -7,9 +7,14 @@
   position: sticky;
   top: 0;
   left: 0;
-  background-color: transparent;
+  width: 100%;
+  background-color: #000000c9;
+  transition: .5s;
   padding: 30px 0;
-  background-color: transparent;
+
+  &-home {
+    background-color: transparent;
+  }
 
   &-list {
     max-width: 1044px;
@@ -44,17 +49,24 @@
     background-color: #000000c9;
     transition: .5s;
 }
+.logo-image {
+  width: 150px;
+}
 .logo-animation {
-    display: none;
-    transition: all 1s ease-in-out;
+    width: 0;
+    transition: all .5s;
   }
 .cart-button {
+    position: absolute;
+    top: 50%;
+    left: 3%;
+    transform: translate(-50%, -50%);
     cursor: pointer;
     font-size: 18px;
     color: index.$white;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: index.$md) {
 
     .menu {
         background-color: #000000c9;
@@ -90,12 +102,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-  }
-  .mobile-menu-list {
-
-  }
-  .mobile-menu-element {
-
   }
   .hamburger-icon {
     cursor: pointer;
