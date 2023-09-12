@@ -1,0 +1,15 @@
+@use "../../../styles/index.scss";
+
+.themeButton {
+    display: block;
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid;
+    padding: 5px 18px;
+    transition: .5s ease;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: index.$white;
+
+}
