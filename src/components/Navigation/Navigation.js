@@ -67,7 +67,7 @@ const Navigation = () => {
       </ul>
       <div className="mobile-menu">
         <div className="bar-container">
-          <Link path="/">
+          <Link to="/">
             <img src={logo} alt="logo" />
           </Link>
           <HiMenu onClick={toggleMenu} className="hamburger-icon" />
@@ -91,7 +91,7 @@ const Navigation = () => {
             <Link to="/">Kontakt</Link>
           </li>
           <li className="mobile-menu-element">
-            <Link to="/">Sklep</Link>
+            <Link to="/shop">Sklep</Link>
           </li>
           <li className="mobile-menu-element">
             <Link to="/">
