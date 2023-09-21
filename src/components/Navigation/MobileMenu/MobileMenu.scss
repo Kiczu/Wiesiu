@@ -16,6 +16,19 @@
     padding: 20px 0;
     width: 100%;
     height: auto;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition: 1s ease;
+    }
+    &.inactive {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-20px);
+      transition: 1s ease;
+    }
   }
   &-element {
     text-align: center;
@@ -33,20 +46,17 @@
   align-items: center;
   padding: 0 20px;
 }
-.hamburger-icon {
-  cursor: pointer;
-  color: #fff;
-  font-size: 2.6rem;
+.hamburger {
+  &-icon {
+    cursor: pointer;
+    color: #fff;
+    font-size: 2.6rem;
+  }
+  &-button {
+    background: transparent;
+    border: none;
+  }
+
 }
-.active {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  transition: 1s ease;
-}
-.inactive {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-20px);
-  transition: 1s ease;
-}
+
+

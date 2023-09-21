@@ -1,11 +1,13 @@
 @use "../../../styles/index.scss";
 
+$opacityNavBavkground: #000000c9;
+
 .menu {
   position: sticky;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #000000c9;
+  background-color: $opacityNavBavkground;
   transition: 0.5s;
   padding: 30px 0;
 
@@ -48,7 +50,7 @@
 }
 
 .scrolled-menu {
-  background-color: #000000c9;
+  background-color: $opacityNavBavkground;
   transition: 0.5s;
 }
 .logo-image {
@@ -76,6 +78,6 @@
 }
 @media only screen and (max-width: index.$md) {
   .menu {
-    background-color: #000000c9;
+    background-color: $opacityNavBavkground;
   }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {HOME, SHOP} from "../../../paths";
+import { HOME, SHOP } from "../../../paths";
 import { HiMenu } from "react-icons/hi";
 import { FaShoppingCart } from "react-icons/fa";
 import "../MobileMenu/MobileMenu.scss";
@@ -22,7 +22,9 @@ const MobileMenu = () => {
           <Link to="/">
             <FaShoppingCart className="cart-button" />
           </Link>
-          <HiMenu onClick={toggleMenu} className="hamburger-icon" />
+          <button onClick={toggleMenu} className="hamburger-button">
+            <HiMenu className="hamburger-icon" />
+          </button>
         </div>
       </div>
       <ul className={`mobile-menu-list ${isMenuOpen ? "active" : "inactive"} `}>
