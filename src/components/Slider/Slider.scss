@@ -1,67 +1,65 @@
 .slider-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 1250px;
-    margin: 0 auto;
-    overflow: hidden;
-    position: relative;
-    padding: 50px 0;
-  }
-  
-  .prev-button,
-  .next-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: transparent;
-    color: #fff;
-    font-size: 2rem;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-  
-  .prev-button {
-    left: 0;
-  }
-  
-  .next-button {
-    right: 0;
-  }
-  
-  .slider {
-    display: flex;
-    width: 90%;
-    gap: 20px;
-    transition: transform 0.3s ease;
-
-  }
-  .slide-left {
-    transform: translateX(-100%);
-  }
-  
-  .slide-right {
-    transform: translateX(100%);
-  }
-  .product-card {
-    width: 33.33%;
-    padding: 20px 10px;
-    list-style-type: none;
-    text-align: center;
-    background-color: #f7f7f7;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.slider {
+  display: flex;
+  transition: transform 0.7s ease-in-out;
+}
+.slide {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  padding: 10px 80px;
+  margin: 50px 0;
+}
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  color: #fff;
+  font-size: 2rem;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.prev-button {
+  left: 0;
+}
+.next-button {
+  right: 0;
+}
+.product-card {
+  width: 33vw;
+  padding: 20px 10px;
+  list-style-type: none;
+  text-align: center;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
 .pagination {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    list-style-type: none;
-    font-size: 2rem;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  list-style-type: none;
+  font-size: 2rem;
+
+  &-button {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-size: 1.8rem;
+  }
 }

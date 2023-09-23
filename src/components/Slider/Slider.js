@@ -15,6 +15,7 @@ const products = [
   { id: 7, name: "Produkt 7", price: "$250" },
   { id: 8, name: "Produkt 8", price: "$250" },
   { id: 9, name: "Produkt 9", price: "$250" },
+  { id: 10, name: "Produkt 10", price: "$250" },
 ];
 
 const productsPerPage = 3;
@@ -24,15 +25,17 @@ const Slider = () => {
 
   const totalPages = Math.ceil(products.length / productsPerPage);
 
-  const startIndex = currentPage * productsPerPage;
-  const endIndex = startIndex + productsPerPage;
-  const lastIndex = products.length;
+  const sortProductsForSlider = (products) => {
+    const result = [];
 
-  let productsToDisplay = products.slice(startIndex, endIndex);
+    for (let i = 0; i < products.length; i += productsPerPage) {
+      const slide = products.slice(i, i + productsPerPage);
+      result.push(slide);
+    }
+    return result;
+  };
 
-  if (endIndex >= products.length) {
-    productsToDisplay = products.slice(lastIndex - 3, lastIndex);
-  }
+  const sortedProducts = sortProductsForSlider(products);
 
   const prevPage = () => {
     setCurrentPage((prevPage) =>
@@ -46,20 +49,37 @@ const Slider = () => {
     );
   };
 
-  const slideAnimation = classNames("slider", {
-    "slide-left": currentPage === totalPages - 1,
-    "slide-right": currentPage === 0,
-  })
+  const pagination = (e) => {
+    const clickedElement = e.target;
+    const buttonElement = clickedElement.closest("button");
+
+    if (buttonElement) {
+      const match = buttonElement.className.match(/page-(\d+)/);
+
+      if (match) {
+        const pageNumber = Number(match[1]);
+        setCurrentPage(pageNumber);
+      }
+    }
+  };
+
+  let procentAnimation = currentPage * 100;
+
+  const animation = {
+    transform: `translateX(-${procentAnimation}%)`,
+  };
 
   return (
     <div className="slider-container">
-      <ul className={slideAnimation}>
-        {productsToDisplay.map((product) => (
-          <li key={product.id} className="product-card">
-            <div>
-              <h2>{product.name}</h2>
-              <p>{product.price}</p>
-            </div>
+      <ul className="slider" style={animation}>
+        {sortedProducts.map((slide, i) => (
+          <li className="slide" key={i}>
+            {slide.map((product, i) => (
+              <div className="product-card" key={i}>
+                <h2>{product.name}</h2>
+                <p>{product.price}</p>
+              </div>
+            ))}
           </li>
         ))}
       </ul>
@@ -71,8 +91,10 @@ const Slider = () => {
       </button>
       <ul className="pagination">
         {Array.from({ length: totalPages }).map((_, i) => (
-          <li key={i}>
-            <BsDot />
+          <li onClick={pagination} key={i}>
+            <button className={`pagination-button page-${i}`}>
+              <BsDot />
+            </button>
           </li>
         ))}
       </ul>
