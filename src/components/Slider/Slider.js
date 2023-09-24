@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { BsDot } from "react-icons/bs";
@@ -17,28 +17,38 @@ const products = [
   { id: 10, name: "Produkt 10", price: "$250" },
 ];
 
-const productsPerPage = 3;
-
-const Slider = ({ dots = true, autoPlay = null}) => {
+const Slider = ({ dots = true, autoPlay = null }) => {
+  const [productsPerPage, setProductsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(0);
+  const windowWidth = useRef(window.innerWidth);
 
   const totalPages = Math.ceil(products.length / productsPerPage);
 
   useEffect(() => {
+    const updateProductsPerPageForMobile = () => {
+      if (windowWidth.current < 600) {
+        setProductsPerPage(1);
+      } else {
+        setProductsPerPage(3);
+      }
+    };
 
-    if(autoPlay === null) {
-      return
-    }
-    else {
+    updateProductsPerPageForMobile();
+    window.addEventListener("resize", updateProductsPerPageForMobile);
+
+    if (autoPlay === null) {
+      return;
+    } else {
       const intervalId = setInterval(() => {
         setCurrentPage((prevPage) => prevPage + 1);
       }, autoPlay * 1000);
-      if(currentPage === totalPages) {
-        setCurrentPage(0)
+      if (currentPage === totalPages) {
+        setCurrentPage(0);
       }
-  
+
       return () => {
         clearInterval(intervalId);
+        window.removeEventListener("resize", updateProductsPerPageForMobile);
       };
     }
   }, [currentPage, totalPages, autoPlay]);
@@ -85,10 +95,10 @@ const Slider = ({ dots = true, autoPlay = null}) => {
   };
 
   let procentAnimation = currentPage * 100;
-
   const animation = {
     transform: `translateX(-${procentAnimation}%)`,
   };
+
   const widthProduct = {
     width: `${Math.round(100 / productsPerPage)}vw`,
   };

@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div style={{ height: 300 + "vh" }}>
       Home
-      <Slider autoPlay={3} />
+      <Slider />
       <div style={{fontSize: 2 + "rem"}}>Nex sction after slider</div>
     </div>
   );
