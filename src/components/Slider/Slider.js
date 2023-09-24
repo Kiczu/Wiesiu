@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import "./Slider.scss";
+import React, { useState, useEffect } from "react";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { BsDot } from "react-icons/bs";
-import classNames from "classnames";
+import "./Slider.scss";
 
 const products = [
   { id: 1, name: "Produkt 1", price: "$10" },
@@ -20,17 +19,39 @@ const products = [
 
 const productsPerPage = 3;
 
-const Slider = () => {
+const Slider = ({ dots = true, autoPlay = null}) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const totalPages = Math.ceil(products.length / productsPerPage);
+
+  useEffect(() => {
+
+    if(autoPlay === null) {
+      return
+    }
+    else {
+      const intervalId = setInterval(() => {
+        setCurrentPage((prevPage) => prevPage + 1);
+      }, autoPlay * 1000);
+      if(currentPage === totalPages) {
+        setCurrentPage(0)
+      }
+  
+      return () => {
+        clearInterval(intervalId);
+      };
+    }
+  }, [currentPage, totalPages, autoPlay]);
 
   const sortProductsForSlider = (products) => {
     const result = [];
 
     for (let i = 0; i < products.length; i += productsPerPage) {
       const slide = products.slice(i, i + productsPerPage);
-      result.push(slide);
+      if (slide.length < productsPerPage) {
+        const slide = products.slice(products.length - productsPerPage);
+        result.push(slide);
+      } else result.push(slide);
     }
     return result;
   };
@@ -68,6 +89,9 @@ const Slider = () => {
   const animation = {
     transform: `translateX(-${procentAnimation}%)`,
   };
+  const widthProduct = {
+    width: `${Math.round(100 / productsPerPage)}vw`,
+  };
 
   return (
     <div className="slider-container">
@@ -75,7 +99,7 @@ const Slider = () => {
         {sortedProducts.map((slide, i) => (
           <li className="slide" key={i}>
             {slide.map((product, i) => (
-              <div className="product-card" key={i}>
+              <div style={widthProduct} className="product-card" key={i}>
                 <h2>{product.name}</h2>
                 <p>{product.price}</p>
               </div>
@@ -89,15 +113,17 @@ const Slider = () => {
       <button className="next-button" onClick={nextPage}>
         <BsFillArrowRightCircleFill />
       </button>
-      <ul className="pagination">
-        {Array.from({ length: totalPages }).map((_, i) => (
-          <li onClick={pagination} key={i}>
-            <button className={`pagination-button page-${i}`}>
-              <BsDot />
-            </button>
-          </li>
-        ))}
-      </ul>
+      {dots ? (
+        <ul className="pagination">
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <li onClick={pagination} key={i}>
+              <button className={`pagination-button page-${i}`}>
+                <BsDot />
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </div>
   );
 };
