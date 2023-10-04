@@ -1,72 +1,103 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import PaginationDots from "./PaginationDots/PaginationDots";
+import { sortProductsForSlider } from "../Layout/layout.helpers";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import { BsDot } from "react-icons/bs";
 import "./Slider.scss";
 
-const products = [
-  { id: 1, name: "Produkt 1", price: "$10" },
-  { id: 2, name: "Produkt 2", price: "$20" },
-  { id: 3, name: "Produkt 3", price: "$30" },
-  { id: 4, name: "Produkt 4", price: "$40" },
-  { id: 5, name: "Produkt 5", price: "$50" },
-  { id: 6, name: "Produkt 6", price: "$500" },
-  { id: 7, name: "Produkt 7", price: "$250" },
-  { id: 8, name: "Produkt 8", price: "$250" },
-  { id: 9, name: "Produkt 9", price: "$250" },
-  { id: 10, name: "Produkt 10", price: "$250" },
-];
-
-const Slider = ({ dots = true, autoPlay = null }) => {
-  const [productsPerPage, setProductsPerPage] = useState(3);
+const Slider = ({
+  showDots = true,
+  autoPlay = false,
+  autoPlayDuration,
+  products,
+  showProductsPerPage = 3,
+  gap = 20,
+}) => {
+  const [productsPerPage, setProductsPerPage] = useState(showProductsPerPage);
   const [currentPage, setCurrentPage] = useState(0);
-  const windowWidth = useRef(window.innerWidth);
+  const [translateSliderWidth, setTranslateSliderWidth] = useState(0);
+  const [newProductWidth, setNewProductWidth] = useState(0);
 
+  const screenWidth = window.innerWidth;
   const totalPages = Math.ceil(products.length / productsPerPage);
+  const productWidth = (screenWidth - gap * (productsPerPage - 1)) / productsPerPage
+  const sliderWidth = (productWidth + gap) * products.length;
 
   useEffect(() => {
-    const updateProductsPerPageForMobile = () => {
-      if (windowWidth.current < 600) {
-        setProductsPerPage(1);
-      } else {
-        setProductsPerPage(3);
-      }
+    const updateProductsPerPage = () => {
+      const perPage = screenWidth < 600 ? 1 : showProductsPerPage;
+      setProductsPerPage(perPage);
     };
 
-    updateProductsPerPageForMobile();
-    window.addEventListener("resize", updateProductsPerPageForMobile);
+    const updateProductWidth = () => {
+      const newProductWidth =
+        (screenWidth - gap * (productsPerPage - 1)) / productsPerPage;
+      setNewProductWidth(newProductWidth);
+    };
 
-    if (autoPlay === null) {
-      return;
-    } else {
+    updateProductsPerPage();
+    window.addEventListener("resize", updateProductsPerPage);
+    window.addEventListener("resize", updateProductWidth);
+
+    return () => {
+      window.removeEventListener("resize", updateProductsPerPage);
+      window.removeEventListener("resize", updateProductWidth);
+    };
+  }, [productsPerPage, newProductWidth, showProductsPerPage, screenWidth, gap]);
+
+  useEffect(() => {
+    if (autoPlay === true || typeof autoPlayDuration === "number") {
       const intervalId = setInterval(() => {
-        setCurrentPage((prevPage) => prevPage + 1);
-      }, autoPlay * 1000);
-      if (currentPage === totalPages) {
-        setCurrentPage(0);
-      }
-
+        setCurrentPage((prev) => {
+          const newValue = prev + 1;
+          if (newValue >= totalPages) {
+            return 0;
+          }
+          return newValue;
+        });
+      }, autoPlayDuration * 1000);
       return () => {
         clearInterval(intervalId);
-        window.removeEventListener("resize", updateProductsPerPageForMobile);
       };
     }
-  }, [currentPage, totalPages, autoPlay]);
 
-  const sortProductsForSlider = (products) => {
-    const result = [];
+    return;
+  }, [currentPage, autoPlay, autoPlayDuration, totalPages]);
 
-    for (let i = 0; i < products.length; i += productsPerPage) {
-      const slide = products.slice(i, i + productsPerPage);
-      if (slide.length < productsPerPage) {
-        const slide = products.slice(products.length - productsPerPage);
-        result.push(slide);
-      } else result.push(slide);
+  useEffect(() => {
+    const currentSlideProducts = sortProductsForSlider(
+      products,
+      productsPerPage
+    );
+    let translateWidth;
+
+    if (currentPage === 0) {
+      translateWidth = 0;
+    } else {
+      currentSlideProducts.forEach((slideProducts, i) => {
+        if (currentPage === i && slideProducts.length < productsPerPage) {
+          const lastSlideWidth =  currentPage * (productWidth + gap) * productsPerPage -
+          (productWidth * (productsPerPage - slideProducts.length));
+
+          translateWidth = lastSlideWidth - gap;
+        } else {
+          const fullSlidesWidth = currentPage * (productWidth + gap) * productsPerPage;
+          translateWidth = fullSlidesWidth;
+        }
+      });
     }
-    return result;
-  };
 
-  const sortedProducts = sortProductsForSlider(products);
+    setTranslateSliderWidth(translateWidth);
+  }, [
+    currentPage,
+    productsPerPage,
+    products,
+    productWidth,
+    totalPages,
+    translateSliderWidth,
+    gap,
+    sliderWidth,
+  ]);
 
   const prevPage = () => {
     setCurrentPage((prevPage) =>
@@ -81,58 +112,48 @@ const Slider = ({ dots = true, autoPlay = null }) => {
   };
 
   const pagination = (e) => {
-    const clickedElement = e.target;
-    const buttonElement = clickedElement.closest("button");
+    const page = e.currentTarget.dataset.page;
 
-    if (buttonElement) {
-      const match = buttonElement.className.match(/page-(\d+)/);
-
-      if (match) {
-        const pageNumber = Number(match[1]);
-        setCurrentPage(pageNumber);
-      }
+    if (page) {
+      const pageNumber = Number(page);
+      setCurrentPage(pageNumber);
     }
   };
 
-  let procentAnimation = currentPage * 100;
-  const animation = {
-    transform: `translateX(-${procentAnimation}%)`,
-  };
-
   const widthProduct = {
-    width: `${Math.round(100 / productsPerPage)}vw`,
+    width: `${productWidth}px`,
+    marginRight: `${gap}px`,
+  };
+  const slide = {
+    width: `${sliderWidth}px`,
+    transform: `translateX(-${translateSliderWidth}px)`,
   };
 
   return (
     <div className="slider-container">
-      <ul className="slider" style={animation}>
-        {sortedProducts.map((slide, i) => (
-          <li className="slide" key={i}>
-            {slide.map((product, i) => (
-              <div style={widthProduct} className="product-card" key={i}>
-                <h2>{product.name}</h2>
-                <p>{product.price}</p>
-              </div>
-            ))}
-          </li>
-        ))}
-      </ul>
-      <button className="prev-button" onClick={prevPage}>
-        <BsFillArrowLeftCircleFill />
-      </button>
-      <button className="next-button" onClick={nextPage}>
-        <BsFillArrowRightCircleFill />
-      </button>
-      {dots ? (
-        <ul className="pagination">
-          {Array.from({ length: totalPages }).map((_, i) => (
-            <li onClick={pagination} key={i}>
-              <button className={`pagination-button page-${i}`}>
-                <BsDot />
-              </button>
+      <div className="slider">
+        <ul style={slide} className="slide">
+          {products.map((product, i) => (
+            <li style={widthProduct} className="product-card" key={i}>
+              <img
+                className="product-image"
+                src="https://wiesiu.pl/wp-content/uploads/2021/11/Tom_01-500x500.png"
+                alt=""
+              />
+              <h2>{product.name}</h2>
+              <p>{product.price}</p>
             </li>
           ))}
         </ul>
+        <button className="prev-button" onClick={prevPage}>
+          <BsFillArrowLeftCircleFill />
+        </button>
+        <button className="next-button" onClick={nextPage}>
+          <BsFillArrowRightCircleFill />
+        </button>
+      </div>
+      {showDots ? (
+        <PaginationDots totalPages={totalPages} goToPage={pagination} />
       ) : null}
     </div>
   );
