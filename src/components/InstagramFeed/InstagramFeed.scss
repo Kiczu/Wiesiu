@@ -1,0 +1,56 @@
+@use "../../styles/index.scss";
+
+.container-grid {
+  width: 85%;
+  margin: 0 auto;
+}
+.instagramGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  @media (max-width: index.$md) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: index.$sm) {
+    grid-template-columns: 1fr;
+  }
+}
+.instagramGrid-item-container {
+  margin: 7%;
+
+  @media (max-width: index.$md) {
+    margin: 4%;
+  }
+  @media (max-width: index.$sm) {
+    margin: 3%;
+  }
+}
+.instagramGrid-item {
+  cursor: pointer;
+  position: relative;
+  transition: 1s ease-in-out;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+  }
+  &:hover {
+    &::after {
+      background-color: #ffffff4b;
+    }
+  }
+}
+.instagram-image {
+  position: relative;
+  max-width: 100%;
+}
+.instaButton {
+  display: block;
+  margin: 0 auto;
+}
