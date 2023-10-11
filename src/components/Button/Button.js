@@ -4,19 +4,9 @@ import "./Button.scss";
 
 const Button = ({children, variant}) => {
 
-    const buttonType = variant;
-
-    let buttonVariant;
-    switch (buttonType) {
-        case 'white':
-            buttonVariant = 'button-white';
-          break;
-        case 'blue':
-            buttonVariant = 'button-blue';
-          break;
-        default:
-            buttonVariant = 'button-white';
-      }
+    const availableVariants = ['button-white', 'button-blue'];
+    const defaultVariant = 'button-white';
+    const buttonVariant = availableVariants.includes(variant) ? variant : defaultVariant;
 
     const buttonClasses = classNames('button', buttonVariant);
 
