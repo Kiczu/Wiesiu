@@ -17,15 +17,14 @@ const products = [
 
 const Home = () => {
   return (
-    <div style={{ height: 300 + "vh" }}>
-      Home
+    <>
       <Slider
         products={products}
         autoPlay={false}
         showProductsPerPage={3}
       />
       <div style={{ fontSize: 2 + "rem" }}>Nex sction after slider</div>
-    </div>
+    </>
   );
 };
 
