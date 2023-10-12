@@ -1,13 +1,11 @@
 import React from "react";
 import classNames from "classnames";
+import { AVAILABLE_VARIANTS, DEFAULT_VARIANT } from "./buttons.const";
 import "./Button.scss";
 
 const Button = ({children, variant}) => {
-
-    const availableVariants = ['button-white', 'button-blue'];
-    const defaultVariant = 'button-white';
-    const buttonVariant = availableVariants.includes(variant) ? variant : defaultVariant;
-
+    
+    const buttonVariant = AVAILABLE_VARIANTS.includes(variant) ? `button-${variant}` : DEFAULT_VARIANT;
     const buttonClasses = classNames('button', buttonVariant);
 
     return(
