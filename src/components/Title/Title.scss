@@ -1,0 +1,14 @@
+@use "../../styles/index.scss";
+
+.section-title {
+    text-transform: uppercase;
+    font-size: 2.9rem;
+    font-weight: 300;
+
+    &-white {
+        color: index.$white;
+    }
+    &-black {
+        color: index.$black;
+    }
+}
