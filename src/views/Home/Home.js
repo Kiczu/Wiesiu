@@ -1,11 +1,13 @@
 import React from "react";
-import "./Home.scss";
 import SectionHero from "./SectionHero/SectionHero";
+import SectionComics from "./SectionComics/SectionComics";
+import "./Home.scss";
 
 const Home = () => {
   return (
     <>
       <SectionHero />
+      <SectionComics />
     </>
   );
 };
