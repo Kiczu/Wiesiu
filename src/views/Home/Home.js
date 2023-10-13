@@ -1,12 +1,11 @@
 import React from "react";
 import "./Home.scss";
+import SectionHero from "./SectionHero/SectionHero";
 
 const Home = () => {
   return (
     <>
-    <section>
-      
-    </section>
+      <SectionHero />
     </>
   );
 };
