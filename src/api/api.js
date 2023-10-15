@@ -3,7 +3,11 @@ export const endpoints = {
         me: 'https://graph.instagram.com/v12.0/me/',
         media: 'https://graph.instagram.com/v12.0/me/media/'
     },
-    woocommerce: ''
+    woocommerce: {
+      products: 'https://wiesiu.pl/wp-json/wc/v3/products',
+      categories: 'https://wiesiu.pl/wp-json/wc/v3/products/categories',
+      categoriesById: 'https://wiesiu.pl/wp-json/wc/v3/products',
+  }
 }
 
 const formatParams = (params) => {
