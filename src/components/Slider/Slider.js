@@ -30,11 +30,11 @@ const Slider = ({
             <li style={widthProduct} className="product-card" key={i}>
               <img
                 className="product-image"
-                src="https://wiesiu.pl/wp-content/uploads/2021/11/Tom_01-500x500.png"
+                src={product.images[0].src}
                 alt=""
               />
               <h2>{product.name}</h2>
-              <p>{product.price}</p>
+              <p>{product.price} zł</p>
             </li>
           ))}
         </ul>

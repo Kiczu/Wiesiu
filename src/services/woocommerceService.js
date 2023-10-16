@@ -15,9 +15,9 @@ const getCategories = async (params) => {
   });
 };
 
-const getProductsByCategoryId = async (YOUR_CATEGORY_ID) => {
+const getProductsByCategoryId = async (categoryId) => {
   return api.get(endpoints.woocommerce.categoriesById, {
-    category: YOUR_CATEGORY_ID,
+    category: categoryId,
     consumer_key: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_KEY,
     consumer_secret: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_SECRET,
   });
