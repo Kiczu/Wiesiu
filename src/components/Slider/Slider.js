@@ -31,7 +31,7 @@ const Slider = ({
             <li style={widthProduct} className="product-card" key={i}>
               <img
                 className="product-image"
-                src={product.images ? product.images[0].src : imagePlaceholder}
+                src={product.images.length ? product.images[0].src : imagePlaceholder}
                 alt=""
               />
               <h2>{product.name}</h2>
