@@ -3,6 +3,7 @@ import PaginationDots from "./PaginationDots/PaginationDots";
 import useSliderData from "./useSliderData";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import imagePlaceholder from "../../assets/Placeholder_view.png";
 import "./Slider.scss";
 
 const Slider = ({
@@ -30,11 +31,11 @@ const Slider = ({
             <li style={widthProduct} className="product-card" key={i}>
               <img
                 className="product-image"
-                src="https://wiesiu.pl/wp-content/uploads/2021/11/Tom_01-500x500.png"
+                src={product.images.length ? product.images[0].src : imagePlaceholder}
                 alt=""
               />
               <h2>{product.name}</h2>
-              <p>{product.price}</p>
+              <p>{product.price} zł</p>
             </li>
           ))}
         </ul>
