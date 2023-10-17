@@ -3,6 +3,7 @@ import PaginationDots from "./PaginationDots/PaginationDots";
 import useSliderData from "./useSliderData";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import imagePlaceholder from "../../assets/Placeholder_view.png";
 import "./Slider.scss";
 
 const Slider = ({
@@ -30,7 +31,7 @@ const Slider = ({
             <li style={widthProduct} className="product-card" key={i}>
               <img
                 className="product-image"
-                src={product.images[0].src}
+                src={product.images ? product.images[0].src : imagePlaceholder}
                 alt=""
               />
               <h2>{product.name}</h2>
