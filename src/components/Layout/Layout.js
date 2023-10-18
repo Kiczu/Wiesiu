@@ -3,7 +3,7 @@ import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 import { Route, Routes } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
-import Home from "../../views/Home";
+import Home from "../../views/Home/Home";
 import Shop from "../Shop/Shop";
 import "./Layout.scss";
 

@@ -1,0 +1,18 @@
+@use "../../../styles/index.scss";
+
+.section-hero {
+    display: flex;
+    align-items: center;
+    background: url('../../../assets/Home/SectionHero/Tlo_strona-glowna.png');
+    padding: 50px 30px;
+
+    &-desc {
+        color: index.$white;
+    }
+
+    &-image {
+        img {
+            max-width: 100%;
+        }
+    }
+}
