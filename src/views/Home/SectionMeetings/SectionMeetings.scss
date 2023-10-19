@@ -1,0 +1,21 @@
+@use "../../../styles/index.scss";
+
+.section-meetings {
+    position: relative;
+    height: 100vh;
+    background: url('../../../assets/Home/SectionMeetings/Spotkania-i-warsztaty_01.png');
+    background-size: cover;
+    background-position-x: 50%;
+
+    &-container {
+        position: absolute;
+        top: 50%;
+        right: 7%;
+        transform: translateY(-50%);
+        color: index.$white;
+        max-width: 22%;
+    }
+}
+.description {
+    margin-bottom: 30px;
+}
