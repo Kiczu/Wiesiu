@@ -5,6 +5,7 @@ import SectionMeetings from "./SectionMeetings/SectionMeeting";
 import SectionSlider from "./SectionSlider/SectionSlider";
 import InstagramFeed from "../../components/InstagramFeed/InstagramFeed";
 import "./Home.scss";
+import SectionContact from "./SectionContact/SectionContact";
 
 const Home = () => {
   const comics = useuseWooCommerceProducts(18);
@@ -37,6 +38,7 @@ const Home = () => {
         variantButton={"blue"}
       />
       <InstagramFeed />
+      <SectionContact colorTitle={'black'} />
     </>
   );
 };
