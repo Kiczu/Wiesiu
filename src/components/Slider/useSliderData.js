@@ -7,19 +7,27 @@ const useSliderData = ({
   gap,
   products,
   showProductsPerPage,
+  sliderContainerRef,
 }) => {
   const [productsPerPage, setProductsPerPage] = useState(showProductsPerPage);
   const [currentPage, setCurrentPage] = useState(0);
   const [translateSliderWidth, setTranslateSliderWidth] = useState(0);
   const [newProductWidth, setNewProductWidth] = useState(0);
+  const [screenWidth, setScreenWidth] = useState(0);
 
-  const screenWidth = window.innerWidth;
   const totalPages = Math.ceil(products.length / productsPerPage);
   const productWidth =
     (screenWidth - gap * (productsPerPage - 1)) / productsPerPage;
   const productWithSpacing = productWidth + gap;
   const sliderWidth = productWithSpacing * products.length;
   const fullSlideWidth = currentPage * productWithSpacing * productsPerPage;
+
+  useEffect(() => {
+    if (sliderContainerRef.current) {
+      const width = sliderContainerRef.current.offsetWidth;
+      setScreenWidth(width);
+    }
+  }, [sliderContainerRef]);
 
   useEffect(() => {
     const updateProductsPerPage = () => {

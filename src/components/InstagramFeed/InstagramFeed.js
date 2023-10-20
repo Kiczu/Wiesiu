@@ -44,7 +44,7 @@ const InstagramFeed = () => {
         ))}
       </div>
       <button className="instaButton" onClick={loadMorePosts}>
-        Pokaż więcej
+        Zobacz więcej
       </button>
     </div>
   );

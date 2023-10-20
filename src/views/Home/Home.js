@@ -17,18 +17,24 @@ const Home = () => {
       <SectionSlider
         products={comics}
         sectionTitle={"Księgarnia"}
+        colorTitle={"black"}
         buttonText={"Do sklepu"}
+        variantButton={"blue"}
       />
       <SectionMeetings />
       <SectionSlider
         products={collections}
         sectionTitle={"Kolekcje"}
+        colorTitle={"black"}
         buttonText={"Do sklepu"}
+        variantButton={"blue"}
       />
       <SectionSlider
         products={gadgets}
         sectionTitle={"Gadżety"}
+        colorTitle={"black"}
         buttonText={"Do sklepu"}
+        variantButton={"blue"}
       />
       <InstagramFeed />
     </>

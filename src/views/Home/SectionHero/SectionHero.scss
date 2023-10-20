@@ -1,18 +1,25 @@
 @use "../../../styles/index.scss";
 
 .section-hero {
-    display: flex;
-    align-items: center;
-    background: url('../../../assets/Home/SectionHero/Tlo_strona-glowna.png');
-    padding: 50px 30px;
+  display: flex;
+  align-items: center;
+  background: url("../../../assets/Home/SectionHero/Tlo_strona-glowna.png");
+  min-height: 100vh;
+  margin-top: -118px;
 
-    &-desc {
-        color: index.$white;
-    }
+  @media (max-width: index.$md) {
+    gap: 20px;
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
 
-    &-image {
-        img {
-            max-width: 100%;
-        }
+  &-desc {
+    color: index.$white;
+  }
+
+  &-image {
+    img {
+      max-width: 100%;
     }
+  }
 }

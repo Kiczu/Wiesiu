@@ -4,6 +4,7 @@ import heroImage from "../../../assets/Home/SectionHero/Warstwa-6.webp";
 import "./SectionHero.scss";
 
 const SectionHero = () => {
+
   return (
     <section className="section-home section-hero">
       <div className="section-hero-desc">
