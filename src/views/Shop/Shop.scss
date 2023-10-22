@@ -1,0 +1,20 @@
+.listing-products-container {
+    width: 85%;
+    margin: 0 auto;
+}
+.listing-products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    list-style-type: none;
+
+    &-item {
+        margin: 7%;
+        text-align: center;
+    }
+}
+
+.product-image {
+    display: block;
+    position: relative;
+    max-width: 100%;
+}

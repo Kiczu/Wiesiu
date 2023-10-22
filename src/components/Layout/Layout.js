@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import { Route, Routes } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 import Home from "../../views/Home/Home";
-import Shop from "../Shop/Shop";
+import Shop from "../../views/Shop/Shop";
 import "./Layout.scss";
 
 const Layout = () => {
