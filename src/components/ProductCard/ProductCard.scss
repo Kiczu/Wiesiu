@@ -1,0 +1,19 @@
+@use "../../styles/index.scss";
+
+.product {
+    &-image {
+        max-width: 100%;
+    }
+    &-name {
+        text-transform: uppercase;
+        font-size: 1.8rem;
+        margin: 5px 0;
+        font-family: index.$main-font;
+    }
+    &-price {
+        font-family: index.$main-font;
+        color: index.$blue;
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+}
