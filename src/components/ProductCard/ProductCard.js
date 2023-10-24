@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
         src={product.images.length ? product.images[0].src : imagePlaceholder}
         alt={product.name}
       />
-      <h2 className="product-name">{product.name}</h2>
+      <strong className="product-name">{product.name}</strong>
       <p className="product-price">{product.price} zł</p>
     </div>
   );
