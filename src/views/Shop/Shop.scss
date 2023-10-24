@@ -1,3 +1,5 @@
+@use "../../styles/index.scss";
+
 .listing-products-container {
     width: 85%;
     margin: 0 auto;
@@ -8,13 +10,40 @@
     list-style-type: none;
 
     &-item {
-        margin: 7%;
+        margin: 5%;
         text-align: center;
     }
 }
-
 .product-image {
     display: block;
     position: relative;
     max-width: 100%;
+}
+.categories-filter {
+    width: 85%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+
+    &-button {
+        background-color: index.$blue;
+        color: index.$white;
+        border: 2px solid index.$blue;
+        margin-top: 20px;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            background-color: transparent;
+            color: index.$blue;
+        }
+    }
+}
+.active {
+    color: index.$blue;
+    background-color: transparent;
 }

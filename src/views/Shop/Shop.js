@@ -1,24 +1,33 @@
-import React, { useEffect, useState } from "react";
-import useWooCommerce from "../../hooks/useWooCommerceProducts";
+import React from "react";
+import useShopData from "./useShopData";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import imagePlaceholder from "../../assets/Placeholder_view.png";
 import "../Shop/Shop.scss";
 
 const Shop = () => {
-  const [products, setProducts] = useState([]);
-
-  const allProducts = useWooCommerce.useAllProducts();
-
-  useEffect(() => {
-    setProducts(allProducts);
-  }, []);
+  const { products, categories, activeCategory, handleCategoryClick } =
+    useShopData();
 
   return (
     <>
       <SectionTitle>Sklep</SectionTitle>
+      <div className="categories-filter">
+        {categories.map((category, i) => (
+          <button
+            className={`categories-filter-button ${
+              Number(activeCategory) === category.id ? "active" : ""
+            }`}
+            key={i}
+            data-category-id={category.id}
+            onClick={(e) => handleCategoryClick(e)}
+          >
+            {category.name}
+          </button>
+        ))}
+      </div>
       <div className="listing-products-container">
         <ul className="listing-products-grid">
-          {allProducts.map((product, i) => (
+          {products.map((product, i) => (
             <li className="listing-products-grid-item" key={i}>
               <img
                 className="product-image"
