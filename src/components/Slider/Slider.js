@@ -1,9 +1,9 @@
 import React from "react";
-import PaginationDots from "./PaginationDots/PaginationDots";
 import useSliderData from "./useSliderData";
+import ProductCard from "../ProductCard/ProductCard";
+import PaginationDots from "./PaginationDots/PaginationDots";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import imagePlaceholder from "../../assets/Placeholder_view.png";
 import "./Slider.scss";
 
 const Slider = ({
@@ -14,7 +14,7 @@ const Slider = ({
   showDots = true,
   showProductsPerPage = 3,
 }) => {
-  const { nextPage, pagination, prevPage, slide, totalPages,widthProduct } =
+  const { nextPage, pagination, prevPage, slide, totalPages, widthProduct } =
     useSliderData({
       autoPlay,
       autoPlayDuration,
@@ -29,13 +29,7 @@ const Slider = ({
         <ul style={slide} className="slide">
           {products.map((product, i) => (
             <li style={widthProduct} className="product-card" key={i}>
-              <img
-                className="product-image"
-                src={product.images.length ? product.images[0].src : imagePlaceholder}
-                alt=""
-              />
-              <h2>{product.name}</h2>
-              <p>{product.price} zł</p>
+              <ProductCard product={product} />
             </li>
           ))}
         </ul>
