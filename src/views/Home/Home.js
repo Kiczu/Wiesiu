@@ -4,8 +4,8 @@ import SectionHero from "./SectionHero/SectionHero";
 import SectionMeetings from "./SectionMeetings/SectionMeeting";
 import SectionSlider from "./SectionSlider/SectionSlider";
 import InstagramFeed from "../../components/InstagramFeed/InstagramFeed";
-import "./Home.scss";
 import SectionContact from "./SectionContact/SectionContact";
+import "./Home.scss";
 
 const Home = () => {
   const comics = useuseWooCommerceProducts(18);
@@ -20,7 +20,7 @@ const Home = () => {
         sectionTitle={"Księgarnia"}
         colorTitle={"black"}
         buttonText={"Do sklepu"}
-        variantButton={"blue"}
+        variant={"blue"}
       />
       <SectionMeetings />
       <SectionSlider
@@ -28,14 +28,14 @@ const Home = () => {
         sectionTitle={"Kolekcje"}
         colorTitle={"black"}
         buttonText={"Do sklepu"}
-        variantButton={"blue"}
+        variant={"blue"}
       />
       <SectionSlider
         products={gadgets}
         sectionTitle={"Gadżety"}
         colorTitle={"black"}
         buttonText={"Do sklepu"}
-        variantButton={"blue"}
+        variant={"blue"}
       />
       <InstagramFeed />
       <SectionContact colorTitle={'black'} />

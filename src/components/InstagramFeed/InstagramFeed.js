@@ -36,7 +36,7 @@ const InstagramFeed = () => {
                 <img
                   className="instagram-image"
                   src={post.media_url}
-                  alt={post.caption}
+                  alt={post.id}
                 />
               </div>
             </Link>

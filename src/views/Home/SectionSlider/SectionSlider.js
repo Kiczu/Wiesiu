@@ -8,13 +8,13 @@ const SectionSlider = ({
   products,
   buttonText,
   colorTitle,
-  variantButton,
+  variant,
 }) => {
   return (
     <section className="section-home section-slider">
       <SectionTitle colorTitle={colorTitle}>{sectionTitle}</SectionTitle>
       <Slider products={products} autoPlay={false} showProductsPerPage={3} />
-      <Button variantButton={variantButton}>{buttonText}</Button>
+      <Button variant={variant}>{buttonText}</Button>
     </section>
   );
 };

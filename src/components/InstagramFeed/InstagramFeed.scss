@@ -6,23 +6,15 @@
 }
 .instagram-grid {
   display: grid;
+  gap: 20px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
 
   @media (max-width: index.$md) {
     grid-template-columns: 1fr 1fr;
   }
   @media (max-width: index.$sm) {
     grid-template-columns: 1fr;
-  }
-}
-.instagram-grid-item-container {
-  margin: 7%;
-
-  @media (max-width: index.$md) {
-    margin: 4%;
-  }
-  @media (max-width: index.$sm) {
-    margin: 3%;
   }
 }
 .instagram-grid-item {

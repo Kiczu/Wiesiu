@@ -5,7 +5,7 @@
   align-items: center;
   background: url("../../../assets/Home/SectionHero/Tlo_strona-glowna.png");
   min-height: 100vh;
-  margin-top: -118px;
+  margin-top: index.$default-menu-height;
 
   @media (max-width: index.$md) {
     gap: 20px;

@@ -15,7 +15,7 @@ const SectionMeetings = () => {
           ciekawostki czekają na spotkaniu z autorem Wiesława – Maciejem
           Kisielem.
         </p>
-        <Button>Napisz do mnie</Button>
+        <Button >Napisz do mnie</Button>
       </div>
     </section>
   );

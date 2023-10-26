@@ -9,23 +9,8 @@ const SectionContact = ({ colorTitle }) => {
       <div className="section-contact-container">
         <div className="form-container">
           <form>
-            <label>
-              <input type="text" placeholder="Imię" />
-            </label>
-            <label>
-              <input
-                type="email"
-                id="email"
-                pattern=".+@globex\.com"
-                placeholder="Adres e-mail"
-                required
-              />
-            </label>
+            formularz
           </form>
-        </div>
-        <div className="informations-container">
-          <p>+48 555 555 555</p>
-          <p>kontakt@wiesiu.pl</p>
         </div>
       </div>
     </section>
