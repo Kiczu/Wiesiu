@@ -1,49 +1,98 @@
 @use "../../styles/index.scss";
 
 .listing-products-container {
-    width: 85%;
-    margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  width: 95%;
+  margin: 50px auto;
 }
 .listing-products-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    list-style-type: none;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
+  list-style-type: none;
 
-    &-item {
-        margin: 5%;
-        text-align: center;
-    }
+  &-item {
+    text-align: center;
+  }
 }
 .product-image {
-    display: block;
-    position: relative;
-    max-width: 100%;
+  display: block;
+  position: relative;
+  max-width: 100%;
+  z-index: -1;
 }
 .categories-filter {
-    width: 85%;
-    margin: 20px auto;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-
-
-    &-button {
-        background-color: index.$blue;
-        color: index.$white;
-        border: 2px solid index.$blue;
-        margin-top: 20px;
-        padding: 10px 20px;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: .3s ease-in-out;
-
-        &:hover {
-            background-color: transparent;
-            color: index.$blue;
-        }
-    }
-}
-.active {
-    color: index.$blue;
+  &-button {
+    position: relative;
+    width: 100%;
+    text-align: left;
     background-color: transparent;
+    font-weight: 600;
+    font-size: 1.6rem;
+    border: none;
+    padding: 10px 10px 10px 0;
+    margin-top: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 1s ease-in-out;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background-color: index.$blue;
+      transition: 0.5s ease-in-out;
+    }
+
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+.active-category-filter {
+  color: index.$blue;
+  background-color: transparent;
+
+  &::after {
+    width: 100%;
+  }
+}
+
+.custom-select {
+    position: relative;
+    max-width: 200px;
+  select {
+    appearance: none;
+    /* safari */
+    -webkit-appearance: none;
+    width: 100%;
+    font-size: 1.15rem;
+    padding: 0.675em 6em 0.675em 1em;
+    background-color: #fff;
+    border: 1px solid #caced1;
+    border-radius: 0.25rem;
+    color: #000;
+    cursor: pointer;
+  }
+  &::after {
+    --size: 0.5rem;
+    content: "";
+    position: absolute;
+    right: 1rem;
+    pointer-events: none;
+  }
+
+  &::after {
+    border-left: var(--size) solid transparent;
+    border-right: var(--size) solid transparent;
+    border-top: var(--size) solid black;
+    top: 50%;
+  }
 }
