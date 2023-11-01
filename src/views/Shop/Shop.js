@@ -2,17 +2,25 @@ import React from "react";
 import useShopData from "./useShopData";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import imagePlaceholder from "../../assets/Placeholder_view.png";
+import SortingSelect from "../../components/Selects/SortingSelects/SortingSelect";
 import "../Shop/Shop.scss";
 
 const Shop = () => {
-  const { products, categories, activeCategory, handleCategoryClick } =
-    useShopData();
+  const {
+    activeCategory,
+    categories,
+    handleCategoryClick,
+    handleSelectChange,
+    products,
+    setProducts,
+  } = useShopData();
 
   return (
     <>
       <SectionTitle>Sklep</SectionTitle>
       <div className="listing-products-container">
         <div className="left-column categories-filter">
+          <h3 className="categories-filter-title">Kategorie</h3>
           {categories.map((category, i) => (
             <button
               className={`categories-filter-button ${
@@ -30,13 +38,11 @@ const Shop = () => {
         </div>
         <div className="right-column">
           <div className="sorting-filter">
-            <div className="custom-select">
-              <select>
-                <option value="date">Data dodania</option>
-                <option value="price">Cena</option>
-                <option value="popularity">Popularność</option>
-              </select>
-            </div>
+            <SortingSelect
+              onChange={handleSelectChange}
+              products={products}
+              setProducts={setProducts}
+            />
           </div>
           <ul className="listing-products-grid">
             {products.map((product, i) => (
