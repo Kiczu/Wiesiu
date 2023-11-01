@@ -18,8 +18,8 @@ const Shop = () => {
   return (
     <>
       <SectionTitle>Sklep</SectionTitle>
-      <div className="listing-products-container">
-        <div className="left-column categories-filter">
+      <div className="product-list">
+        <div className="sidebar categories-filter">
           <h3 className="categories-filter-title">Kategorie</h3>
           {categories.map((category, i) => (
             <button
@@ -36,8 +36,8 @@ const Shop = () => {
             </button>
           ))}
         </div>
-        <div className="right-column">
-          <div className="sorting-filter">
+        <div className="listing-column">
+        <div className="sorting-filter">
             <SortingSelect
               onChange={handleSelectChange}
               products={products}
