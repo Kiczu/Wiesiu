@@ -1,4 +1,4 @@
-@use "../../../styles/index.scss";
+@use "../../../styles/index.scss" as *;
 
 .section-meetings {
   position: relative;
@@ -8,7 +8,7 @@
   background-position-x: 50%;
   isolation: isolate;
 
-  @media (max-width: index.$md) {
+  @media (max-width: $md) {
     min-height: auto;
     &::before {
       content: "";
@@ -27,10 +27,10 @@
     top: 50%;
     right: 7%;
     transform: translateY(-50%);
-    color: index.$white;
+    color: $white;
     max-width: 22%;
 
-    @media (max-width: index.$md) {
+    @media (max-width: $md) {
       position: relative;
       top: auto;
       right: auto;

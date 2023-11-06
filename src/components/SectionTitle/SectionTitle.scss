@@ -1,4 +1,4 @@
-@use "../../styles/index.scss";
+@use "../../styles/index.scss" as *;
 
 .section-title {
     font-size: 3rem;
@@ -8,9 +8,9 @@
     margin: 30px 0;
 
     &-white {
-        color: index.$white;
+        color: $white;
     }
     &-black {
-        color: index.$black;
+        color: $black;
     }
 }

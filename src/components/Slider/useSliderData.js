@@ -132,12 +132,12 @@ const useSliderData = ({
     transform: `translateX(-${translateSliderWidth}px)`,
   };
   return {
-    nextPage,
-    prevPage,
-    pagination,
     slide,
     totalPages,
     widthProduct,
+    nextPage,
+    prevPage,
+    pagination,
   };
 };
 

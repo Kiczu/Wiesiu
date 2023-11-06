@@ -1,7 +1,7 @@
-@use "../../styles/index.scss";
+@use "../../styles/index.scss" as *;
 
 .container-grid {
-  width: 85%;
+  width: 75%;
   margin: 0 auto;
 }
 .instagram-grid {
@@ -10,10 +10,10 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-rows: 1fr;
 
-  @media (max-width: index.$md) {
+  @media (max-width: $md) {
     grid-template-columns: 1fr 1fr;
   }
-  @media (max-width: index.$sm) {
+  @media (max-width: $sm) {
     grid-template-columns: 1fr;
   }
 }
@@ -55,12 +55,12 @@
   font-weight: 400;
   border: 2px solid;
   transition: 0.3s ease-in-out;
-  color: index.$blue;
-  border-color: index.$blue;
+  color: $blue;
+  border-color: $blue;
 
   &:hover {
-    color: index.$white;
-    border-color: index.$yellow;
-    background-color: index.$yellow;
+    color: $white;
+    border-color: $yellow;
+    background-color: $yellow;
 }
 }

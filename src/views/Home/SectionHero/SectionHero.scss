@@ -1,20 +1,20 @@
-@use "../../../styles/index.scss";
+@use "../../../styles/index.scss" as *;
 
 .section-hero {
   display: flex;
   align-items: center;
   background: url("../../../assets/Home/SectionHero/Tlo_strona-glowna.png");
   min-height: 100vh;
-  margin-top: index.$default-menu-height;
+  margin-top: $default-menu-height;
 
-  @media (max-width: index.$md) {
+  @media (max-width: $md) {
     gap: 20px;
     flex-direction: column-reverse;
     justify-content: center;
   }
 
   &-desc {
-    color: index.$white;
+    color: $white;
   }
 
   &-image {

@@ -1,4 +1,4 @@
-@use "../../styles/index.scss";
+@use "../../styles/index.scss" as *;
 
 .slider-container {
   display: flex;
@@ -29,16 +29,16 @@
   cursor: pointer;
   
   svg {
-    color: index.$white;
+    color: $white;
     border: 0;
     border-radius: 50%;
-    background-color: index.$blue;
+    background-color: $blue;
     box-shadow: 0px 0px 20px 0px rgba(66, 68, 90, 1);
     transition: .3s ease-in-out;
 
     &:hover {
-      color: index.$yellow;
-      background-color: index.$white;
+      color: $yellow;
+      background-color: $white;
     }
   }
   
@@ -71,7 +71,7 @@
   line-height: 2rem;
 }
 .product-price {
-  color: index.$blue;
+  color: $blue;
   font-size: 1.8rem;
   font-weight: 600;
 }

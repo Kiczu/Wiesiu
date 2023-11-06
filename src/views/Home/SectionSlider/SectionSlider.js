@@ -4,15 +4,15 @@ import Slider from "../../../components/Slider/Slider";
 import Button from "../../../components/Button/Button";
 
 const SectionSlider = ({
-  sectionTitle,
-  products,
   buttonText,
   colorTitle,
+  products,
+  sectionTitle,
   variant,
 }) => {
   return (
     <section className="section-home section-slider">
-      <SectionTitle colorTitle={colorTitle}>{sectionTitle}</SectionTitle>
+      <SectionTitle color={colorTitle}>{sectionTitle}</SectionTitle>
       <Slider products={products} autoPlay={false} showProductsPerPage={3} />
       <Button variant={variant}>{buttonText}</Button>
     </section>

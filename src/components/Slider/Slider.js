@@ -16,7 +16,7 @@ const Slider = ({
 }) => {
   const sliderContainerRef = useRef(null);
 
-  const { nextPage, pagination, prevPage, slide, totalPages, widthProduct } =
+  const { slide, totalPages, widthProduct, nextPage, pagination, prevPage } =
     useSliderData({
       autoPlay,
       autoPlayDuration,

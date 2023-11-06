@@ -1,19 +1,19 @@
-@use "../../styles/index.scss";
+@use "../../styles/index.scss" as *;
 
 .footer {
     display: flex;
     justify-content: space-around;
     padding: 35px 0;
-    background-color: index.$yellow;
-    color: index.$white;
+    background-color: $yellow;
+    color: $white;
     font-weight: 500;
 
     a {
-        color: index.$white;
+        color: $white;
         text-decoration: none;
     }
 }
-@media only screen and (max-width: index.$md) {
+@media (max-width: $md) {
     .footer {
         flex-direction: column;
         align-items: center;

@@ -1,7 +1,7 @@
-@use '../../styles/index.scss';
+@use '../../styles/index.scss' as *;
 
 * {
-    font-family: index.$main-font;
+    font-family: $main-font;
 }
 .menu-container {
     background-color: transparent;
