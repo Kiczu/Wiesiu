@@ -4,9 +4,9 @@ import imagePlaceholder from "../../assets/Placeholder_view.png";
 import { IoCartOutline } from "react-icons/io5";
 import "./ProductCard.scss";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, link }) => {
   return (
-    <Link className="product-link" to={"/"}>
+    <Link className="product-link" to={link}>
       <div className="product">
         <div className="product-image-container">
           <img
