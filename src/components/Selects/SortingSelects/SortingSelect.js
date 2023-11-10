@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Select from "react-select";
 
 const options = [
@@ -9,19 +9,10 @@ const options = [
   { value: "date_created_newest", label: "Data - od najnowszej" },
 ];
 
-const SortingSelect = ({ onChange, products, setProducts }) => {
-  const [orginalProducts, setOrginalProducts] = useState([]);
-
+const SortingSelect = ({ onChange }) => {
   const handleSelectChange = (selectedOption) => {
-    setOrginalProducts(products);
-
-    if (selectedOption) {
-      const selectedValue = selectedOption.value;
-      onChange(selectedValue);
-    } else {
-      setProducts(orginalProducts);
-      onChange(null);
-    }
+    const value = selectedOption?.value || "date_created_newest";
+    onChange(value);
   };
   const selectStyles = {
     control: (baseStyles, state) => ({
@@ -34,12 +25,12 @@ const SortingSelect = ({ onChange, products, setProducts }) => {
     <>
       <label>Sortowanie</label>
       <Select
-        defaultValue="Wybierz"
+        defaultValue="the_newest"
         isClearable={true}
         name="product"
         options={options}
         onChange={handleSelectChange}
-        placeholder="Wybierz"
+        placeholder={options[options.length - 1].label}
         styles={selectStyles}
         theme={(theme) => ({
           ...theme,

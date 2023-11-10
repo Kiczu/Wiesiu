@@ -1,8 +1,8 @@
 import React from "react";
 import useShopData from "./useShopData";
-import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import imagePlaceholder from "../../assets/Placeholder_view.png";
 import SortingSelect from "../../components/Selects/SortingSelects/SortingSelect";
+import { FaFilter } from "react-icons/fa";
 import "../Shop/Shop.scss";
 
 const Shop = () => {
@@ -12,32 +12,50 @@ const Shop = () => {
     handleCategoryClick,
     handleSelectChange,
     products,
+    visibleProducts,
     setProducts,
+    toggleMenu,
+    isMenuOpen,
   } = useShopData();
 
   return (
     <>
-      <SectionTitle>Sklep</SectionTitle>
+      <h1 className="shop-title">Sklep</h1>
       <div className="product-list">
-        <div className="sidebar categories-filter">
-          <h3 className="categories-filter-title">Kategorie</h3>
-          {categories.map((category, i) => (
-            <button
-              className={`categories-filter-button ${
-                Number(activeCategory) === category.id
-                  ? "active-category-filter"
-                  : ""
-              }`}
-              key={i}
-              data-category-id={category.id}
-              onClick={(e) => handleCategoryClick(e)}
-            >
-              {category.name}
-            </button>
-          ))}
+        <div className="product-filters">
+          <button className="filter-button" onClick={toggleMenu}>
+            Filtry <FaFilter />
+          </button>
+          <div
+            className={`categories-filter ${
+              isMenuOpen ? "active" : "inactive"
+            }`}
+          >
+            <h2 className="categories-filter-title">Kategorie</h2>
+            {categories.map((category, i) => (
+              <button
+                className={`categories-filter-button ${
+                  Number(activeCategory) === category.id
+                    ? "active-category-filter"
+                    : ""
+                }`}
+                key={i}
+                onClick={() => handleCategoryClick(category.id)}
+              >
+                {category.name}
+              </button>
+            ))}
+            <div className="sorting-filter-mobile">
+              <SortingSelect
+                onChange={handleSelectChange}
+                products={products}
+                setProducts={setProducts}
+              />
+            </div>
+          </div>
         </div>
         <div className="listing-column">
-        <div className="sorting-filter">
+          <div className="sorting-filter">
             <SortingSelect
               onChange={handleSelectChange}
               products={products}
@@ -45,7 +63,7 @@ const Shop = () => {
             />
           </div>
           <ul className="listing-products-grid">
-            {products.map((product, i) => (
+            {visibleProducts.map((product, i) => (
               <li className="listing-products-grid-item" key={i}>
                 <img
                   className="product-image"

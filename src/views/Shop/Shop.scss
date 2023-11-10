@@ -1,12 +1,18 @@
-@use "../../styles/index.scss";
+@use "../../styles/index.scss" as *;
 
+.shop-title {
+  text-transform: uppercase;
+  text-align: center;
+  padding: 15px 10px;
+  margin: 40px 0 20px 0;
+}
 .product-list {
   display: flex;
   gap: 20px;
   padding: 15px 20px;
   max-height: 100vh;
 
-  @media (max-width: index.$md) {
+  @media (max-width: $md) {
     flex-direction: column;
   }
 }
@@ -28,10 +34,10 @@
   grid-auto-rows: 1fr;
   list-style-type: none;
 
-  @media (max-width: index.$md) {
+  @media (max-width: $md) {
     grid-template-columns: 1fr 1fr;
   }
-  @media (max-width: index.$sm) {
+  @media (max-width: $sm) {
     grid-template-columns: 1fr;
   }
 
@@ -39,13 +45,56 @@
     text-align: center;
   }
 }
+.filter-button {
+  display: none;
+
+  @media (max-width: $md) {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+}
 .product-image {
   display: block;
   position: relative;
   max-width: 100%;
-  z-index: -1;
+  z-index: 0;
+}
+.product-filters {
+  display: block;
+  position: relative;
 }
 .categories-filter {
+  @media (max-width: $md) {
+    position: absolute;
+    top: 60px;
+    background-color: #000000c9;
+    border-top: 2px solid $yellow;
+    padding: 20px 10px;
+    width: 100%;
+    height: auto;
+    z-index: 5;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(-20px);
+      transition: 1s ease;
+    }
+
+    &.inactive {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-20px);
+      transition: 1s ease;
+    }
+  }
+
   &-button {
     position: relative;
     width: 100%;
@@ -54,11 +103,15 @@
     font-weight: 600;
     font-size: 1.6rem;
     border: none;
-    padding: 10px 10px 10px 0;
-    margin-top: 5px;
+    padding: 10px 0;
+    margin: 5px auto 0 5px;
     text-transform: uppercase;
     cursor: pointer;
     transition: 1s ease-in-out;
+
+    @media (max-width: $md) {
+      color: #fff;
+    }
 
     &::after {
       content: "";
@@ -67,7 +120,7 @@
       bottom: 0;
       height: 2px;
       width: 0;
-      background-color: index.$blue;
+      background-color: $blue;
       transition: 0.5s ease-in-out;
     }
 
@@ -78,13 +131,18 @@
     }
   }
   &-title {
+    cursor: default;
     text-transform: uppercase;
     font-size: 2rem;
     font-weight: bold;
+
+    @media (max-width: $md) {
+      color: #fff;
+    }
   }
 }
 .active-category-filter {
-  color: index.$blue;
+  color: $blue;
   background-color: transparent;
 
   &::after {
@@ -92,14 +150,29 @@
   }
 }
 .sorting-filter {
-  position: sticky;
-  right: 0;
-  top: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
   max-width: 300px;
   margin: 15px 0 30px auto;
+
+  @media (max-width: $md) {
+    display: none;
+  }
+
+  &-mobile {
+    display: none;
+    margin-top: 15px;
+
+    @media (max-width: $md) {
+      display: block;
+      max-width: 300px;
+    }
+
+    label {
+      color: #fff;
+    }
+  }
 
   label {
     font-size: 1.8rem;

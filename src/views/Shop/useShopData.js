@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import woocommerceServices from "../../services/woocommerceService";
 
 const sortFunctions = {
-  price_down: (products) => [...products].sort((a, b) => a.price - b.price),
-  price_up: (products) => [...products].sort((a, b) => b.price - a.price),
-  popularity: (products) => [...products].sort((a, b) => b.total_sales - a.total_sales),
-  date_created_oldest: (products) => [...products].sort((a, b) => new Date(a.date_created) - new Date(b.date_created)),
-  date_created_newest: (products) => [...products].sort((a, b) => new Date(b.date_created) - new Date(a.date_created)),
+  price_down: (a, b) => a.price - b.price,
+  price_up: (a, b) => b.price - a.price,
+  popularity: (a, b) => b.total_sales - a.total_sales,
+  date_created_oldest: (a, b) =>
+    new Date(a.date_created) - new Date(b.date_created),
+  date_created_newest: (a, b) =>
+    new Date(b.date_created) - new Date(a.date_created),
 };
 
 const useShopData = () => {
@@ -14,6 +16,12 @@ const useShopData = () => {
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
   const [productsByCategory, setProductsByCategory] = useState({});
+  const [activeSort, setActiceSort] = useState("date_created_newest");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   useEffect(() => {
     const getAllProducts = async () => {
@@ -57,18 +65,22 @@ const useShopData = () => {
     return sortedProducts;
   };
 
-  const handleCategoryClick = (e) => {
-    const categoryId = e.target.getAttribute("data-category-id");
+  const handleCategoryClick = (categoryId) => {
     setActiveCategory(categoryId);
     setProducts(productsByCategory[categoryId]);
   };
 
-  const handleSelectChange = (e) => {
-    if (sortFunctions[e]) {
-      const sortedProducts = sortFunctions[e](products);
-      setProducts(sortedProducts);
-    }
+  const handleSelectChange = (selectedSort) => {
+    setActiceSort(selectedSort);
   };
+
+  const visibleProducts = useMemo(() => {
+    if (activeSort) {
+      return [...products].sort(sortFunctions[activeSort]);
+    }
+
+    return products;
+  }, [activeSort, products]);
 
   return {
     activeCategory,
@@ -77,6 +89,9 @@ const useShopData = () => {
     handleSelectChange,
     products,
     setProducts,
+    visibleProducts,
+    toggleMenu,
+    isMenuOpen
   };
 };
 
