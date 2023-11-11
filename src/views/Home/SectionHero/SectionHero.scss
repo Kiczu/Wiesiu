@@ -14,7 +14,17 @@
   }
 
   &-desc {
+    width: 100%;
     color: $white;
+
+    &-container {
+      margin: 0 auto;
+      max-width: 500px;
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
   }
 
   &-image {

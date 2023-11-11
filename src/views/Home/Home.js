@@ -36,6 +36,7 @@ const Home = () => {
         colorTitle={"black"}
         buttonText={"Do sklepu"}
         variant={"blue"}
+        backgroundColor={"#fdb72b"}
       />
       <InstagramFeed />
       <SectionContact colorTitle={'black'} />

@@ -9,9 +9,13 @@ const SectionSlider = ({
   products,
   sectionTitle,
   variant,
+  backgroundColor = "transparent",
 }) => {
   return (
-    <section className="section-home section-slider">
+    <section
+      style={{ backgroundColor: `${backgroundColor}` }}
+      className="section-home section-slider"
+    >
       <SectionTitle color={colorTitle}>{sectionTitle}</SectionTitle>
       <Slider products={products} autoPlay={false} showProductsPerPage={3} />
       <Button variant={variant}>{buttonText}</Button>
