@@ -1,8 +1,33 @@
 .section-contact-container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-around;
 }
 form > label {
-    display: block;
-    margin: 10px auto;
+  display: block;
+  margin: 10px auto;
+}
+
+.contact-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px auto;
+}
+.socials-container {
+  display: flex;
+  gap: 10px;
+}
+.social-icon {
+  max-width: 40px;
+}
+.contact-desc {
+    h3 {
+        margin: 15px 0;
+        letter-spacing: 7px;
+        font-size: 1.7rem;
+    }
+    p {
+        font-weight: 300;
+        line-height: 3.25rem;
+    }
 }

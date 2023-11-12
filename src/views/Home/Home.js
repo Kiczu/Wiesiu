@@ -39,7 +39,7 @@ const Home = () => {
         backgroundColor={"#fdb72b"}
       />
       <InstagramFeed />
-      <SectionContact colorTitle={'black'} />
+      <SectionContact colorTitle={"black"} />
     </>
   );
 };
