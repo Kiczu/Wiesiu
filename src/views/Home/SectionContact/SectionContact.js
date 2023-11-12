@@ -1,4 +1,5 @@
 import React from "react";
+import ContactForm from "../../../components/ContactForm/ContactForm";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import PhoneIcon from "../../../assets/Home/SectionContact/Telefon_iko.webp";
 import MailIcon from "../../../assets/Home/SectionContact/Mail_iko.webp";
@@ -12,7 +13,7 @@ const SectionContact = ({ colorTitle }) => {
       <SectionTitle color={colorTitle}>Kontakt</SectionTitle>
       <div className="section-contact-container">
         <div className="form-container">
-          <form>formularz</form>
+          <ContactForm />
         </div>
         <div className="contact-desc">
           <h3>MAMY.TO-PRACOWNIA <br></br>GRAFICZNA</h3>
