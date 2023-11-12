@@ -1,6 +1,8 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import Button from "../Button/Button";
 import * as yup from "yup";
+import "./ContactForm.scss";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required("To pole jest wymagane"),
@@ -15,11 +17,16 @@ const validationSchema = yup.object().shape({
     .required("To pole jest wymagane"),
 });
 
-const INITIAL_VALUES = { name: "", phoneNumber: "", email: "", message: "" };
+const INITIAL_VALUES = {
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  };
 
 const ContactForm = () => {
   const onSubmit = (values, { resetForm }) => {
-    // Tutaj możesz obsłużyć wysłanie formularza, np. wysłać dane na serwer
+    
     console.log("Wysłano:", values);
     resetForm();
   };
@@ -31,32 +38,28 @@ const ContactForm = () => {
       onSubmit={onSubmit}
     >
       <Form>
-        <div>
-          <label htmlFor="name">Imię:</label>
-          <Field type="text" id="name" name="name" />
-          <ErrorMessage name="name" component="div" />
+        <div className="contact-form-input">
+          <Field type="text" id="name" name="name" placeholder="Imię i nazwisko"/>
+          <ErrorMessage className="form-error-message" name="name" component="div" />
+        </div>
+
+        <div className="contact-form-input">
+          <Field type="email" id="email" name="email" placeholder="Adres e-mail"/>
+          <ErrorMessage className="form-error-message" name="email" component="div" />
+        </div>
+
+        <div className="contact-form-input">
+          <Field type="text" id="phone" name="phone" placeholder="Telefon komórkowy"/>
+          <ErrorMessage className="form-error-message" name="phone" component="div" />
+        </div>
+
+        <div className="contact-form-input">
+          <Field as="textarea" id="message" name="message" placeholder="Twoja wiadomość"/>
+          <ErrorMessage className="form-error-message" name="message" component="div" />
         </div>
 
         <div>
-          <label htmlFor="email">Email:</label>
-          <Field type="email" id="email" name="email" />
-          <ErrorMessage name="email" component="div" />
-        </div>
-
-        <div>
-          <label htmlFor="phone">Numer telefonu:</label>
-          <Field type="text" id="phone" name="phone" />
-          <ErrorMessage name="phone" component="div" />
-        </div>
-
-        <div>
-          <label htmlFor="message">Wiadomość:</label>
-          <Field as="textarea" id="message" name="message" />
-          <ErrorMessage name="message" component="div" />
-        </div>
-
-        <div>
-          <button type="submit">Wyślij</button>
+          <Button type="submit" variant={"blue"}>Wyślij</Button>
         </div>
       </Form>
     </Formik>

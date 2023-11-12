@@ -1,33 +1,62 @@
-.section-contact-container {
-  display: flex;
-  justify-content: space-around;
-}
-form > label {
-  display: block;
-  margin: 10px auto;
-}
+@use "../../../styles/index.scss" as *;
 
+.section-contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 100px;
+
+  @media (max-width: $lg) {
+    gap: 10px;
+  }
+
+  @media (max-width: $md) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+.form-container {
+  width: 500px;
+  justify-self: end;
+
+  @media (max-width: $md) {
+    width: 95%;
+    justify-self: center;
+  }
+}
 .contact-icon {
   display: flex;
   align-items: center;
   gap: 10px;
   margin: 20px auto;
+
+  @media(max-width: $md) {
+    justify-content: center;
+  }
 }
 .socials-container {
   display: flex;
   gap: 10px;
+  @media(max-width: $md) {
+    justify-content: center;
+    gap: 20px;
+  }
 }
 .social-icon {
   max-width: 40px;
 }
 .contact-desc {
-    h3 {
-        margin: 15px 0;
-        letter-spacing: 7px;
-        font-size: 1.7rem;
-    }
-    p {
-        font-weight: 300;
-        line-height: 3.25rem;
-    }
+  @media (max-width: $md) {
+    text-align: center;
+  }
+
+  h3 {
+    margin: 15px 0;
+    letter-spacing: 7px;
+    font-size: 1.7rem;
+  }
+  p {
+    font-weight: 300;
+    line-height: 3.25rem;
+  }
 }
