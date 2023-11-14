@@ -35,11 +35,11 @@ const Shop = () => {
             {categories.map((category, i) => (
               <button
                 className={`categories-filter-button ${
-                  Number(activeCategory) === category.id
+                  activeCategory === category.id
                     ? "active-category-filter"
                     : ""
                 }`}
-                key={i}
+                key={category.id}
                 onClick={() => handleCategoryClick(category.id)}
               >
                 {category.name}

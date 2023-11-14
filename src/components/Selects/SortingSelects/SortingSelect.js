@@ -1,18 +1,26 @@
 import React from "react";
 import Select from "react-select";
 
+const priceDown = "priceDown";
+const priceUp = "priceUp";
+const popularity = "popularity";
+const theOldest = "dateCreatedOldest";
+const theNewest = "dateCreatedNewest";
+
 const options = [
-  { value: "price_down", label: "Cena - od najniższej" },
-  { value: "price_up", label: "Cena - od najwyższej" },
-  { value: "popularity", label: "Popularność - najlepiej sprzedawane" },
-  { value: "date_created_oldest", label: "Data - od najstarszej" },
-  { value: "date_created_newest", label: "Data - od najnowszej" },
+  { value: priceDown, label: "Cena - od najniższej" },
+  { value: priceUp, label: "Cena - od najwyższej" },
+  { value: popularity, label: "Popularność - najlepiej sprzedawane" },
+  { value: theOldest, label: "Data - od najstarszej" },
+  { value: theNewest, label: "Data - od najnowszej" },
 ];
 
 const SortingSelect = ({ onChange }) => {
   const handleSelectChange = (selectedOption) => {
-    const value = selectedOption?.value || "date_created_newest";
-    onChange(value);
+    if (onChange) {
+      const value = selectedOption?.value || theNewest;
+      onChange(value);
+    }
   };
   const selectStyles = {
     control: (baseStyles, state) => ({
@@ -25,12 +33,11 @@ const SortingSelect = ({ onChange }) => {
     <>
       <label>Sortowanie</label>
       <Select
-        defaultValue="the_newest"
+        defaultValue={theNewest}
         isClearable={true}
         name="product"
         options={options}
         onChange={handleSelectChange}
-        placeholder={options[options.length - 1].label}
         styles={selectStyles}
         theme={(theme) => ({
           ...theme,

@@ -2,21 +2,21 @@ import { useState, useEffect, useMemo } from "react";
 import woocommerceServices from "../../services/woocommerceService";
 
 const sortFunctions = {
-  price_down: (a, b) => a.price - b.price,
-  price_up: (a, b) => b.price - a.price,
+  priceDown: (a, b) => a.price - b.price,
+  priceUp: (a, b) => b.price - a.price,
   popularity: (a, b) => b.total_sales - a.total_sales,
-  date_created_oldest: (a, b) =>
+  dateCreatedOldest: (a, b) =>
     new Date(a.date_created) - new Date(b.date_created),
-  date_created_newest: (a, b) =>
+  dateCreatedNewest: (a, b) =>
     new Date(b.date_created) - new Date(a.date_created),
 };
 
 const useShopData = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeCategory, setActiveCategory] = useState(0);
   const [productsByCategory, setProductsByCategory] = useState({});
-  const [activeSort, setActiceSort] = useState("date_created_newest");
+  const [activeSort, setActiceSort] = useState("dateCreatedNewest");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
