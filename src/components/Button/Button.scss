@@ -1,4 +1,4 @@
-@use '../../styles/index.scss';
+@use '../../styles/index.scss' as *;
 
 .button {
     display: block;
@@ -6,33 +6,33 @@
     text-transform: uppercase;
     background-color: transparent;
     padding: 10px 18px;
-    margin: 0 auto;
-    font-size: 1.2rem;
+    margin: 30px auto;
+    font-size: 1.8rem;
     border-width: 2px;
     font-weight: 400;
     border: 2px solid;
     transition: .3s ease-in-out;
 
     &:hover {
-        background-color: index.$yellow;
+        background-color: $yellow;
     }
 
     &-white {
-        color: index.$white;
-        border-color: index.$white;
+        color: $white;
+        border-color: $white;
 
         &:hover {
-            border-color: index.$yellow;
+            border-color: $yellow;
         }
     }
 
     &-blue {
-        color: index.$blue;
-        border-color: index.$blue;
+        color: $blue;
+        border-color: $blue;
 
         &:hover {
-            color: index.$white;
-            border-color: index.$yellow;
+            color: $white;
+            border-color: $yellow;
         }
     }
 }

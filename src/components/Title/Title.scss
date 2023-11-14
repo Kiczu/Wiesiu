@@ -1,4 +1,4 @@
-@use "../../styles/index.scss";
+@use "../../styles/index.scss" as *;
 
 .section-title {
     text-transform: uppercase;
@@ -6,9 +6,9 @@
     font-weight: 300;
 
     &-white {
-        color: index.$white;
+        color: $white;
     }
     &-black {
-        color: index.$black;
+        color: $black;
     }
 }

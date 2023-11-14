@@ -1,9 +1,9 @@
-@use "../../../styles/index.scss";
+@use "../../../styles/index.scss" as *;
 
 .mobile-menu {
   display: none;
 
-  @media (max-width: index.$md) {
+  @media (max-width: $md) {
     display: block;
     position: relative;
   }
@@ -12,7 +12,7 @@
     position: absolute;
     top: 75px;
     background-color: #000000c9;
-    border-top: 2px solid index.$yellow;
+    border-top: 2px solid $yellow;
     padding: 20px 0;
     width: 100%;
     height: auto;

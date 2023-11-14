@@ -1,0 +1,34 @@
+@use "../../styles/index.scss" as *;
+
+.contact-form-input {
+    margin: 20px;
+
+    input {
+        padding: 10px;
+        width: 100%;
+        border: 1px solid black;
+
+        &:focus {
+            border: 1px solid $yellow;
+            border-radius: 0;
+            outline: none;
+        }
+    }
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid black;
+        font-family: inherit;
+        outline: none;
+
+        &:focus {
+            border: 1px solid $yellow;
+            border-radius: 0;
+            outline: none;
+        }
+    }
+}
+
+.form-error-message {
+    color: red;
+}

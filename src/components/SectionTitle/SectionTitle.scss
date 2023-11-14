@@ -1,6 +1,16 @@
+@use "../../styles/index.scss" as *;
+
 .section-title {
     font-size: 3rem;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.8rem;
+    margin: 30px 0;
+
+    &-white {
+        color: $white;
+    }
+    &-black {
+        color: $black;
+    }
 }
