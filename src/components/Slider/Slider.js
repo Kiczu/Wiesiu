@@ -1,7 +1,7 @@
-import React from "react";
-import useSliderData from "./useSliderData";
-import ProductCard from "../ProductCard/ProductCard";
+import React, { useRef } from "react";
 import PaginationDots from "./PaginationDots/PaginationDots";
+import ProductCard from "../ProductCard/ProductCard";
+import useSliderData from "./useSliderData";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import "./Slider.scss";
@@ -14,17 +14,20 @@ const Slider = ({
   showDots = true,
   showProductsPerPage = 3,
 }) => {
-  const { nextPage, pagination, prevPage, slide, totalPages, widthProduct } =
+  const sliderContainerRef = useRef(null);
+
+  const { slide, totalPages, widthProduct, nextPage, pagination, prevPage } =
     useSliderData({
       autoPlay,
       autoPlayDuration,
       gap,
       products,
       showProductsPerPage,
+      sliderContainerRef,
     });
 
   return (
-    <div className="slider-container">
+    <div ref={sliderContainerRef} className="slider-container">
       <div className="slider">
         <ul style={slide} className="slide">
           {products.map((product, i) => (
@@ -33,10 +36,10 @@ const Slider = ({
             </li>
           ))}
         </ul>
-        <button className="prev-button" onClick={prevPage}>
+        <button className="arrow-button prev-button" onClick={prevPage}>
           <BsFillArrowLeftCircleFill />
         </button>
-        <button className="next-button" onClick={nextPage}>
+        <button className="arrow-button next-button" onClick={nextPage}>
           <BsFillArrowRightCircleFill />
         </button>
       </div>

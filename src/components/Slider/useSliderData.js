@@ -7,23 +7,31 @@ const useSliderData = ({
   gap,
   products,
   showProductsPerPage,
+  sliderContainerRef,
 }) => {
   const [productsPerPage, setProductsPerPage] = useState(showProductsPerPage);
   const [currentPage, setCurrentPage] = useState(0);
   const [translateSliderWidth, setTranslateSliderWidth] = useState(0);
   const [newProductWidth, setNewProductWidth] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(0);
 
-  const screenWidth = window.innerWidth;
   const totalPages = Math.ceil(products.length / productsPerPage);
   const productWidth =
-    (screenWidth - gap * (productsPerPage - 1)) / productsPerPage;
+    (containerWidth - gap * (productsPerPage - 1)) / productsPerPage;
   const productWithSpacing = productWidth + gap;
   const sliderWidth = productWithSpacing * products.length;
   const fullSlideWidth = currentPage * productWithSpacing * productsPerPage;
 
   useEffect(() => {
+    if (sliderContainerRef.current) {
+      const width = sliderContainerRef.current.offsetWidth;
+      setContainerWidth(width);
+    }
+  }, [sliderContainerRef]);
+
+  useEffect(() => {
     const updateProductsPerPage = () => {
-      const perPage = screenWidth < 600 ? 1 : showProductsPerPage;
+      const perPage = containerWidth < 600 ? 1 : showProductsPerPage;
       setProductsPerPage(perPage);
     };
     updateProductsPerPage();
@@ -32,12 +40,12 @@ const useSliderData = ({
     return () => {
       window.removeEventListener("resize", updateProductsPerPage);
     };
-  }, [screenWidth, showProductsPerPage]);
+  }, [containerWidth, showProductsPerPage]);
 
   useEffect(() => {
     const updateProductWidth = () => {
       const newProductWidth =
-        (screenWidth - gap * (productsPerPage - 1)) / productsPerPage;
+        (containerWidth - gap * (productsPerPage - 1)) / productsPerPage;
       setNewProductWidth(newProductWidth);
     };
 
@@ -46,7 +54,7 @@ const useSliderData = ({
     return () => {
       window.removeEventListener("resize", updateProductWidth);
     };
-  }, [gap, productsPerPage, screenWidth, newProductWidth]);
+  }, [gap, productsPerPage, containerWidth, newProductWidth]);
 
   useEffect(() => {
     if (autoPlay && autoPlayDuration > 0) {
@@ -124,12 +132,12 @@ const useSliderData = ({
     transform: `translateX(-${translateSliderWidth}px)`,
   };
   return {
-    nextPage,
-    prevPage,
-    pagination,
     slide,
     totalPages,
     widthProduct,
+    nextPage,
+    prevPage,
+    pagination,
   };
 };
 

@@ -7,6 +7,12 @@ const getPosts = (limit) => {
     access_token: process.env.REACT_APP_INSTAGRAM_ACCESS_TOKEN,
   });
 };
+const getUsername = () => {
+  return api.get(endpoints.instagram.me, {
+    fields: "username",
+    access_token: process.env.REACT_APP_INSTAGRAM_ACCESS_TOKEN,
+  });
+};
 
 const getNextPage = (url) => {
   return api.get(url);
@@ -14,6 +20,7 @@ const getNextPage = (url) => {
 
 const postsServices = {
     getPosts,
-    getNextPage
+    getNextPage,
+    getUsername
 }
 export default postsServices;
