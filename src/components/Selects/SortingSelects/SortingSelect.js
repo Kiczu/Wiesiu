@@ -1,24 +1,27 @@
 import React from "react";
 import Select from "react-select";
 
-const priceDown = "priceDown";
-const priceUp = "priceUp";
-const popularity = "popularity";
-const theOldest = "dateCreatedOldest";
-const theNewest = "dateCreatedNewest";
+export const SORTING_OPTION = {
+  PRICE_DOWN: "priceDown",
+  PRICE_UP: "priceUp",
+  POPULARITY: "popularity",
+  THE_OLDEST: "dateCreatedOldest",
+  THE_NEWEST: "dateCreatedNewest",
+
+}
 
 const options = [
-  { value: priceDown, label: "Cena - od najniższej" },
-  { value: priceUp, label: "Cena - od najwyższej" },
-  { value: popularity, label: "Popularność - najlepiej sprzedawane" },
-  { value: theOldest, label: "Data - od najstarszej" },
-  { value: theNewest, label: "Data - od najnowszej" },
+  { value: SORTING_OPTION.PRICE_DOWN, label: "Cena - od najniższej" },
+  { value: SORTING_OPTION.PRICE_UP, label: "Cena - od najwyższej" },
+  { value: SORTING_OPTION.POPULARITY, label: "Popularność - najlepiej sprzedawane" },
+  { value: SORTING_OPTION.THE_OLDEST, label: "Data - od najstarszej" },
+  { value: SORTING_OPTION.THE_NEWEST, label: "Data - od najnowszej" },
 ];
 
 const SortingSelect = ({ onChange }) => {
   const handleSelectChange = (selectedOption) => {
     if (onChange) {
-      const value = selectedOption?.value || theNewest;
+      const value = selectedOption?.value || SORTING_OPTION.THE_NEWEST;
       onChange(value);
     }
   };
@@ -33,7 +36,7 @@ const SortingSelect = ({ onChange }) => {
     <>
       <label>Sortowanie</label>
       <Select
-        defaultValue={theNewest}
+        defaultValue={SORTING_OPTION.THE_NEWEST}
         isClearable={true}
         name="product"
         options={options}

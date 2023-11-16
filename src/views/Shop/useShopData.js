@@ -1,13 +1,14 @@
 import { useState, useEffect, useMemo } from "react";
 import woocommerceServices from "../../services/woocommerceService";
+import { SORTING_OPTION } from "../../components/Selects/SortingSelects/SortingSelect";
 
 const sortFunctions = {
-  priceDown: (a, b) => a.price - b.price,
-  priceUp: (a, b) => b.price - a.price,
-  popularity: (a, b) => b.total_sales - a.total_sales,
-  dateCreatedOldest: (a, b) =>
+  [SORTING_OPTION.PRICE_DOWN]: (a, b) => a.price - b.price,
+  [SORTING_OPTION.PRICE_UP]: (a, b) => b.price - a.price,
+  [SORTING_OPTION.POPULARITY]: (a, b) => b.total_sales - a.total_sales,
+  [SORTING_OPTION.THE_OLDEST]: (a, b) =>
     new Date(a.date_created) - new Date(b.date_created),
-  dateCreatedNewest: (a, b) =>
+  [SORTING_OPTION.THE_NEWEST]: (a, b) =>
     new Date(b.date_created) - new Date(a.date_created),
 };
 

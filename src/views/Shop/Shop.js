@@ -32,7 +32,7 @@ const Shop = () => {
             }`}
           >
             <h2 className="categories-filter-title">Kategorie</h2>
-            {categories.map((category, i) => (
+            {categories.map((category) => (
               <button
                 className={`categories-filter-button ${
                   activeCategory === category.id
