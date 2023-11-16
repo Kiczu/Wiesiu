@@ -1,4 +1,4 @@
-@use "../../styles/index.scss";
+@use "../../styles/index.scss" as *;
 
 .product {
   &-overlay {
@@ -16,7 +16,7 @@
 
     &-icon {
       font-size: 3.2rem;
-      color: index.$yellow;
+      color: $yellow;
     }
   }
 
@@ -40,12 +40,12 @@
     text-transform: uppercase;
     font-size: 1.8rem;
     margin: 5px 0;
-    font-family: index.$main-font;
+    font-family: $main-font;
   }
 
   &-price {
-    font-family: index.$main-font;
-    color: index.$blue;
+    font-family: $main-font;
+    color: $blue;
     font-size: 1.6rem;
     font-weight: 600;
   }
