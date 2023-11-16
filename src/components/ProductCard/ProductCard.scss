@@ -1,0 +1,56 @@
+@use "../../styles/index.scss" as *;
+
+.product {
+  &-overlay {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: #00000098;
+    transition: 0.3s;
+
+    &-icon {
+      font-size: 3.2rem;
+      color: $yellow;
+    }
+  }
+
+  &-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &-image {
+    display: block;
+    max-width: 100%;
+
+    &-container {
+      position: relative;
+      display: block;
+    }
+  }
+
+  &-name {
+    display: block;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    margin: 5px 0;
+    font-family: $main-font;
+  }
+
+  &-price {
+    font-family: $main-font;
+    color: $blue;
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+}
+
+.product-link:hover .product-overlay {
+  opacity: 1;
+}

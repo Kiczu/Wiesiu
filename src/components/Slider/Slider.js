@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import PaginationDots from "./PaginationDots/PaginationDots";
+import ProductCard from "../ProductCard/ProductCard";
 import useSliderData from "./useSliderData";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import imagePlaceholder from "../../assets/Placeholder_view.png";
 import "./Slider.scss";
 
 const Slider = ({
@@ -32,17 +32,7 @@ const Slider = ({
         <ul style={slide} className="slide">
           {products.map((product, i) => (
             <li style={widthProduct} className="product-card" key={i}>
-              <img
-                className="product-image"
-                src={
-                  product.images.length
-                    ? product.images[0].src
-                    : imagePlaceholder
-                }
-                alt=""
-              />
-              <h2 className="product-title">{product.name}</h2>
-              <p className="product-price">{product.price} zł</p>
+              <ProductCard product={product} />
             </li>
           ))}
         </ul>
