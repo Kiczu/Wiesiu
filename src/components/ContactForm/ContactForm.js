@@ -54,7 +54,7 @@ const ContactForm = () => {
         </div>
 
         <div className="contact-form-input">
-          <Field as="textarea" id="message" name="message" placeholder="Twoja wiadomość"/>
+          <Field as="textarea" id="message" name="message" placeholder="Twoja wiadomość" rows="10"/>
           <ErrorMessage className="form-error-message" name="message" component="div" />
         </div>
 
