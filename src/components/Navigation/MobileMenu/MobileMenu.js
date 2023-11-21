@@ -29,7 +29,7 @@ const MobileMenu = () => {
       </div>
       <ul className={`mobile-menu-list ${isMenuOpen ? "active" : "inactive"} `}>
         <li className="mobile-menu-element">
-          <Link to="/">Komiksy</Link>
+          <Link to="/">Księgarnia</Link>
         </li>
         <li className="mobile-menu-element">
           <Link to="/">Spotkania</Link>

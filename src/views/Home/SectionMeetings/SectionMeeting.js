@@ -3,9 +3,9 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import Button from "../../../components/Button/Button";
 import "./SectionMeetings.scss";
 
-const SectionMeetings = () => {
+const SectionMeetings = ({ id }) => {
   return (
-    <section className="section-home section-meetings">
+    <section id={id} className="section-home section-meetings">
       <SectionTitle>Spotkania i warsztaty</SectionTitle>
       <div className="section-meetings-container">
         <p className="description">
@@ -15,7 +15,7 @@ const SectionMeetings = () => {
           ciekawostki czekają na spotkaniu z autorem Wiesława – Maciejem
           Kisielem.
         </p>
-        <Button >Napisz do mnie</Button>
+        <Button>Napisz do mnie</Button>
       </div>
     </section>
   );

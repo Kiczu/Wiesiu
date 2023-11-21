@@ -8,9 +8,9 @@ import FacebookIcon from "../../../assets/Home/SectionContact/facebook.webp";
 import InstagramIcon from "../../../assets/Home/SectionContact/instagram.webp";
 import "./SectionContact.scss";
 
-const SectionContact = ({ colorTitle }) => {
+const SectionContact = ({ colorTitle, id }) => {
   return (
-    <section className="section-home section-contact">
+    <section id={id} className="section-home section-contact">
       <SectionTitle color={colorTitle}>Kontakt</SectionTitle>
       <div className="section-contact-container">
         <div className="form-container">
