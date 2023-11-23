@@ -1,19 +1,12 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { HOME, SHOP } from "../../../paths";
+import React from "react";
 import classNames from "classnames";
-import "./DesktopMenu.scss";
+import { HashLink as Link } from "react-router-hash-link";
+import { HOME, SHOP } from "../../../paths";
 import { FaShoppingCart } from "react-icons/fa";
+import "./DesktopMenu.scss";
 import logo from "../../../assets/logo_wieslaw.webp";
 
 const DesktopMenu = ({ isSticky }) => {
-  useEffect(() => {
-    let url = window.location.href.split("/");
-    let target = url[url.length - 1].toLowerCase();
-    let element = document.getElementById(target);
-    element && element.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, []);
-
   const logoAnimation = classNames("logo-image", {
     "logo-animation": isSticky,
   });
@@ -24,13 +17,13 @@ const DesktopMenu = ({ isSticky }) => {
         <FaShoppingCart className="cart-button" />
       </Link>
       <li className="menu-element">
-        <Link to="/bookstore">Księgarnia</Link>
+        <Link to="/#bookstore">Księgarnia</Link>
       </li>
       <li className="menu-element">
-        <Link to="/">Spotkania</Link>
+        <Link to="/#meetings">Spotkania</Link>
       </li>
       <li className="menu-element">
-        <Link to="/">Kolekcje</Link>
+        <Link to="/#colections">Kolekcje</Link>
       </li>
       <li className="menu-element">
         <Link to={HOME}>
@@ -38,10 +31,10 @@ const DesktopMenu = ({ isSticky }) => {
         </Link>
       </li>
       <li className="menu-element">
-        <Link to="/">Gadżety</Link>
+        <Link to="/#gadgets">Gadżety</Link>
       </li>
       <li className="menu-element">
-        <Link to="/">Kontakt</Link>
+        <Link to="/#contact">Kontakt</Link>
       </li>
       <li className="menu-element menu-shop">
         <Link to={SHOP}>Sklep</Link>

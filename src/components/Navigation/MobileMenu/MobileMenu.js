@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 import { HOME, SHOP } from "../../../paths";
 import { HiMenu } from "react-icons/hi";
 import { FaShoppingCart } from "react-icons/fa";
@@ -12,6 +12,7 @@ const MobileMenu = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   return (
     <div className="mobile-menu">
       <div className="bar-container">
@@ -29,19 +30,19 @@ const MobileMenu = () => {
       </div>
       <ul className={`mobile-menu-list ${isMenuOpen ? "active" : "inactive"} `}>
         <li className="mobile-menu-element">
-          <Link to="/">Księgarnia</Link>
+          <Link to="/#bookstore">Księgarnia</Link>
         </li>
         <li className="mobile-menu-element">
-          <Link to="/">Spotkania</Link>
+          <Link to="/#meetings">Spotkania</Link>
         </li>
         <li className="mobile-menu-element">
-          <Link to="/">Kolekcje</Link>
+          <Link to="/#colections">Kolekcje</Link>
         </li>
         <li className="mobile-menu-element">
-          <Link to="/">Gadżety</Link>
+          <Link to="/#gadgets">Gadżety</Link>
         </li>
         <li className="mobile-menu-element">
-          <Link to="/">Kontakt</Link>
+          <Link to="/#contact">Kontakt</Link>
         </li>
         <li className="mobile-menu-element">
           <Link to={SHOP}>Sklep</Link>
