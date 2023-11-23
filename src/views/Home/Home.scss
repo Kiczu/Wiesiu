@@ -1,3 +1,9 @@
+@use "../../styles/index.scss" as *;
+
 .section-home {
     padding: 50px;
+
+    @media (max-width: $md) {
+        padding: 10px;
+    }
 }
