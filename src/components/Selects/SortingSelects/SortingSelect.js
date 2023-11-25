@@ -28,15 +28,16 @@ const SortingSelect = ({ onChange }) => {
   const selectStyles = {
     control: (baseStyles, state) => ({
       ...baseStyles,
-      borderColor: state.isFocused ? "#506cab" : "transparent",
+      borderColor: state.isFocused ? "#fdb72b" : "#000",
+      borderRadius: 0,
     }),
   };
 
   return (
     <>
-      <label>Sortowanie</label>
       <Select
         defaultValue={SORTING_OPTION.THE_NEWEST}
+        placeholder={"Data - od najnowszej"}
         isClearable={true}
         name="product"
         options={options}
@@ -46,8 +47,8 @@ const SortingSelect = ({ onChange }) => {
           ...theme,
           colors: {
             ...theme.colors,
-            primary25: "#506bab31",
-            primary: "#506cab",
+            primary25: "#fdb72b40",
+            primary: "#fdb72b",
           },
         })}
       />

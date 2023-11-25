@@ -20,7 +20,6 @@ const Shop = () => {
 
   return (
     <>
-      <h1 className="shop-title">Sklep</h1>
       <div className="product-list">
         <div className="product-filters">
           <button className="filter-button" onClick={toggleMenu}>
@@ -31,7 +30,7 @@ const Shop = () => {
               isMenuOpen ? "active" : "inactive"
             }`}
           >
-            <h2 className="categories-filter-title">Kategorie</h2>
+            <p className="categories-filter-title">Kategorie</p>
             {categories.map((category) => (
               <button
                 className={`categories-filter-button ${
@@ -74,7 +73,7 @@ const Shop = () => {
                   }
                   alt={product.name}
                 />
-                <h2 className="product-title">{product.name}</h2>
+                <p className="product-title">{product.name}</p>
                 <p className="product-price">{product.price} zł</p>
               </li>
             ))}
