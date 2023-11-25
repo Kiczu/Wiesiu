@@ -14,9 +14,14 @@
   text-decoration: none;
   color: #000;
 
-  svg {
-    width: 50px;
+  i {
     height: 50px;
+    width: 50px;
+
+    svg {
+      height: inherit;
+      width: inherit;
+    }
   }
 }
 .instagram-grid {

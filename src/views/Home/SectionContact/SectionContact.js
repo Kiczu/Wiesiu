@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ContactForm from "../../../components/ContactForm/ContactForm";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-import PhoneIcon from "../../../assets/Home/SectionContact/Telefon_iko.webp";
-import MailIcon from "../../../assets/Home/SectionContact/Mail_iko.webp";
+import { BsPhoneVibrate } from "react-icons/bs";
+import { IoMailOutline } from "react-icons/io5";
 import FacebookIcon from "../../../assets/Home/SectionContact/facebook.webp";
 import InstagramIcon from "../../../assets/Home/SectionContact/instagram.webp";
 import "./SectionContact.scss";
@@ -24,11 +24,15 @@ const SectionContact = ({ colorTitle, id }) => {
             NIP: 792 199 35 25
           </p>
           <p className="contact-icon">
-            <img src={PhoneIcon} alt="phone icon" />
+            <i>
+              <BsPhoneVibrate />
+            </i>
             +48 505 640 150
           </p>
           <p className="contact-icon">
-            <img src={MailIcon} alt="mail icon" />
+            <i>
+            <IoMailOutline />
+            </i>
             KONTAKT@WIESIU.PL
           </p>
           <div className="socials-container">

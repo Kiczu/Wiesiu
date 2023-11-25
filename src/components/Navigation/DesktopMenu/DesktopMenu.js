@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { HashLink as Link } from "react-router-hash-link";
 import { HOME, SHOP } from "../../../paths";
-import { FaShoppingCart } from "react-icons/fa";
+import { IoCartOutline } from "react-icons/io5";
 import "./DesktopMenu.scss";
 import logo from "../../../assets/logo_wieslaw.webp";
 
@@ -14,7 +14,9 @@ const DesktopMenu = ({ isSticky }) => {
   return (
     <ul className="menu-list">
       <Link to="/">
-        <FaShoppingCart className="cart-button" />
+        <i className="cart-icon">
+          <IoCartOutline />
+        </i>
       </Link>
       <li className="menu-element">
         <Link to="/#bookstore">Księgarnia</Link>
