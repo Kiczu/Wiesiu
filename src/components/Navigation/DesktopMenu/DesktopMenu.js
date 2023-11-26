@@ -1,8 +1,8 @@
 import React from "react";
-import { HOME, SHOP } from "../../../paths";
+import classNames from "classnames";
 import { HashLink as Link } from "react-router-hash-link";
 import { IoCartOutline } from "react-icons/io5";
-import classNames from "classnames";
+import { HOME, SHOP } from "../../../paths";
 import logo from "../../../assets/logo_wieslaw.webp";
 import "./DesktopMenu.scss";
 
