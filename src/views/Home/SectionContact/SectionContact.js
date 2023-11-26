@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ContactForm from "../../../components/ContactForm/ContactForm";
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { BsPhoneVibrate } from "react-icons/bs";
 import { IoMailOutline } from "react-icons/io5";
+import ContactForm from "../../../components/ContactForm/ContactForm";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import FacebookIcon from "../../../assets/Home/SectionContact/facebook.webp";
 import InstagramIcon from "../../../assets/Home/SectionContact/instagram.webp";
 import "./SectionContact.scss";

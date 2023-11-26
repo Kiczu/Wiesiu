@@ -1,8 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import Slider from "../../../components/Slider/Slider";
 import Button from "../../../components/Button/Button";
-import { Link } from "react-router-dom";
 import "./SectionSlider.scss";
 
 const SectionSlider = ({

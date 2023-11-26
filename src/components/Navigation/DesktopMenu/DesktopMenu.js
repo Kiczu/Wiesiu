@@ -1,10 +1,10 @@
 import React from "react";
-import classNames from "classnames";
-import { HashLink as Link } from "react-router-hash-link";
 import { HOME, SHOP } from "../../../paths";
+import { HashLink as Link } from "react-router-hash-link";
 import { IoCartOutline } from "react-icons/io5";
-import "./DesktopMenu.scss";
+import classNames from "classnames";
 import logo from "../../../assets/logo_wieslaw.webp";
+import "./DesktopMenu.scss";
 
 const DesktopMenu = ({ isSticky }) => {
   const logoAnimation = classNames("logo-image", {
