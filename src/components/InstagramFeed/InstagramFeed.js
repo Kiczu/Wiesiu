@@ -42,7 +42,9 @@ const InstagramFeed = () => {
   return (
     <div className="container-grid">
       <Link to={profileUrl} className="instagram-profile-name">
-        <GrInstagram />
+        <i>
+          <GrInstagram />
+        </i>
         <span>{username}</span>
       </Link>
       <div className="instagram-grid">

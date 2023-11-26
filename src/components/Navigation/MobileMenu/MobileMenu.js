@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 import { HOME, SHOP } from "../../../paths";
 import { HiMenu } from "react-icons/hi";
-import { FaShoppingCart } from "react-icons/fa";
+import { IoCartOutline } from "react-icons/io5";
 import "../MobileMenu/MobileMenu.scss";
 import logo from "../../../assets/logo_wieslaw.webp";
 
@@ -12,15 +12,18 @@ const MobileMenu = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   return (
     <div className="mobile-menu">
       <div className="bar-container">
         <Link to={HOME}>
           <img src={logo} alt="logo" />
         </Link>
-        <div>
+        <div className="mobile-icons-container">
           <Link to="/">
-            <FaShoppingCart className="cart-button" />
+            <i className="cart-icon">
+              <IoCartOutline />
+            </i>
           </Link>
           <button onClick={toggleMenu} className="hamburger-button">
             <HiMenu className="hamburger-icon" />
@@ -29,19 +32,19 @@ const MobileMenu = () => {
       </div>
       <ul className={`mobile-menu-list ${isMenuOpen ? "active" : "inactive"} `}>
         <li className="mobile-menu-element">
-          <Link to="/">Komiksy</Link>
+          <Link to="/#bookstore">Księgarnia</Link>
         </li>
         <li className="mobile-menu-element">
-          <Link to="/">Spotkania</Link>
+          <Link to="/#meetings">Spotkania</Link>
         </li>
         <li className="mobile-menu-element">
-          <Link to="/">Kolekcje</Link>
+          <Link to="/#colections">Kolekcje</Link>
         </li>
         <li className="mobile-menu-element">
-          <Link to="/">Gadżety</Link>
+          <Link to="/#gadgets">Gadżety</Link>
         </li>
         <li className="mobile-menu-element">
-          <Link to="/">Kontakt</Link>
+          <Link to="/#contact">Kontakt</Link>
         </li>
         <li className="mobile-menu-element">
           <Link to={SHOP}>Sklep</Link>

@@ -1,10 +1,10 @@
 import React from "react";
-import Navigation from "../Navigation/Navigation";
-import Footer from "../Footer/Footer";
 import { Route, Routes } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
+import Navigation from "../Navigation/Navigation";
 import Home from "../../views/Home/Home";
 import Shop from "../../views/Shop/Shop";
+import Footer from "../Footer/Footer";
 import "./Layout.scss";
 
 const Layout = () => {

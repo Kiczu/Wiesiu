@@ -1,4 +1,5 @@
 import React from "react";
+import { HashLink as Link } from "react-router-hash-link";
 import Button from "../../../components/Button/Button";
 import heroImage from "../../../assets/Home/SectionHero/Warstwa-6.webp";
 import "./SectionHero.scss";
@@ -15,7 +16,9 @@ const SectionHero = () => {
             komiksy o Wiesławie i odkryj barwny i zaskakujący świat zapomnianych
             słowiańskich baśni!
           </p>
-          <Button>Więcej</Button>
+          <Link to="/#bookstore">
+            <Button>Więcej</Button>
+          </Link>
         </div>
       </div>
       <div className="section-hero-image">

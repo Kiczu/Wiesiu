@@ -3,10 +3,15 @@
 .contact-form-input {
     margin: 20px;
 
+    @media (max-width: $md) {
+        margin: 10px;
+    }
+
     input {
         padding: 10px;
         width: 100%;
         border: 1px solid black;
+        font-size: 1.6rem;
 
         &:focus {
             border: 1px solid $yellow;
@@ -19,6 +24,7 @@
         padding: 10px;
         border: 1px solid black;
         font-family: inherit;
+        font-size: 1.6rem;
         outline: none;
 
         &:focus {
@@ -31,4 +37,5 @@
 
 .form-error-message {
     color: red;
+    font-size: 1.4rem;
 }

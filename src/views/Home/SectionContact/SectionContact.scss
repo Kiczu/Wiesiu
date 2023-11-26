@@ -20,7 +20,7 @@
   justify-self: end;
 
   @media (max-width: $md) {
-    width: 95%;
+    width: 100%;
     justify-self: center;
   }
 }
@@ -30,15 +30,21 @@
   gap: 10px;
   margin: 20px auto;
 
-  @media(max-width: $md) {
-    justify-content: center;
+  i {
+    width: 40px;
+    height: 40px;
+
+    svg {
+      height: inherit;
+      width: inherit;
+      color: $blue;
+    }
   }
 }
 .socials-container {
   display: flex;
   gap: 10px;
-  @media(max-width: $md) {
-    justify-content: center;
+  @media (max-width: $md) {
     gap: 20px;
   }
 }
@@ -46,14 +52,10 @@
   max-width: 40px;
 }
 .contact-desc {
-  @media (max-width: $md) {
-    text-align: center;
-  }
-
   h3 {
     margin: 15px 0;
     letter-spacing: 7px;
-    font-size: 1.7rem;
+    font-size: 1.8rem;
   }
   p {
     font-weight: 300;

@@ -12,6 +12,10 @@ $opacityNavBavkground: #000000c9;
   padding: 30px 0;
   z-index: 5;
 
+  @media (max-width: $lg) {
+    background-color: #000;
+  }
+
   &-home {
     background-color: transparent;
   }
@@ -24,7 +28,7 @@ $opacityNavBavkground: #000000c9;
     align-items: center;
     list-style-type: none;
 
-    @media (max-width: $md) {
+    @media (max-width: $lg) {
       display: none;
     }
   }
@@ -35,7 +39,7 @@ $opacityNavBavkground: #000000c9;
       color: $white;
       text-decoration: none;
       text-transform: uppercase;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       font-weight: 400;
       padding: 5px 15px;
     }
@@ -61,24 +65,18 @@ $opacityNavBavkground: #000000c9;
   width: 0;
   transition: all 0.5s;
 }
-.cart-button {
+.cart-icon {
   position: absolute;
   top: 50%;
   left: 3%;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  font-size: 1.8rem;
+  height: 25px;
+  width: 25px;
   color: $white;
 
-  @media (max-width: $md) {
-    position: relative;
-    top: 0%;
-    left: 0%;
-    transform: translate(-100%, -30%);
-  }
-}
-@media only screen and (max-width: $md) {
-  .menu {
-    background-color: $opacityNavBavkground;
+  svg {
+    height: inherit;
+    width: inherit;
   }
 }
