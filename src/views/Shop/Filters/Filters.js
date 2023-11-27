@@ -18,7 +18,7 @@ const Filters = () => {
   return (
     <div className="product-filters">
       <button className="filter-button" onClick={toggleMenu}>
-        Filtry <FaFilter />
+        Filtry <i><FaFilter /></i> 
       </button>
       <div
         className={`categories-filter ${isMenuOpen ? "active" : "inactive"}`}
