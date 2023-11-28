@@ -1,20 +1,19 @@
 import React from "react";
 import { FaFilter } from "react-icons/fa";
-import useShopData from "../useShopData";
 import SortingSelect from "../../../components/Selects/SortingSelects/SortingSelect";
 import "./Filters.scss";
 
-const Filters = () => {
-  const {
-    activeCategory,
-    categories,
-    isMenuOpen,
-    products,
-    handleCategoryClick,
-    handleSelectChange,
-    setProducts,
-    toggleMenu,
-  } = useShopData();
+const Filters = ({    
+  activeCategory,
+  categories,
+  isMenuOpen,
+  products,
+  handleCategoryClick,
+  handleSelectChange,
+  setProducts,
+  toggleMenu,
+}) => {
+
   return (
     <div className="product-filters">
       <button className="filter-button" onClick={toggleMenu}>

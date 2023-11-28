@@ -6,12 +6,30 @@ import "../Shop/Shop.scss";
 import ProductsGrid from "./ProductsGrid/ProductsGrid";
 
 const Shop = () => {
-  const { products, visibleProducts, handleSelectChange, setProducts } =
-    useShopData();
+  const {
+    activeCategory,
+    categories,
+    isMenuOpen,
+    products,
+    handleCategoryClick,
+    handleSelectChange,
+    setProducts,
+    visibleProducts,
+    toggleMenu,
+  } = useShopData();
 
   return (
     <div className="product-list">
-      <Filters />
+      <Filters
+        activeCategory={activeCategory}
+        categories={categories}
+        isMenuOpen={isMenuOpen}
+        products={products}
+        handleCategoryClick={handleCategoryClick}
+        handleSelectChange={handleSelectChange}
+        setProducts={setProducts}
+        toggleMenu={toggleMenu}
+      />
       <div className="listing-column">
         <div className="sorting-filter">
           <SortingSelect
@@ -20,7 +38,7 @@ const Shop = () => {
             setProducts={setProducts}
           />
         </div>
-        <ProductsGrid products={visibleProducts}/>
+        <ProductsGrid products={visibleProducts} />
       </div>
     </div>
   );
