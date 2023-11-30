@@ -38,9 +38,9 @@ const SortingSelect = ({ onChange }) => {
       <Select
         defaultValue={SORTING_OPTION.THE_NEWEST}
         placeholder={"Data - od najnowszej"}
-        isClearable={true}
         name="product"
         options={options}
+        isSearchable={false}
         onChange={handleSelectChange}
         styles={selectStyles}
         theme={(theme) => ({
