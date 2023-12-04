@@ -23,9 +23,17 @@ const getProductsByCategoryId = async (categoryId) => {
   });
 };
 
+const getProduct = async (id) => {
+  return api.get(endpoints.woocommerce.categoriesById + `/${id}`, {
+    consumer_key: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_KEY,
+    consumer_secret: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_SECRET,
+  });
+}
+
 const woocommerceServices = {
   getProducts,
   getCategories,
+  getProduct,
   getProductsByCategoryId
 };
 
