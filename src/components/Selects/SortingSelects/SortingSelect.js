@@ -18,10 +18,12 @@ const options = [
   { value: SORTING_OPTION.THE_NEWEST, label: "Data - od najnowszej" },
 ];
 
+const defaultValue = options[4].value;
+
 const SortingSelect = ({ onChange }) => {
   const handleSelectChange = (selectedOption) => {
     if (onChange) {
-      const value = selectedOption?.value || SORTING_OPTION.THE_NEWEST;
+      const value = selectedOption?.value || defaultValue;
       onChange(value);
     }
   };
@@ -36,7 +38,7 @@ const SortingSelect = ({ onChange }) => {
   return (
     <>
       <Select
-        defaultValue={SORTING_OPTION.THE_NEWEST}
+        defaultValue={defaultValue}
         placeholder={"Data - od najnowszej"}
         name="product"
         options={options}
