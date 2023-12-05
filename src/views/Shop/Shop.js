@@ -1,19 +1,17 @@
 import React from "react";
 import useShopData from "./useShopData";
-import SortingSelect from "../../components/Selects/SortingSelects/SortingSelect";
 import Filters from "./Filters/Filters";
-import "../Shop/Shop.scss";
 import ProductsGrid from "./ProductsGrid/ProductsGrid";
+import SortingSelect from "../../components/Selects/SortingSelects/SortingSelect";
+import "../Shop/Shop.scss";
 
 const Shop = () => {
   const {
     activeCategory,
     categories,
     isFilterMenuOpen,
-    products,
     handleCategoryClick,
     handleSelectChange,
-    setProducts,
     visibleProducts,
     toggleMenu,
   } = useShopData();
@@ -24,18 +22,14 @@ const Shop = () => {
         activeCategory={activeCategory}
         categories={categories}
         isFilterMenuOpen={isFilterMenuOpen}
-        products={products}
         handleCategoryClick={handleCategoryClick}
         handleSelectChange={handleSelectChange}
-        setProducts={setProducts}
         toggleMenu={toggleMenu}
       />
       <div className="listing-column">
         <div className="sorting-filter">
           <SortingSelect
             onChange={handleSelectChange}
-            products={products}
-            setProducts={setProducts}
           />
         </div>
         <ProductsGrid products={visibleProducts} />

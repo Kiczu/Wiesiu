@@ -8,10 +8,8 @@ const Filters = ({
   activeCategory,
   categories,
   isFilterMenuOpen,
-  products,
   handleCategoryClick,
   handleSelectChange,
-  setProducts,
   toggleMenu,
 }) => {
 
@@ -45,8 +43,6 @@ const Filters = ({
         <div className="sorting-filter-mobile">
           <SortingSelect
             onChange={handleSelectChange}
-            products={products}
-            setProducts={setProducts}
           />
         </div>
       </div>
