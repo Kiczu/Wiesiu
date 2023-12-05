@@ -18,10 +18,10 @@ const useShopData = () => {
   const [activeCategory, setActiveCategory] = useState(0);
   const [productsByCategory, setProductsByCategory] = useState({});
   const [activeSort, setActiceSort] = useState("dateCreatedNewest");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsFilterMenuOpen(!isFilterMenuOpen);
   };
 
   useEffect(() => {
@@ -92,7 +92,7 @@ const useShopData = () => {
     setProducts,
     visibleProducts,
     toggleMenu,
-    isMenuOpen
+    isFilterMenuOpen
   };
 };
 

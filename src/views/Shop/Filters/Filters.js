@@ -2,11 +2,12 @@ import React from "react";
 import { FaFilter } from "react-icons/fa";
 import SortingSelect from "../../../components/Selects/SortingSelects/SortingSelect";
 import "./Filters.scss";
+import classNames from "classnames";
 
-const Filters = ({    
+const Filters = ({
   activeCategory,
   categories,
-  isMenuOpen,
+  isFilterMenuOpen,
   products,
   handleCategoryClick,
   handleSelectChange,
@@ -14,20 +15,27 @@ const Filters = ({
   toggleMenu,
 }) => {
 
+  const filtersMenuToggle = classNames("categories-filter", {
+    "active": isFilterMenuOpen,
+    "inactive": !isFilterMenuOpen,
+  });
+
   return (
     <div className="product-filters">
       <button className="filter-button" onClick={toggleMenu}>
-        Filtry <i><FaFilter /></i> 
+        Filtry{" "}
+        <i>
+          <FaFilter />
+        </i>
       </button>
       <div
-        className={`categories-filter ${isMenuOpen ? "active" : "inactive"}`}
+        className={filtersMenuToggle}
       >
         <p className="categories-filter-title">Kategorie</p>
         {categories.map((category) => (
           <button
             className={`categories-filter-button ${
-              activeCategory === category.id ? "active-category-filter" : ""
-            }`}
+              activeCategory === category.id ? "active-category-filter" : ""}`}
             key={category.id}
             onClick={() => handleCategoryClick(category.id)}
           >

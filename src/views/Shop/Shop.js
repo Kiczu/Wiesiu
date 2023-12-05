@@ -9,7 +9,7 @@ const Shop = () => {
   const {
     activeCategory,
     categories,
-    isMenuOpen,
+    isFilterMenuOpen,
     products,
     handleCategoryClick,
     handleSelectChange,
@@ -23,7 +23,7 @@ const Shop = () => {
       <Filters
         activeCategory={activeCategory}
         categories={categories}
-        isMenuOpen={isMenuOpen}
+        isFilterMenuOpen={isFilterMenuOpen}
         products={products}
         handleCategoryClick={handleCategoryClick}
         handleSelectChange={handleSelectChange}
