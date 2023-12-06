@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    margin-left: 20px;
     background: transparent;
     border: none;
     text-transform: uppercase;
@@ -27,6 +28,7 @@
   position: sticky;
   top: 140px;
   padding: 10px;
+  box-shadow: 0px 8px 7px -10px rgba(0, 0, 0, 0.3);
 
   @media (max-width: $lg) {
     position: absolute;

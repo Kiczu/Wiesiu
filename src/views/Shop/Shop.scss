@@ -11,9 +11,15 @@
   @media (max-width: $lg) {
     grid-template-columns: 1fr;
     max-width: 100%;
+    padding: 0;
+    margin: 40px auto;
   }
 }
-
+.listing-column {
+  @media (max-width: $lg) {
+    padding: 0 20px;
+  }
+}
 .sorting-filter {
   display: flex;
   flex-direction: column;
