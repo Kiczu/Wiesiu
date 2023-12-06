@@ -24,22 +24,3 @@
     }
   }
 }
-.product {
-  &-image {
-    display: block;
-    position: relative;
-    max-width: 100%;
-    z-index: 0;
-  }
-  &-filters {
-    position: relative;
-    border-right: 1px solid #ddd;
-  }
-  &-title {
-    font-size: 1.6rem;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin: 10px;
-    line-height: 2rem;
-  }
-}
