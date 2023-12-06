@@ -18,7 +18,7 @@ const useShopData = () => {
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(0);
   const [productsByCategory, setProductsByCategory] = useState({});
-  const [activeSort, setActiceSort] = useState("dateCreatedNewest");
+  const [activeSort, setActiveSort] = useState("dateCreatedNewest");
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -92,7 +92,7 @@ const useShopData = () => {
   };
 
   const handleSelectChange = (selectedSort) => {
-    setActiceSort(selectedSort);
+    setActiveSort(selectedSort);
   };
 
   const visibleProducts = useMemo(() => {
