@@ -1,8 +1,8 @@
 import React from "react";
+import classNames from "classnames";
 import { FaFilter } from "react-icons/fa";
 import SortingSelect from "../../../components/Selects/SortingSelects/SortingSelect";
 import "./Filters.scss";
-import classNames from "classnames";
 
 const Filters = ({
   activeCategory,
@@ -12,10 +12,9 @@ const Filters = ({
   handleSelectChange,
   toggleMenu,
 }) => {
-
   const filtersMenuToggle = classNames("categories-filter", {
-    "active": isFilterMenuOpen,
-    "inactive": !isFilterMenuOpen,
+    active: isFilterMenuOpen,
+    inactive: !isFilterMenuOpen,
   });
 
   return (
@@ -26,14 +25,13 @@ const Filters = ({
           <FaFilter />
         </i>
       </button>
-      <div
-        className={filtersMenuToggle}
-      >
+      <div className={filtersMenuToggle}>
         <p className="categories-filter-title">Kategorie</p>
         {categories.map((category) => (
           <button
             className={`categories-filter-button ${
-              activeCategory === category.id ? "active-category-filter" : ""}`}
+              activeCategory === category.id ? "active-category-filter" : ""
+            }`}
             key={category.id}
             onClick={() => handleCategoryClick(category.id)}
           >
@@ -41,9 +39,7 @@ const Filters = ({
           </button>
         ))}
         <div className="sorting-filter-mobile">
-          <SortingSelect
-            onChange={handleSelectChange}
-          />
+          <SortingSelect onChange={handleSelectChange} />
         </div>
       </div>
     </div>

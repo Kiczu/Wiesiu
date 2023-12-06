@@ -4,6 +4,10 @@
  padding-right: 40px;
  position: relative;
  border-right: 1px solid #ddd;
+
+ @media (max-width: $lg) {
+  border-right: none;
+ }
 }
 .filter-button {
   display: none;
