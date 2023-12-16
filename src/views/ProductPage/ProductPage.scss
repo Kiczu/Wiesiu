@@ -33,6 +33,9 @@
     font-size: 2.5rem;
   }
 }
+
+
+
 .gallery-product {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -49,5 +52,19 @@
       transform: scale(1.1);
     }
     
+  }
+}
+
+
+
+.related-products {
+
+  h2{
+    text-align: center;
+    font-size: 3rem;
+    letter-spacing: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 50px 10px;
   }
 }

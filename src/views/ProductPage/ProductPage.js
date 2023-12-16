@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Slider from "../../components/Slider/Slider";
 import woocommerceServices from "../../services/woocommerceService";
 import imagePlaceholder from "../../assets/Placeholder_view.png";
 import Button from "../../components/Button/Button";
@@ -9,6 +10,8 @@ const ProductPage = () => {
   const { id } = useParams();
   const [productData, setProductData] = useState();
   const [productGallery, setProductGallery] = useState([]);
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [relatedIDs, setRelatedIDs] = useState([]);
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -17,6 +20,7 @@ const ProductPage = () => {
         setProductData(data);
         const gallery = data.images.slice(1);
         setProductGallery(gallery);
+        setRelatedIDs(data.related_ids);
       } catch (error) {
         console.error(error);
       }
@@ -24,7 +28,19 @@ const ProductPage = () => {
     fetchProductDetails();
   }, [id]);
 
-if(!productData) return 'text loading...' // Tu bedzie szkielet
+  useEffect(() => {
+    const fetchRelatedProducts = async () => {
+      try {
+        const data = await woocommerceServices.getRelatedProducts(relatedIDs);
+        setRelatedProducts(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchRelatedProducts();
+  }, [relatedIDs]);
+
+  if (!productData) return "text loading..."; // Tu bedzie szkielet
 
   return (
     <section className="product-page-container">
@@ -32,8 +48,7 @@ if(!productData) return 'text loading...' // Tu bedzie szkielet
         <div className="product-page-image-container">
           <img
             className="product-page-image"
-            src={productData.images[0]?.src || imagePlaceholder
-            }
+            src={productData.images[0]?.src || imagePlaceholder}
             alt={productData.alt}
           />
         </div>
@@ -50,8 +65,16 @@ if(!productData) return 'text loading...' // Tu bedzie szkielet
             <li className="gallery-product-element" key={i}>
               <img src={image.src} alt={image.alt} />
             </li>
-          ))} 
+          ))}
         </ul>
+      </div>
+      <div className="related-products">
+        <h2>Podobne produkty</h2>
+        <Slider
+          products={relatedProducts}
+          autoPlay={false}
+          showProductsPerPage={3}
+        />
       </div>
     </section>
   );

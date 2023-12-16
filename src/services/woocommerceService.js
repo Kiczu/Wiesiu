@@ -28,13 +28,22 @@ const getProduct = async (id) => {
     consumer_key: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_KEY,
     consumer_secret: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_SECRET,
   });
-}
+};
+
+const getRelatedProducts = async (relatedIDs) => {
+  return api.get(endpoints.woocommerce.products, {
+    consumer_key: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_KEY,
+    consumer_secret: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_SECRET,
+    include: relatedIDs,
+  });
+};
 
 const woocommerceServices = {
   getProducts,
   getCategories,
   getProduct,
-  getProductsByCategoryId
+  getProductsByCategoryId,
+  getRelatedProducts,
 };
 
 export default woocommerceServices;
