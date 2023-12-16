@@ -1,0 +1,17 @@
+.gallery-product {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  
+    &-element {
+      max-width: 100%;
+      overflow: hidden;
+  
+      img {
+        transition: transform 3s;
+        height: 100%;
+      }
+      img:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
