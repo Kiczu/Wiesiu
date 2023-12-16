@@ -3,8 +3,8 @@ import { Route, Routes } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import Home from "../../views/Home/Home";
-import ProductPage from "../../components/ProductPage/ProductPage";
 import Shop from "../../views/Shop/Shop";
+import ProductPage from "../../views/ProductPage/ProductPage";
 import Footer from "../Footer/Footer";
 import "./Layout.scss";
 
