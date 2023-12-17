@@ -9,7 +9,7 @@ const RelatedProducts = ({ relatedIDs }) => {
   useEffect(() => {
     const fetchRelatedProducts = async () => {
       try {
-        const data = await woocommerceServices.getRelatedProducts(relatedIDs);
+        const data = await woocommerceServices.getProductsByIds(relatedIDs);
         setRelatedProducts(data);
       } catch (error) {
         console.error(error);

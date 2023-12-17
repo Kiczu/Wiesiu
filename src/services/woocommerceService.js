@@ -30,7 +30,7 @@ const getProduct = async (id) => {
   });
 };
 
-const getRelatedProducts = async (relatedIDs) => {
+const getProductsByIds = async (relatedIDs) => {
   return api.get(endpoints.woocommerce.products, {
     consumer_key: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_KEY,
     consumer_secret: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_SECRET,
@@ -43,7 +43,7 @@ const woocommerceServices = {
   getCategories,
   getProduct,
   getProductsByCategoryId,
-  getRelatedProducts,
+  getProductsByIds,
 };
 
 export default woocommerceServices;
