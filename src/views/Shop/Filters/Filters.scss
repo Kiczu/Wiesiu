@@ -28,10 +28,6 @@
   position: sticky;
   top: 140px;
   padding: 10px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-20px);
-  transition: 1s ease;
   
   @media (max-width: $lg) {
     position: absolute;
@@ -42,6 +38,10 @@
     width: 100%;
     height: auto;
     z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: 1s ease;
 
     &.active {
       opacity: 1;
