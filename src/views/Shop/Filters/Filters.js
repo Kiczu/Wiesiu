@@ -20,7 +20,7 @@ const Filters = ({
   return (
     <div className="product-filters">
       <button className="filter-button" onClick={toggleMenu}>
-        Filtry{" "}
+        Filtry
         <i>
           <FaFilter />
         </i>
