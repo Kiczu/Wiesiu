@@ -7,8 +7,7 @@ export const SORTING_OPTION = {
   POPULARITY: "popularity",
   THE_OLDEST: "dateCreatedOldest",
   THE_NEWEST: "dateCreatedNewest",
-
-}
+};
 
 const options = [
   { value: SORTING_OPTION.PRICE_DOWN, label: "Cena - od najniższej" },
@@ -18,12 +17,15 @@ const options = [
   { value: SORTING_OPTION.THE_NEWEST, label: "Data - od najnowszej" },
 ];
 
-const defaultValue = options[4].value;
+const defaultOption = {
+  value: SORTING_OPTION.THE_NEWEST,
+  label: "Data - od najnowszej",
+};
 
 const SortingSelect = ({ onChange }) => {
   const handleSelectChange = (selectedOption) => {
     if (onChange) {
-      const value = selectedOption?.value || defaultValue;
+      const value = selectedOption?.value || defaultOption.value;
       onChange(value);
     }
   };
@@ -38,8 +40,8 @@ const SortingSelect = ({ onChange }) => {
   return (
     <>
       <Select
-        defaultValue={defaultValue}
-        placeholder={"Data - od najnowszej"}
+        defaultValue={defaultOption.value}
+        placeholder={defaultOption.label}
         name="product"
         options={options}
         isSearchable={false}
