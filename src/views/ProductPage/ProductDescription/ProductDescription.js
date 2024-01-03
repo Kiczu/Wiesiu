@@ -1,10 +1,10 @@
 import React from "react";
 import DOMPurify from "dompurify";
-import Button from "../../../components/Button/Button";
 import imagePlaceholder from "../../../assets/Placeholder_view.png";
+import ProductVariations from "../../../components/Selects/ProductVariations/ProductVariations";
 import "./ProductDescription.scss";
 
-const ProductDescription = ({ productData }) => {
+const ProductDescription = ({ productData, productVariations }) => {
   
   const dirtyDescription = productData.description;
   const description = DOMPurify.sanitize(dirtyDescription);
@@ -21,7 +21,7 @@ const ProductDescription = ({ productData }) => {
       <div className="product-page-desc-container">
         <h1 className="product-page-name">{productData.name}</h1>
         <p className="product-page-price">{productData.price} zł</p>
-        <Button variant={"blue"}>Dodaj do koszyka</Button>
+        <ProductVariations options={productVariations} />
         <div dangerouslySetInnerHTML={{ __html: description }} />
       </div>
     </div>

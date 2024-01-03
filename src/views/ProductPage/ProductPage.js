@@ -11,6 +11,20 @@ const ProductPage = () => {
   const [productData, setProductData] = useState();
   const [productGallery, setProductGallery] = useState([]);
   const [relatedIDs, setRelatedIDs] = useState([]);
+  const [variations, setVatiations] = useState();
+
+  useEffect(() => {
+    const fetchProductVariations = async () => {
+      try {
+        const data = await woocommerceServices.getVariations(id);
+        setVatiations(data);
+        // console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchProductVariations();
+  }, []);
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -31,7 +45,10 @@ const ProductPage = () => {
 
   return (
     <section className="product-page-container">
-      <ProductDescription productData={productData} />
+      <ProductDescription
+        productData={productData}
+        productVariations={variations}
+      />
       <ProductGallery productGallery={productGallery} />
       <RelatedProducts relatedIDs={relatedIDs} />
     </section>
