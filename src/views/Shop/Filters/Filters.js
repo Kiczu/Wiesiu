@@ -14,7 +14,6 @@ const Filters = ({
 }) => {
   const filtersMenuToggle = classNames("categories-filter", {
     active: isFilterMenuOpen,
-    inactive: !isFilterMenuOpen,
   });
 
   return (
