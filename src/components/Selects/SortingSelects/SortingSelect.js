@@ -40,7 +40,7 @@ const SortingSelect = ({ onChange }) => {
   return (
     <>
       <Select
-        defaultValue={defaultOption.value}
+        defaultValue={defaultOption}
         placeholder={defaultOption.label}
         name="product"
         options={options}
