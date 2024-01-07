@@ -42,9 +42,9 @@ const ProductVariations = ({ options }) => {
   };
 
   return (
-    <>
+    <form>
       {Object.keys(selectOptions).map((name, index) => (
-        <div key={index}>
+        <>
           <label>{name}</label>
           <Select
             isClearable={true}
@@ -67,12 +67,12 @@ const ProductVariations = ({ options }) => {
               },
             })}
           />
-        </div>
+        </>
       ))}
-      <Button disabled={buttonDisabled} variant={"blue"}>
+      <Button type={SubmitEvent} disabled={buttonDisabled} variant={"blue"}>
         Dodaj do koszyka
       </Button>
-    </>
+    </form>
   );
 };
 
