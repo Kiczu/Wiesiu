@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { FaFilter } from "react-icons/fa";
+import { useClickAway } from "@uidotdev/usehooks";
 import SortingSelect from "../../../components/Selects/SortingSelects/SortingSelect";
 import "./Filters.scss";
 
@@ -16,8 +17,14 @@ const Filters = ({
     active: isFilterMenuOpen,
   });
 
+  const ref = useClickAway(() => {
+    if (isFilterMenuOpen === false) return;
+
+     toggleMenu();
+  });
+
   return (
-    <div className="product-filters">
+    <div ref={ref} className="product-filters">
       <button className="filter-button" onClick={toggleMenu}>
         Filtry
         <i>
