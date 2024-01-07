@@ -37,8 +37,9 @@ const getProductsByIds = async (relatedIDs) => {
     include: relatedIDs,
   });
 };
-const getVariations = async (productId) => {
+const getVariations = async (productId, perPage = 100) => {
   return api.get(endpoints.woocommerce.categoriesById + `/${productId}/variations`, {
+    per_page: perPage,
     consumer_key: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_KEY,
     consumer_secret: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_SECRET,
   });
