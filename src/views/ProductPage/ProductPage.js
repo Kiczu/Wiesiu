@@ -8,32 +8,26 @@ import "./ProductPage.scss";
 
 const ProductPage = () => {
   const { id } = useParams();
-  const [productData, setProductData] = useState();
-  const [productGallery, setProductGallery] = useState([]);
-  const [relatedIDs, setRelatedIDs] = useState([]);
-  const [variations, setVatiations] = useState();
+  const [productData, setProductData] = useState(null);
+  const [variations, setVatiations] = useState([]);
 
   useEffect(() => {
     const fetchProductVariations = async () => {
       try {
         const data = await woocommerceServices.getVariations(id);
         setVatiations(data);
-        // console.log(data);
       } catch (error) {
         console.error(error);
       }
     };
     fetchProductVariations();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
         const data = await woocommerceServices.getProduct(id);
         setProductData(data);
-        const gallery = data.images.slice(1);
-        setProductGallery(gallery);
-        setRelatedIDs(data.related_ids);
       } catch (error) {
         console.error(error);
       }
@@ -42,6 +36,9 @@ const ProductPage = () => {
   }, [id]);
 
   if (!productData) return "text loading..."; // Tu bedzie szkielet
+
+  const productGallery = productData.images.slice(1);
+  const relatedIDs = productData.related_ids;
 
   return (
     <section className="product-page-container">
