@@ -1,38 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Select from "react-select";
 import Button from "../../Button/Button";
 
 const ProductVariations = ({ options }) => {
   const [selectedOptions, setSelectedOptions] = useState({});
-  const [selectOptions, setSelectOptions] = useState({});
-  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [allVariations, setAllVariations] = useState({});
+  const [variations, setVariations] = useState({});
 
   useEffect(() => {
-    const attributeOptions = {};
+    const allOptions = {};
     options.forEach((variation) => {
       variation.attributes.forEach((attr) => {
-        if (!attributeOptions[attr.name]) {
-          attributeOptions[attr.name] = [];
+        if (!allOptions[attr.name]) {
+          allOptions[attr.name] = [];
         }
-        if (!attributeOptions[attr.name].includes(attr.option)) {
-          attributeOptions[attr.name].push(attr.option);
+        if (!allOptions[attr.name].includes(attr.option)) {
+          allOptions[attr.name].push(attr.option);
         }
       });
     });
-    setSelectOptions(attributeOptions);
+    setAllVariations(allOptions);
   }, [options]);
-
+  console.log(allVariations);
+  
   const handleSelectChange = (selectedOption, name) => {
     setSelectedOptions((prevState) => ({
       ...prevState,
       [name]: selectedOption,
     }));
+    console.log(selectedOption);
 
-    const allOptionsSelected = Object.keys(selectOptions).every(
-      (name) => selectedOptions[name]
-    );
-    setButtonDisabled(!allOptionsSelected);
+    // const possibleAttr = {};
+    // options.forEach((productOption) => {
+    //   productOption.attributes.forEach((attr) => {
+    //     if (attr.option === selectedOption.value) {
+    //       console.log(attr.option);
+    //       possibleAttr[attr.name] = [];
+    //     }
+    //     debugger;
+    //   });
+    // });
   };
+
+  const visibleVariations = useMemo(() => {
+    if (selectedOptions) {
+      // return [...variations].sort(sortFunctions[activeSort]);
+    }
+
+    return variations;
+  }, [selectedOptions, variations]);
 
   const selectStyles = {
     control: (baseStyles, state) => ({
@@ -43,13 +59,13 @@ const ProductVariations = ({ options }) => {
 
   return (
     <form>
-      {Object.keys(selectOptions).map((name, index) => (
-        <>
+      {Object.keys(variations).map((name, index) => (
+        <div key={index}>
           <label>{name}</label>
           <Select
             isClearable={true}
             name={name}
-            options={selectOptions[name].map((option) => ({
+            options={variations[name].map((option) => ({
               label: option,
               value: option,
             }))}
@@ -67,9 +83,9 @@ const ProductVariations = ({ options }) => {
               },
             })}
           />
-        </>
+        </div>
       ))}
-      <Button type={SubmitEvent} disabled={buttonDisabled} variant={"blue"}>
+      <Button type={SubmitEvent} variant={"blue"}>
         Dodaj do koszyka
       </Button>
     </form>
