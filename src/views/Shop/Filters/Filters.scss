@@ -1,0 +1,97 @@
+@use "../../../styles/index.scss" as *;
+
+.product-filters {
+ padding-right: 40px;
+ position: relative;
+ border-right: 1px solid #ddd;
+
+ @media (max-width: $lg) {
+  border-right: none;
+ }
+}
+.filter-button {
+  display: none;
+
+  @media (max-width: $lg) {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 20px;
+    background: transparent;
+    border: none;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+}
+.categories-filter {
+  position: sticky;
+  top: 140px;
+  padding: 10px;
+  
+  @media (max-width: $lg) {
+    position: absolute;
+    top: 60px;
+    background-color: #fff;
+    border-top: 2px solid $yellow;
+    padding: 20px 10px;
+    width: 100%;
+    height: auto;
+    z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: 1s ease;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(-20px);
+      transition: 1s ease;
+    }
+  }
+
+  &-button {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    background-color: transparent;
+    font-size: 1.6rem;
+    border: none;
+    padding: 10px 0;
+    margin: 5px auto 0 5px;
+    cursor: pointer;
+    transition: 1s ease-in-out;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background-color: $blue;
+      transition: 0.5s ease-in-out;
+    }
+
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+  &-title {
+    cursor: default;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+}
+.active-category-filter {
+  color: $blue;
+  background-color: transparent;
+
+  &::after {
+    width: 100%;
+  }
+}

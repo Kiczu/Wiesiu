@@ -1,87 +1,40 @@
 import React from "react";
 import useShopData from "./useShopData";
-import imagePlaceholder from "../../assets/Placeholder_view.png";
+import Filters from "./Filters/Filters";
+import ProductsGrid from "./ProductsGrid/ProductsGrid";
 import SortingSelect from "../../components/Selects/SortingSelects/SortingSelect";
-import { FaFilter } from "react-icons/fa";
 import "../Shop/Shop.scss";
 
 const Shop = () => {
   const {
     activeCategory,
     categories,
+    isFilterMenuOpen,
     handleCategoryClick,
     handleSelectChange,
-    products,
     visibleProducts,
-    setProducts,
     toggleMenu,
-    isMenuOpen,
   } = useShopData();
 
   return (
-    <>
-      <h1 className="shop-title">Sklep</h1>
-      <div className="product-list">
-        <div className="product-filters">
-          <button className="filter-button" onClick={toggleMenu}>
-            Filtry <FaFilter />
-          </button>
-          <div
-            className={`categories-filter ${
-              isMenuOpen ? "active" : "inactive"
-            }`}
-          >
-            <h2 className="categories-filter-title">Kategorie</h2>
-            {categories.map((category) => (
-              <button
-                className={`categories-filter-button ${
-                  activeCategory === category.id
-                    ? "active-category-filter"
-                    : ""
-                }`}
-                key={category.id}
-                onClick={() => handleCategoryClick(category.id)}
-              >
-                {category.name}
-              </button>
-            ))}
-            <div className="sorting-filter-mobile">
-              <SortingSelect
-                onChange={handleSelectChange}
-                products={products}
-                setProducts={setProducts}
-              />
-            </div>
-          </div>
+    <div className="product-list">
+      <Filters
+        activeCategory={activeCategory}
+        categories={categories}
+        isFilterMenuOpen={isFilterMenuOpen}
+        handleCategoryClick={handleCategoryClick}
+        handleSelectChange={handleSelectChange}
+        toggleMenu={toggleMenu}
+      />
+      <div className="listing-column">
+        <div className="sorting-filter">
+          <SortingSelect
+            onChange={handleSelectChange}
+          />
         </div>
-        <div className="listing-column">
-          <div className="sorting-filter">
-            <SortingSelect
-              onChange={handleSelectChange}
-              products={products}
-              setProducts={setProducts}
-            />
-          </div>
-          <ul className="listing-products-grid">
-            {visibleProducts.map((product, i) => (
-              <li className="listing-products-grid-item" key={i}>
-                <img
-                  className="product-image"
-                  src={
-                    product.images.length
-                      ? product.images[0].src
-                      : imagePlaceholder
-                  }
-                  alt={product.name}
-                />
-                <h2 className="product-title">{product.name}</h2>
-                <p className="product-price">{product.price} zł</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ProductsGrid products={visibleProducts} />
       </div>
-    </>
+    </div>
   );
 };
 

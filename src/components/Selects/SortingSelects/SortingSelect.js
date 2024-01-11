@@ -7,8 +7,7 @@ export const SORTING_OPTION = {
   POPULARITY: "popularity",
   THE_OLDEST: "dateCreatedOldest",
   THE_NEWEST: "dateCreatedNewest",
-
-}
+};
 
 const options = [
   { value: SORTING_OPTION.PRICE_DOWN, label: "Cena - od najniższej" },
@@ -18,36 +17,42 @@ const options = [
   { value: SORTING_OPTION.THE_NEWEST, label: "Data - od najnowszej" },
 ];
 
+const defaultOption = {
+  value: SORTING_OPTION.THE_NEWEST,
+  label: "Data - od najnowszej",
+};
+
 const SortingSelect = ({ onChange }) => {
   const handleSelectChange = (selectedOption) => {
     if (onChange) {
-      const value = selectedOption?.value || SORTING_OPTION.THE_NEWEST;
+      const value = selectedOption?.value || defaultOption.value;
       onChange(value);
     }
   };
   const selectStyles = {
     control: (baseStyles, state) => ({
       ...baseStyles,
-      borderColor: state.isFocused ? "#506cab" : "transparent",
+      borderColor: state.isFocused ? "#fdb72b" : "#000",
+      borderRadius: 0,
     }),
   };
 
   return (
     <>
-      <label>Sortowanie</label>
       <Select
-        defaultValue={SORTING_OPTION.THE_NEWEST}
-        isClearable={true}
+        defaultValue={defaultOption}
+        placeholder={defaultOption.label}
         name="product"
         options={options}
+        isSearchable={false}
         onChange={handleSelectChange}
         styles={selectStyles}
         theme={(theme) => ({
           ...theme,
           colors: {
             ...theme.colors,
-            primary25: "#506bab31",
-            primary: "#506cab",
+            primary25: "#fdb72b40",
+            primary: "#fdb72b",
           },
         })}
       />

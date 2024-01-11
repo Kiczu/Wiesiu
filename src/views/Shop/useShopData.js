@@ -13,15 +13,16 @@ const sortFunctions = {
 };
 
 const useShopData = () => {
+  const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(0);
   const [productsByCategory, setProductsByCategory] = useState({});
-  const [activeSort, setActiceSort] = useState("dateCreatedNewest");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSort, setActiveSort] = useState("dateCreatedNewest");
+  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsFilterMenuOpen(!isFilterMenuOpen);
   };
 
   useEffect(() => {
@@ -38,13 +39,27 @@ const useShopData = () => {
   }, []);
 
   useEffect(() => {
+    const getAllProducts = async () => {
+      try {
+        const data = await woocommerceServices.getProducts();
+        setAllProducts(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getAllProducts();
+  }, []);
+
+  useEffect(() => {
     const getCategories = async () => {
       try {
         const data = await woocommerceServices.getCategories();
         const filteredCategories = data.filter(
           (category) => category.count !== 0
         );
-        setCategories(filteredCategories);
+        const allCategory = { id: "all", name: "Wszystko", slug: "all" };
+
+        setCategories([allCategory, ...filteredCategories]);
       } catch (error) {
         console.error(error);
       }
@@ -68,11 +83,16 @@ const useShopData = () => {
 
   const handleCategoryClick = (categoryId) => {
     setActiveCategory(categoryId);
-    setProducts(productsByCategory[categoryId]);
+
+    if (categoryId === "all") {
+      setProducts(allProducts);
+    } else {
+      setProducts(productsByCategory[categoryId]);
+    }
   };
 
   const handleSelectChange = (selectedSort) => {
-    setActiceSort(selectedSort);
+    setActiveSort(selectedSort);
   };
 
   const visibleProducts = useMemo(() => {
@@ -92,7 +112,7 @@ const useShopData = () => {
     setProducts,
     visibleProducts,
     toggleMenu,
-    isMenuOpen
+    isFilterMenuOpen,
   };
 };
 
