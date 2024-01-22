@@ -4,51 +4,68 @@ import Button from "../../Button/Button";
 
 const ProductVariations = ({ options }) => {
   const [selectedOptions, setSelectedOptions] = useState({});
-  const [allVariations, setAllVariations] = useState({});
-  const [variations, setVariations] = useState({});
+  const [variations, setVariations] = useState([]);
 
   useEffect(() => {
-    const allOptions = {};
-    options.forEach((variation) => {
-      variation.attributes.forEach((attr) => {
-        if (!allOptions[attr.name]) {
-          allOptions[attr.name] = [];
-        }
-        if (!allOptions[attr.name].includes(attr.option)) {
-          allOptions[attr.name].push(attr.option);
-        }
+    //Refactor tylko po łebkach zrobiłem.TODO: nazwy i wyniesienie kodu do zewnętrznych funkcji
+    const variants = options.map((opt) => {
+      return opt.attributes.map(({ name, option, slug }) => ({
+        name,
+        option,
+        slug,
+      }));
+    });
+
+    const groupedVariants = {};
+
+    variants.forEach((variation) => {
+      variation.forEach((attr) => {
+        const prev = groupedVariants[attr.slug] || {
+          slug: attr.slug,
+          name: attr.name,
+          options: [],
+        };
+        const opt = prev.options.some((o) => o.value === attr.option)
+          ? prev.options
+          : [...prev.options, { label: attr.option, value: attr.option }];
+        groupedVariants[attr.slug] = { ...prev, options: opt };
       });
     });
-    setAllVariations(allOptions);
+
+    setVariations(Object.values(groupedVariants));
   }, [options]);
-  console.log(allVariations);
-  
+
   const handleSelectChange = (selectedOption, name) => {
     setSelectedOptions((prevState) => ({
       ...prevState,
       [name]: selectedOption,
     }));
-    console.log(selectedOption);
-
-    // const possibleAttr = {};
-    // options.forEach((productOption) => {
-    //   productOption.attributes.forEach((attr) => {
-    //     if (attr.option === selectedOption.value) {
-    //       console.log(attr.option);
-    //       possibleAttr[attr.name] = [];
-    //     }
-    //     debugger;
-    //   });
-    // });
   };
 
   const visibleVariations = useMemo(() => {
-    if (selectedOptions) {
-      // return [...variations].sort(sortFunctions[activeSort]);
-    }
+    const variants = options.map((opt) => {
+      return opt.attributes.reduce((acc, cur) => {
+        return { ...acc, [cur.slug]: cur.option };
+      }, {});
+    });
 
-    return variations;
-  }, [selectedOptions, variations]);
+    return variations.map(({ options, slug, ...rest }) => {
+      const filteredOptions = options.filter((opt) => {
+        return Object.entries(selectedOptions)
+          .filter(([key]) => key !== slug)
+          .every(([key, selectedOption]) => {
+            return (
+              !selectedOption ||
+              variants.some((v) => {
+                return v[key] === selectedOption.value && v[slug] === opt.value;
+              })
+            );
+          });
+      });
+
+      return { ...rest, slug, options: filteredOptions };
+    });
+  }, [options, selectedOptions, variations]);
 
   const selectStyles = {
     control: (baseStyles, state) => ({
@@ -59,19 +76,16 @@ const ProductVariations = ({ options }) => {
 
   return (
     <form>
-      {Object.keys(variations).map((name, index) => (
-        <div key={index}>
+      {visibleVariations.map(({ name, slug, options }, index) => (
+        <div key={slug + index}>
           <label>{name}</label>
           <Select
             isClearable={true}
-            name={name}
-            options={variations[name].map((option) => ({
-              label: option,
-              value: option,
-            }))}
-            value={selectedOptions[name]}
+            name={slug}
+            options={options}
+            value={selectedOptions[slug]}
             onChange={(selectedOption) =>
-              handleSelectChange(selectedOption, name)
+              handleSelectChange(selectedOption, slug)
             }
             styles={selectStyles}
             theme={(theme) => ({
