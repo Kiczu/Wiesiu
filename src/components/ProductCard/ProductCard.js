@@ -6,7 +6,7 @@ import "./ProductCard.scss";
 
 const ProductCard = ({ product }) => {
   return (
-    <Link className="product-link" to={product._links.self[0]}>
+    <Link className="product-link" to={`/products/${product.id}`}>
       <div className="product">
         <div className="product-image-container">
           <img

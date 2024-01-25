@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import Home from "../../views/Home/Home";
 import Shop from "../../views/Shop/Shop";
+import ProductPage from "../../views/ProductPage/ProductPage";
 import Footer from "../Footer/Footer";
 import "./Layout.scss";
 
@@ -16,6 +17,8 @@ const Layout = () => {
       <main>
         <Routes>
           <Route path="/" exact element={<Home />} />
+          <Route path="/products/:id" element={<ProductPage />} />
+
           <Route path="/shop" exact element={<Shop />} />
         </Routes>
       </main>

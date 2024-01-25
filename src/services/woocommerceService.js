@@ -23,10 +23,35 @@ const getProductsByCategoryId = async (categoryId) => {
   });
 };
 
+const getProduct = async (id) => {
+  return api.get(endpoints.woocommerce.categoriesById + `/${id}`, {
+    consumer_key: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_KEY,
+    consumer_secret: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_SECRET,
+  });
+};
+
+const getProductsByIds = async (relatedIDs) => {
+  return api.get(endpoints.woocommerce.products, {
+    consumer_key: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_KEY,
+    consumer_secret: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_SECRET,
+    include: relatedIDs,
+  });
+};
+const getVariations = async (productId, perPage = 100) => {
+  return api.get(endpoints.woocommerce.categoriesById + `/${productId}/variations`, {
+    per_page: perPage,
+    consumer_key: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_KEY,
+    consumer_secret: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_SECRET,
+  });
+};
+
 const woocommerceServices = {
   getProducts,
   getCategories,
-  getProductsByCategoryId
+  getProduct,
+  getProductsByCategoryId,
+  getProductsByIds,
+  getVariations
 };
 
 export default woocommerceServices;
