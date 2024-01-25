@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useMemo } from "react";
-import Select from "react-select";
-import Button from "../../Button/Button";
+import React, { useState, useEffect, useMemo } from 'react';
+import Select from 'react-select';
+import Button from '../../Button/Button';
 
 const ProductVariations = ({ options }) => {
   const [selectedOptions, setSelectedOptions] = useState({});
@@ -43,11 +43,7 @@ const ProductVariations = ({ options }) => {
   };
 
   const visibleVariations = useMemo(() => {
-    const variants = options.map((opt) => {
-      return opt.attributes.reduce((acc, cur) => {
-        return { ...acc, [cur.slug]: cur.option };
-      }, {});
-    });
+    const variants = options.map((opt) => opt.attributes.reduce((acc, cur) => ({ ...acc, [cur.slug]: cur.option }), {}));
 
     return variations.map(({ options, slug, ...rest }) => {
       const filteredOptions = options.filter((opt) => {
@@ -70,12 +66,21 @@ const ProductVariations = ({ options }) => {
   const selectStyles = {
     control: (baseStyles, state) => ({
       ...baseStyles,
-      borderColor: state.isFocused ? "#506cab" : "transparent",
+      borderColor: state.isFocused ? '#506cab' : 'transparent',
     }),
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(selectedOptions);
+
+    const prod = options.find((opt) => opt.attributes.every(({ slug }) => selectedOptions[slug] && selectedOptions[slug].value));
+
+    console.log(prod);
+  };
+
   return (
-    <form>
+    <form onSubmit={onSubmit} >
       {visibleVariations.map(({ name, slug, options }, index) => (
         <div key={slug + index}>
           <label>{name}</label>
@@ -84,22 +89,20 @@ const ProductVariations = ({ options }) => {
             name={slug}
             options={options}
             value={selectedOptions[slug]}
-            onChange={(selectedOption) =>
-              handleSelectChange(selectedOption, slug)
-            }
+            onChange={(selectedOption) => handleSelectChange(selectedOption, slug)}
             styles={selectStyles}
             theme={(theme) => ({
               ...theme,
               colors: {
                 ...theme.colors,
-                primary25: "#506bab31",
-                primary: "#506cab",
+                primary25: '#506bab31',
+                primary: '#506cab',
               },
             })}
           />
         </div>
       ))}
-      <Button type={SubmitEvent} variant={"blue"}>
+      <Button type={SubmitEvent} variant={'blue'}>
         Dodaj do koszyka
       </Button>
     </form>
