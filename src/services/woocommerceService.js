@@ -22,6 +22,28 @@ const getProductsByCategoryId = async (categoryId) => {
     consumer_secret: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_SECRET,
   });
 };
+
+const getProduct = async (id) => {
+  return api.get(endpoints.woocommerce.categoriesById + `/${id}`, {
+    consumer_key: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_KEY,
+    consumer_secret: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_SECRET,
+  });
+};
+
+const getProductsByIds = async (relatedIDs) => {
+  return api.get(endpoints.woocommerce.products, {
+    consumer_key: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_KEY,
+    consumer_secret: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_SECRET,
+    include: relatedIDs,
+  });
+};
+const getVariations = async (productId, perPage = 100) => {
+  return api.get(endpoints.woocommerce.categoriesById + `/${productId}/variations`, {
+    per_page: perPage,
+    consumer_key: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_KEY,
+    consumer_secret: process.env.REACT_APP_WOOCOMMERCE_CONSUMER_SECRET,
+  });
+};
 const getCart = async () => {
   const headers = {
     Authorization: `Bearer ${process.env.REACT_APP_WOOCOMMERCE_CONSUMER_KEY}:${process.env.REACT_APP_WOOCOMMERCE_CONSUMER_SECRET}`,
@@ -56,9 +78,7 @@ const addToCart = async (
 const woocommerceServices = {
   getProducts,
   getCategories,
-  getProductsByCategoryId,
-  getCart,
-  addToCart,
+  getProductsByCategoryId
 };
 
 export default woocommerceServices;
