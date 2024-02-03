@@ -7,6 +7,8 @@ export const endpoints = {
       products: 'https://wiesiu.pl/wp-json/wc/v3/products',
       categories: 'https://wiesiu.pl/wp-json/wc/v3/products/categories',
       categoriesById: 'https://wiesiu.pl/wp-json/wc/v3/products',
+      cart: 'https://wiesiu.pl/wp-json/wc/v3/cart',
+      addToCart: 'https://wiesiu.pl/wp-json/wc/v3/cart/add',
   }
 }
 
@@ -31,8 +33,25 @@ const formatParams = (params) => {
     throw new Error(response.statusText);
   };
 
+  const post = async (endpoint, data) => {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify(data),
+    });
+  
+    if (response.ok) {
+      return await response.json();
+    }
+  
+    throw new Error(response.statusText);
+  };
+
   const api = {
     get,
+    post,
   }
 
   export default api

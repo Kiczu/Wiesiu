@@ -1,0 +1,24 @@
+.product-cart {
+    
+  &-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  &-remove {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: red;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}

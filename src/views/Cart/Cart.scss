@@ -1,0 +1,14 @@
+.cart-product-list {
+  width: 80%;
+  margin: 10px auto;
+  border: 1px solid #eee;
+
+  &-titles {
+    display: grid;
+    grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+  }
+}

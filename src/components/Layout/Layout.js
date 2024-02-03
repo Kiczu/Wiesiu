@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
+import Cart from "../../views/Cart/Cart";
 import Home from "../../views/Home/Home";
 import Shop from "../../views/Shop/Shop";
 import Footer from "../Footer/Footer";
@@ -17,6 +18,7 @@ const Layout = () => {
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/shop" exact element={<Shop />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
       <Footer />
