@@ -78,7 +78,10 @@ const addToCart = async (
 const woocommerceServices = {
   getProducts,
   getCategories,
-  getProductsByCategoryId
+  getProductsByCategoryId,
+  getProduct,
+  getProductsByIds,
+  getVariations,
 };
 
 export default woocommerceServices;
