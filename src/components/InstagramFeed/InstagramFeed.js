@@ -8,8 +8,8 @@ const POSTS_PER_PAGE = 16;
 
 const InstagramFeed = () => {
   const [posts, setPosts] = useState([]);
-  const [nextPage, setNextPage] = useState(null);
-  const [username, setUsername] = useState(null);
+  const [nextPage, setNextPage] = useState();
+  const [username, setUsername] = useState();
 
   const profileUrl = `https://www.instagram.com/${username}/`;
 
