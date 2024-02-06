@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import Button from "../../Button/Button";
 
-const ProductVariations = ({ options }) => {
+const ProductVariations = ({ options, productId }) => {
   const [selectedOptions, setSelectedOptions] = useState({});
   const [selectOptions, setSelectOptions] = useState({});
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -41,10 +41,16 @@ const ProductVariations = ({ options }) => {
     }),
   };
 
+  const addToCart = (id) => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(id);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
   return (
-    <form>
-      {Object.keys(selectOptions).map((name, index) => (
-        <>
+    <div>
+      {Object.keys(selectOptions).map((name, i) => (
+        <div key={i}>
           <label>{name}</label>
           <Select
             isClearable={true}
@@ -67,12 +73,16 @@ const ProductVariations = ({ options }) => {
               },
             })}
           />
-        </>
+        </div>
       ))}
-      <Button type={SubmitEvent} disabled={buttonDisabled} variant={"blue"}>
+      <Button
+        onClick={() => addToCart(productId)}
+        // disabled={buttonDisabled}
+        variant={"blue"}
+      >
         Dodaj do koszyka
       </Button>
-    </form>
+    </div>
   );
 };
 
