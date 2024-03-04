@@ -4,7 +4,7 @@ import imagePlaceholder from "../../../assets/Placeholder_view.png";
 import ProductVariations from "../../../components/Selects/ProductVariations/ProductVariations";
 import "./ProductDescription.scss";
 
-const ProductDescription = ({ productData, productVariations }) => {
+const ProductDescription = ({ productData, productVariations, addToCart }) => {
   const productId = productData.id;
   const dirtyDescription = productData.description;
   const description = DOMPurify.sanitize(dirtyDescription);
@@ -21,7 +21,12 @@ const ProductDescription = ({ productData, productVariations }) => {
       <div className="product-page-desc-container">
         <h1 className="product-page-name">{productData.name}</h1>
         <p className="product-page-price">{productData.price} zł</p>
-        <ProductVariations options={productVariations} productId={productId} />
+        <ProductVariations
+          options={productVariations}
+          productId={productId}
+          productData={productData}
+          addToCart={addToCart}
+        />
         <div dangerouslySetInnerHTML={{ __html: description }} />
       </div>
     </div>

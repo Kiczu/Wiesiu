@@ -1,27 +1,37 @@
 import React, { useEffect, useState } from "react";
 import SinglePosition from "./SinglePosition/SinglePosition";
-import "./Cart.scss";
 import woocommerceServices from "../../services/woocommerceService";
+import "./Cart.scss";
 
 const Cart = () => {
-  const [productsCart, setProductsCart] = useState([]);
+  // const [productsCart, setProductsCart] = useState([]);
 
-  const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+  // const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  useEffect(() => {
-    const getCart = async () => {
-      try {
-        const data = await woocommerceServices.getProductsByIds(storedCart);
-        setProductsCart(data);
-        console.log(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getCart();
-  }, []);
+  // useEffect(() => {
+  //   const getCart = async () => {
+  //     try {
+  //       const data = await woocommerceServices.getProductsByIds(storedCart);
+  //       setProductsCart(data);
+  //       console.log(data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   getCart();
+  //   const getCartFromApi = async () => {
+  //     try {
+  //       const data = await woocommerceServices.getCart();
+  //       setProductsCart(data);
+  //       console.log(data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   getCartFromApi();
+  // }, []);
 
-  if (!productsCart) return "Koszyk jest pusty";
+  // if (!productsCart) return "Koszyk jest pusty";
 
   return (
     <section className="schopping-cart">
@@ -34,10 +44,10 @@ const Cart = () => {
           <p>Ilość</p>
           <p>Kwota</p>
         </div>
-        {productsCart.forEach(productData => {
+        {/* {productsCart.forEach(productData => {
           <SinglePosition productData={productData}/>
 
-        })}
+        })} */}
       </div>
     </section>
   );

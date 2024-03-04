@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import Button from "../../Button/Button";
+import woocommerceServices from "../../../services/woocommerceService";
 
-const ProductVariations = ({ options, productId }) => {
+const ProductVariations = ({ options, productId, productData, addToCart }) => {
   const [selectedOptions, setSelectedOptions] = useState({});
   const [selectOptions, setSelectOptions] = useState({});
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -41,11 +42,18 @@ const ProductVariations = ({ options, productId }) => {
     }),
   };
 
-  const addToCart = (id) => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push(id);
-    localStorage.setItem("cart", JSON.stringify(cart));
-  };
+  // const addToCart = (productData) => {
+  //   console.log(productData);
+  //   const data = {
+  //     id: productData.id,
+  //     quantity: productData.quantity,
+  //     name: productData.name,
+  //     variation: productData.variation,
+  //     // product_img: productImg,
+  //     price: productData.price,
+  //   };
+  //   woocommerceServices.addToCart(data);
+  // };
 
   return (
     <div>
