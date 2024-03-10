@@ -5,7 +5,6 @@ import ProductVariations from "../../../components/Selects/ProductVariations/Pro
 import "./ProductDescription.scss";
 
 const ProductDescription = ({ productData, productVariations }) => {
-  
   const dirtyDescription = productData.description;
   const description = DOMPurify.sanitize(dirtyDescription);
 
@@ -21,7 +20,10 @@ const ProductDescription = ({ productData, productVariations }) => {
       <div className="product-page-desc-container">
         <h1 className="product-page-name">{productData.name}</h1>
         <p className="product-page-price">{productData.price} zł</p>
-        <ProductVariations options={productVariations} />
+        <ProductVariations
+          productData={productData}
+          options={productVariations}
+        />
         <div dangerouslySetInnerHTML={{ __html: description }} />
       </div>
     </div>

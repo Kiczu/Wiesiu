@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Select from "react-select";
 import Button from "../../Button/Button";
+import CartContext from "../../../context/CartContext/CartContext";
 
-const ProductVariations = ({ options }) => {
+const ProductVariations = ({ options, productData }) => {
   const [selectedOptions, setSelectedOptions] = useState({});
   const [selectOptions, setSelectOptions] = useState({});
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const attributeOptions = {};
@@ -34,6 +36,17 @@ const ProductVariations = ({ options }) => {
     setButtonDisabled(!allOptionsSelected);
   };
 
+  const handleAddToCart = (addToCart, productData) => {
+    const newProduct = {
+      id: productData.id,
+      name: productData.name,
+      price: productData.price,
+      attributes: selectOptions,
+      image: productData.images[0].src,
+    };
+    addToCart(newProduct);
+  };
+
   const selectStyles = {
     control: (baseStyles, state) => ({
       ...baseStyles,
@@ -42,7 +55,7 @@ const ProductVariations = ({ options }) => {
   };
 
   return (
-    <form>
+    <div>
       {Object.keys(selectOptions).map((name, index) => (
         <>
           <label>{name}</label>
@@ -69,10 +82,14 @@ const ProductVariations = ({ options }) => {
           />
         </>
       ))}
-      <Button type={SubmitEvent} disabled={buttonDisabled} variant={"blue"}>
+      <Button
+        onClick={() => handleAddToCart(addToCart, productData)}
+        disabled={buttonDisabled}
+        variant={"blue"}
+      >
         Dodaj do koszyka
       </Button>
-    </form>
+    </div>
   );
 };
 
