@@ -1,27 +1,34 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import Select from "react-select";
 import Button from "../../Button/Button";
 import CartContext from "../../../context/CartContext/CartContext";
 
 const ProductVariations = ({ options, productData }) => {
   const [selectedOptions, setSelectedOptions] = useState({});
-  const [selectOptions, setSelectOptions] = useState({});
+  const [variations, setVariations] = useState([]);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    const attributeOptions = {};
-    options.forEach((variation) => {
-      variation.attributes.forEach((attr) => {
-        if (!attributeOptions[attr.name]) {
-          attributeOptions[attr.name] = [];
-        }
-        if (!attributeOptions[attr.name].includes(attr.option)) {
-          attributeOptions[attr.name].push(attr.option);
-        }
+    console.log(options);
+    const variants = options.map((opt) =>
+      opt.attributes.map(({ name, option, slug }) => ({ name, option, slug }))
+    );
+
+    const groupedVariants = {};
+
+    variants.forEach((variation) => {
+      variation.forEach((attr) => {
+        const { slug, name, option } = attr;
+        const prev = groupedVariants[slug] || { slug, name, options: [] };
+        const options = prev.options.some((o) => o.value === option)
+          ? prev.options
+          : [...prev.options, { label: option, value: option }];
+        groupedVariants[slug] = { ...prev, options };
       });
     });
-    setSelectOptions(attributeOptions);
+
+    setVariations(Object.values(groupedVariants));
   }, [options]);
 
   const handleSelectChange = (selectedOption, name) => {
@@ -30,18 +37,43 @@ const ProductVariations = ({ options, productData }) => {
       [name]: selectedOption,
     }));
 
-    const allOptionsSelected = Object.keys(selectOptions).every(
+    const allOptionsSelected = Object.keys(selectedOptions).every(
       (name) => selectedOptions[name]
     );
     setButtonDisabled(!allOptionsSelected);
   };
+
+  const visibleVariations = useMemo(() => {
+    const variants = options.map((opt) =>
+      opt.attributes.reduce(
+        (acc, cur) => ({ ...acc, [cur.slug]: cur.option }),
+        {}
+      )
+    );
+
+    return variations.map(({ options, slug, ...rest }) => {
+      const filteredOptions = options.filter((opt) =>
+        Object.entries(selectedOptions)
+          .filter(([key]) => key !== slug)
+          .every(
+            ([key, selectedOption]) =>
+              !selectedOption ||
+              variants.some(
+                (v) => v[key] === selectedOption.value && v[slug] === opt.value
+              )
+          )
+      );
+
+      return { ...rest, slug, options: filteredOptions };
+    });
+  }, [options, selectedOptions, variations]);
 
   const handleAddToCart = (addToCart, productData) => {
     const newProduct = {
       id: productData.id,
       name: productData.name,
       price: productData.price,
-      attributes: selectOptions,
+      attributes: selectedOptions,
       image: productData.images[0].src,
     };
     addToCart(newProduct);
@@ -55,20 +87,17 @@ const ProductVariations = ({ options, productData }) => {
   };
 
   return (
-    <div>
-      {Object.keys(selectOptions).map((name, index) => (
-        <>
+    <form>
+      {visibleVariations.map(({ name, slug, options }, index) => (
+        <div key={slug + index}>
           <label>{name}</label>
           <Select
             isClearable={true}
-            name={name}
-            options={selectOptions[name].map((option) => ({
-              label: option,
-              value: option,
-            }))}
-            value={selectedOptions[name]}
+            name={slug}
+            options={options}
+            value={selectedOptions[slug]}
             onChange={(selectedOption) =>
-              handleSelectChange(selectedOption, name)
+              handleSelectChange(selectedOption, slug)
             }
             styles={selectStyles}
             theme={(theme) => ({
@@ -80,7 +109,7 @@ const ProductVariations = ({ options, productData }) => {
               },
             })}
           />
-        </>
+        </div>
       ))}
       <Button
         onClick={() => handleAddToCart(addToCart, productData)}
@@ -89,7 +118,7 @@ const ProductVariations = ({ options, productData }) => {
       >
         Dodaj do koszyka
       </Button>
-    </div>
+    </form>
   );
 };
 
