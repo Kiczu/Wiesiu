@@ -68,15 +68,31 @@ const ProductVariations = ({ options, productData }) => {
     });
   }, [options, selectedOptions, variations]);
 
-  const handleAddToCart = (addToCart, productData) => {
-    const newProduct = {
-      id: productData.id,
-      name: productData.name,
-      price: productData.price,
-      attributes: selectedOptions,
-      image: productData.images[0].src,
-    };
-    addToCart(newProduct);
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+
+    if (options.length > 0) {
+      const productVariant = options.find((option) => {
+        const isMatch = option.attributes.every((attr) => {
+          return selectedOptions[attr.slug].value === attr.option;
+        });
+        // debugger
+        return isMatch;
+      });
+      if (!productVariant) {
+        return;
+      }
+      addToCart(productVariant);
+    } else {
+      const newProduct = {
+        id: productData.id,
+        name: productData.name,
+        price: productData.price,
+        attributes: selectedOptions,
+        image: productData.images[0].src,
+      };
+      addToCart(newProduct);
+    }
   };
 
   const selectStyles = {
@@ -87,7 +103,7 @@ const ProductVariations = ({ options, productData }) => {
   };
 
   return (
-    <form>
+    <form onSubmit={handleAddToCart}>
       {visibleVariations.map(({ name, slug, options }, index) => (
         <div key={slug + index}>
           <label>{name}</label>
@@ -111,11 +127,7 @@ const ProductVariations = ({ options, productData }) => {
           />
         </div>
       ))}
-      <Button
-        onClick={() => handleAddToCart(addToCart, productData)}
-        disabled={buttonDisabled}
-        variant={"blue"}
-      >
+      <Button disabled={buttonDisabled} variant={"blue"}>
         Dodaj do koszyka
       </Button>
     </form>
