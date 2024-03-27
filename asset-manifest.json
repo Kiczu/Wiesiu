@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.495c6c9f.css",
+    "main.js": "/static/js/main.5f0e8e63.js",
+    "static/media/Spotkania-i-warsztaty_01.png": "/static/media/Spotkania-i-warsztaty_01.68dbcc830afe02a099c7.png",
+    "static/media/Tlo_strona-glowna.png": "/static/media/Tlo_strona-glowna.7e5c3052a0496e8adddf.png",
+    "static/media/Warstwa-6.webp": "/static/media/Warstwa-6.cda379e645f0b8987bde.webp",
+    "static/media/instagram.webp": "/static/media/instagram.56ec268f9b0a23930758.webp",
+    "static/media/facebook.webp": "/static/media/facebook.c2c0f404d10234332a93.webp",
+    "static/media/logo_wieslaw.webp": "/static/media/logo_wieslaw.c68c76f94865ab6ccd7f.webp",
+    "index.html": "/index.html",
+    "main.495c6c9f.css.map": "/static/css/main.495c6c9f.css.map",
+    "main.5f0e8e63.js.map": "/static/js/main.5f0e8e63.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.495c6c9f.css",
+    "static/js/main.5f0e8e63.js"
+  ]
+}
