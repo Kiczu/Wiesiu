@@ -10,7 +10,6 @@ const ProductVariations = ({ options, productData }) => {
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    console.log(options);
     const variants = options.map((opt) =>
       opt.attributes.map(({ name, option, slug }) => ({ name, option, slug }))
     );
@@ -76,7 +75,6 @@ const ProductVariations = ({ options, productData }) => {
         const isMatch = option.attributes.every((attr) => {
           return selectedOptions[attr.slug].value === attr.option;
         });
-        // debugger
         return isMatch;
       });
       if (!productVariant) {
