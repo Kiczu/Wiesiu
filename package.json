@@ -1,6 +1,7 @@
 {
   "name": "wiesiu",
   "version": "0.1.0",
+  "homepage": "https://kiczu.github.io/Wiesiu/",
   "private": true,
   "dependencies": {
     "@uidotdev/usehooks": "^2.4.1",
