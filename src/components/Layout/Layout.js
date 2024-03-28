@@ -12,7 +12,7 @@ import "./Layout.scss";
 
 const Layout = () => {
   return (
-    <Router>
+    <Router basename="/Wiesiu">
       <header className="menu-container menu">
         <Navigation />
       </header>
