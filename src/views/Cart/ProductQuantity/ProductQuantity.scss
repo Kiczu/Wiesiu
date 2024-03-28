@@ -1,0 +1,44 @@
+@use "../../../styles/index.scss" as *;
+
+.product-cart-quantity {
+  @media (max-width: $md) {
+    max-width: 50px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  &--button {
+    cursor: pointer;
+    background: transparent;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    font-size: 1.5rem;
+    padding: 10px;
+
+    @media (max-width: $md) {
+    }
+  }
+  &--number {
+    text-align: center;
+    background: transparent;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    font-size: 1.5rem;
+    padding: 10px;
+    max-width: 50px;
+
+    &:focus {
+      outline: none;
+    }
+
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+@use "../../../styles/index.scss" as *;
+
+.product-cart {
+  &-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.1fr 0.3fr 1fr 0.2fr 0.5fr 0.2fr;
+    gap: 15px;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+
+    @media (max-width: $lg) {
+      grid-template-columns: 0.2fr 1fr 0.5fr 0.5fr;
+    }
+  }
+
+  &-attributes {
+    font-size: 1.2rem;
+    color: $yellow;
+  }
+
+  &-remove {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: red;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &-name {
+    text-decoration: none;
+    color: $blue;
+
+    @media (max-width: $md) {
+      font-size: 1.4rem;
+    }
+  }
+
+  &-thumbnail {
+    @media (max-width: $lg) {
+      display: none;
+    }
+  }
+
+  &-subtotal {
+    @media (max-width: $lg) {
+      display: none;
+    }
+  }
+}

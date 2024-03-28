@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { HashLink as Link } from "react-router-hash-link";
-import { HOME, SHOP } from "../../../paths";
+import { HOME, SHOP, CART } from "../../../paths";
 import { HiMenu } from "react-icons/hi";
 import { IoCartOutline } from "react-icons/io5";
 import "../MobileMenu/MobileMenu.scss";
@@ -20,7 +20,7 @@ const MobileMenu = () => {
           <img src={logo} alt="logo" />
         </Link>
         <div className="mobile-icons-container">
-          <Link to="/">
+          <Link to={CART}>
             <i className="cart-icon">
               <IoCartOutline />
             </i>

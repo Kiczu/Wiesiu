@@ -2,10 +2,12 @@ import React from "react";
 import { Route, Routes } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
-import Home from "../../views/Home/Home";
-import Shop from "../../views/Shop/Shop";
-import ProductPage from "../../views/ProductPage/ProductPage";
 import Footer from "../Footer/Footer";
+import Home from "../../views/Home/Home";
+import ProductPage from "../../views/ProductPage/ProductPage";
+import Shop from "../../views/Shop/Shop";
+import Cart from "../../views/Cart/Cart";
+import { CART, HOME, PRODUCT, SHOP } from "../../paths";
 import "./Layout.scss";
 
 const Layout = () => {
@@ -16,10 +18,11 @@ const Layout = () => {
       </header>
       <main>
         <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/products/:id" element={<ProductPage />} />
+          <Route path={HOME} exact element={<Home />} />
+          <Route path={PRODUCT} element={<ProductPage />} />
 
-          <Route path="/shop" exact element={<Shop />} />
+          <Route path={SHOP} exact element={<Shop />} />
+          <Route path={CART} exact element={<Cart />} />
         </Routes>
       </main>
       <Footer />

@@ -1,11 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import Layout from './components/Layout/Layout';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import CartProvider from "./context/CartContext/CartProvider";
+import Layout from "./components/Layout/Layout";
+import "./index.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Layout />
+    <CartProvider>
+      <Layout />
+    </CartProvider>
   </React.StrictMode>
 );

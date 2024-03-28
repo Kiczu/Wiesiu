@@ -1,25 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import Select from "react-select";
 import Button from "../../Button/Button";
+import CartContext from "../../../context/CartContext/CartContext";
 
-const ProductVariations = ({ options }) => {
+const ProductVariations = ({ options, productData }) => {
   const [selectedOptions, setSelectedOptions] = useState({});
-  const [selectOptions, setSelectOptions] = useState({});
+  const [variations, setVariations] = useState([]);
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    const attributeOptions = {};
-    options.forEach((variation) => {
-      variation.attributes.forEach((attr) => {
-        if (!attributeOptions[attr.name]) {
-          attributeOptions[attr.name] = [];
-        }
-        if (!attributeOptions[attr.name].includes(attr.option)) {
-          attributeOptions[attr.name].push(attr.option);
-        }
+    const variants = options.map((opt) =>
+      opt.attributes.map(({ name, option, slug }) => ({ name, option, slug }))
+    );
+
+    const groupedVariants = {};
+
+    variants.forEach((variation) => {
+      variation.forEach((attr) => {
+        const { slug, name, option } = attr;
+        const prev = groupedVariants[slug] || { slug, name, options: [] };
+        const options = prev.options.some((o) => o.value === option)
+          ? prev.options
+          : [...prev.options, { label: option, value: option }];
+        groupedVariants[slug] = { ...prev, options };
       });
     });
-    setSelectOptions(attributeOptions);
+
+    setVariations(Object.values(groupedVariants));
   }, [options]);
 
   const handleSelectChange = (selectedOption, name) => {
@@ -28,10 +36,61 @@ const ProductVariations = ({ options }) => {
       [name]: selectedOption,
     }));
 
-    const allOptionsSelected = Object.keys(selectOptions).every(
+    const allOptionsSelected = Object.keys(selectedOptions).every(
       (name) => selectedOptions[name]
     );
     setButtonDisabled(!allOptionsSelected);
+  };
+
+  const visibleVariations = useMemo(() => {
+    const variants = options.map((opt) =>
+      opt.attributes.reduce(
+        (acc, cur) => ({ ...acc, [cur.slug]: cur.option }),
+        {}
+      )
+    );
+
+    return variations.map(({ options, slug, ...rest }) => {
+      const filteredOptions = options.filter((opt) =>
+        Object.entries(selectedOptions)
+          .filter(([key]) => key !== slug)
+          .every(
+            ([key, selectedOption]) =>
+              !selectedOption ||
+              variants.some(
+                (v) => v[key] === selectedOption.value && v[slug] === opt.value
+              )
+          )
+      );
+
+      return { ...rest, slug, options: filteredOptions };
+    });
+  }, [options, selectedOptions, variations]);
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+
+    if (options.length > 0) {
+      const productVariant = options.find((option) => {
+        const isMatch = option.attributes.every((attr) => {
+          return selectedOptions[attr.slug].value === attr.option;
+        });
+        return isMatch;
+      });
+      if (!productVariant) {
+        return;
+      }
+      addToCart(productVariant);
+    } else {
+      const newProduct = {
+        id: productData.id,
+        name: productData.name,
+        price: productData.price,
+        attributes: selectedOptions,
+        image: productData.images[0].src,
+      };
+      addToCart(newProduct);
+    }
   };
 
   const selectStyles = {
@@ -42,20 +101,17 @@ const ProductVariations = ({ options }) => {
   };
 
   return (
-    <form>
-      {Object.keys(selectOptions).map((name, index) => (
-        <>
+    <form onSubmit={handleAddToCart}>
+      {visibleVariations.map(({ name, slug, options }, index) => (
+        <div key={slug + index}>
           <label>{name}</label>
           <Select
             isClearable={true}
-            name={name}
-            options={selectOptions[name].map((option) => ({
-              label: option,
-              value: option,
-            }))}
-            value={selectedOptions[name]}
+            name={slug}
+            options={options}
+            value={selectedOptions[slug]}
             onChange={(selectedOption) =>
-              handleSelectChange(selectedOption, name)
+              handleSelectChange(selectedOption, slug)
             }
             styles={selectStyles}
             theme={(theme) => ({
@@ -67,9 +123,9 @@ const ProductVariations = ({ options }) => {
               },
             })}
           />
-        </>
+        </div>
       ))}
-      <Button type={SubmitEvent} disabled={buttonDisabled} variant={"blue"}>
+      <Button disabled={buttonDisabled} variant={"blue"}>
         Dodaj do koszyka
       </Button>
     </form>
