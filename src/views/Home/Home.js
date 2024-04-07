@@ -45,7 +45,7 @@ const Home = () => {
         backgroundColor={"#edf2ff"}
         link={SHOP}
       />
-      <InstagramFeed />
+      {/* <InstagramFeed /> */}
       <SectionContact id={"contact"} colorTitle={"black"} />
     </>
   );
