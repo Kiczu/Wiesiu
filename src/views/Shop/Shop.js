@@ -14,6 +14,7 @@ const Shop = () => {
     handleSelectChange,
     visibleProducts,
     toggleMenu,
+    isLoading,
   } = useShopData();
 
   return (
@@ -32,7 +33,7 @@ const Shop = () => {
             onChange={handleSelectChange}
           />
         </div>
-        <ProductsGrid products={visibleProducts} />
+        <ProductsGrid products={visibleProducts} isLoading={isLoading} />
       </div>
     </div>
   );
