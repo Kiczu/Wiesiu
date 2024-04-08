@@ -20,7 +20,8 @@ const useShopData = () => {
   const [productsByCategory, setProductsByCategory] = useState({});
   const [activeSort, setActiveSort] = useState("dateCreatedNewest");
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
 
   const toggleMenu = () => {
     setIsFilterMenuOpen(!isFilterMenuOpen);
@@ -32,7 +33,7 @@ const useShopData = () => {
         const data = await woocommerceServices.getProducts();
         setProducts(data);
         setProductsByCategory(sortProductsByCategory(data));
-        setIsLoading(false);
+        setIsLoadingProducts(false);
       } catch (error) {
         console.error(error);
       }
@@ -62,6 +63,7 @@ const useShopData = () => {
         const allCategory = { id: "all", name: "Wszystko", slug: "all" };
 
         setCategories([allCategory, ...filteredCategories]);
+        setIsLoadingCategories(false);
       } catch (error) {
         console.error(error);
       }
@@ -115,7 +117,8 @@ const useShopData = () => {
     visibleProducts,
     toggleMenu,
     isFilterMenuOpen,
-    isLoading,
+    isLoadingProducts,
+    isLoadingCategories,
   };
 };
 

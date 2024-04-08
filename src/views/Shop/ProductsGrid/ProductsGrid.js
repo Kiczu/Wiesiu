@@ -7,7 +7,7 @@ const ProductsGrid = ({ products, isLoading }) => {
 
   return (
     <ul className="listing-products-grid">
-      {isLoading && <SkeletonProductCard cards={8} />}
+      {isLoading && <SkeletonProductCard cards={9} />}
       
       {products.map((product, i) => (
         <li key={i} className="listing-products-grid-item">
