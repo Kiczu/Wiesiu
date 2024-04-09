@@ -3,12 +3,14 @@ import woocommerceApi from "../services/woocommerceService";
 
 const useWooCommerceProducts = (categoryId) => {
     const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     
     useEffect(() => {
         const fetchProducts = async () => {
             try {
                 const data = await woocommerceApi.getProductsByCategoryId(categoryId);
                 setProducts(data);
+                setIsLoading(false);
             } catch (error) {
                 console.error(error);
             }
@@ -16,7 +18,7 @@ const useWooCommerceProducts = (categoryId) => {
         fetchProducts();
     }, [categoryId]);
 
-    return products;
+    return {products, isLoading};
 };
 
 export default useWooCommerceProducts;

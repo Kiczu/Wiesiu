@@ -18,32 +18,35 @@ const Home = () => {
       <SectionHero />
       <SectionSlider
         id={"bookstore"}
-        products={comics}
+        products={comics.products}
         sectionTitle={"Księgarnia"}
         colorTitle={"black"}
         buttonText={"Do sklepu"}
         variant={"blue"}
         link={SHOP}
+        isLoading={comics.isLoading}
       />
       <SectionMeetings id={"meetings"} />
       <SectionSlider
         id={"colections"}
-        products={collections}
+        products={collections.products}
         sectionTitle={"Kolekcje"}
         colorTitle={"black"}
         buttonText={"Do sklepu"}
         variant={"blue"}
         link={SHOP}
+        isLoading={collections.isLoading}
       />
       <SectionSlider
         id={"gadgets"}
-        products={gadgets}
+        products={gadgets.products}
         sectionTitle={"Gadżety"}
         colorTitle={"black"}
         buttonText={"Do sklepu"}
         variant={"blue"}
         backgroundColor={"#edf2ff"}
         link={SHOP}
+        isLoading={gadgets.isLoading}
       />
       {/* <InstagramFeed /> */}
       <SectionContact id={"contact"} colorTitle={"black"} />

@@ -1,0 +1,27 @@
+@use "../../../styles/index.scss" as *;
+
+.skeleton-slider {
+  &-products {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+
+    @media (max-width: $sm) {
+      display: none;
+    }
+  }
+  &-product {
+    display: none;
+
+    @media (max-width: $sm) {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &-pagination {
+    display: grid;
+    justify-content: center;
+    margin: 40px auto;
+  }
+}
