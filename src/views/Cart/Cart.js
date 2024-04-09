@@ -5,9 +5,11 @@ import SinglePosition from "./SinglePosition/SinglePosition";
 import Button from "../../components/Button/Button";
 import Slider from "../../components/Slider/Slider";
 import "./Cart.scss";
+import SkeletonSlider from "../../components/SkeletonComponents/SekeletonSlider/SkeletonSlider";
 
 const Cart = () => {
   const [theBestSellers, setTheBestSellers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { cartItems, clearCart } = useContext(CartContext);
 
   useEffect(() => {
@@ -18,6 +20,7 @@ const Cart = () => {
           (a, b) => b.total_sales - a.total_sales
         );
         setTheBestSellers(sortedProducts);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -59,7 +62,11 @@ const Cart = () => {
       <section className="cart-section">
         <h2 className="cart-section-title">Najlepiej sprzedawane</h2>
         <div className="slider-conatiner">
-          <Slider products={theBestSellers} />
+          {isLoading ? (
+            <SkeletonSlider cards={3} />
+          ) : (
+            <Slider products={theBestSellers} />
+          )}
         </div>
       </section>
     </>
