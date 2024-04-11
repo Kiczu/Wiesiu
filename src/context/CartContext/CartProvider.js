@@ -4,7 +4,6 @@ import woocommerceServices from "../../services/woocommerceService";
 
 const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-  // const [parentProduct, setParentProduct] = useState({});
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart"));
