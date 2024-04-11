@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext, useMemo } from "react";
 import Select from "react-select";
+import { ToastContainer, toast } from "react-toastify";
 import Button from "../../Button/Button";
 import CartContext from "../../../context/CartContext/CartContext";
-import { ToastContainer, toast } from "react-toastify";
 import "./ProductVariations.scss";
 import "react-toastify/dist/ReactToastify.css";
 
