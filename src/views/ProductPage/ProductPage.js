@@ -4,6 +4,8 @@ import woocommerceServices from "../../services/woocommerceService";
 import ProductDescription from "./ProductDescription/ProductDescription";
 import ProductGallery from "./ProductGallery/ProductGallery";
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
+import SkeletonProductDesc from "../../components/SkeletonComponents/SkeletonProductDesc/SkeletonProductDesc";
+import SkeletonProductGallery from "../../components/SkeletonComponents/SkeletonProductGallery/SkeletonProductGallery";
 import "./ProductPage.scss";
 
 const ProductPage = () => {
@@ -35,7 +37,13 @@ const ProductPage = () => {
     fetchProductDetails();
   }, [id]);
 
-  if (!productData) return "text loading..."; // Tu bedzie szkielet
+  if (!productData)
+    return (
+      <section className="product-page-container">
+        <SkeletonProductDesc />
+        <SkeletonProductGallery />
+      </section>
+    );
 
   const productGallery = productData.images.slice(1);
   const relatedIDs = productData.related_ids;
