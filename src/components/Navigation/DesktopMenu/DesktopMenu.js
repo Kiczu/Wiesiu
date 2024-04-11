@@ -5,6 +5,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { HOME, SHOP, CART } from "../../../paths";
 import logo from "../../../assets/logo_wieslaw.webp";
 import "./DesktopMenu.scss";
+import ItemsCounter from "../ItemsCounter/ItemsCounter";
 
 const DesktopMenu = ({ isSticky }) => {
   const logoAnimation = classNames("logo-image", {
@@ -16,6 +17,7 @@ const DesktopMenu = ({ isSticky }) => {
       <Link to={CART}>
         <i className="cart-icon">
           <IoCartOutline />
+          <ItemsCounter />
         </i>
       </Link>
       <li className="menu-element">
