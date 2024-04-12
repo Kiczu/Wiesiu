@@ -48,7 +48,7 @@ const Home = () => {
         link={SHOP}
         isLoading={gadgets.isLoading}
       />
-      {/* <InstagramFeed /> */}
+      <InstagramFeed />
       <SectionContact id={"contact"} colorTitle={"black"} />
     </>
   );

@@ -2,9 +2,9 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import "./SkeletonProductCard.scss";
 
-const SkeletonProductCard = ({ cards }) => {
+const SkeletonProductCard = ({ itemsCount }) => {
 
-  return Array.from({length: cards}).map((_, i) => (
+  return Array.from({length: itemsCount}).map((_, i) => (
     <div key={i} className="skeleton-product">
       <div className="skeleton-product-image">
         <Skeleton count={1} style={{ height: "100%" }} />

@@ -35,7 +35,7 @@ const Filters = ({
       </button>
       <div className={filtersMenuToggle}>
         <p className="categories-filter-title">Kategorie</p>
-        {isLoading && <SkeletonShopCategories categories={5} />}
+        {isLoading && <SkeletonShopCategories itemsCount={5} />}
         
         {categories.map((category) => (
           <button
