@@ -4,8 +4,8 @@ import woocommerceServices from "../../services/woocommerceService";
 import SinglePosition from "./SinglePosition/SinglePosition";
 import Button from "../../components/Button/Button";
 import Slider from "../../components/Slider/Slider";
-import "./Cart.scss";
 import SkeletonSlider from "../../components/SkeletonComponents/SekeletonSlider/SkeletonSlider";
+import "./Cart.scss";
 
 const Cart = () => {
   const [theBestSellers, setTheBestSellers] = useState([]);

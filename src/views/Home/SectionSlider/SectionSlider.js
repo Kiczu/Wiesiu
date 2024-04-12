@@ -25,7 +25,7 @@ const SectionSlider = ({
     >
       <SectionTitle color={colorTitle}>{sectionTitle}</SectionTitle>
       {isLoading ? (
-        <SkeletonSlider cards={3} />
+        <SkeletonSlider itemsCount={3} />
       ) : (
         <Slider products={products} autoPlay={false} showProductsPerPage={3} />
       )}

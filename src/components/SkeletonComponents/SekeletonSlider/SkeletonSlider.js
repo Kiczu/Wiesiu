@@ -3,17 +3,17 @@ import SkeletonProductCard from "../SkeletonProductCard/SkeletonProductCard";
 import "react-loading-skeleton/dist/skeleton.css";
 import "./SkeletonSlider.scss";
 
-const SkeletonSlider = ({ cards }) => {
+const SkeletonSlider = ({ itemsCount }) => {
   return (
     <div className="skeleton-slider">
       <div className="skeleton-slider-container">
         <div className="skeleton-slider-products">
-          {Array.from({ length: cards }, (_, i) => (
-            <SkeletonProductCard key={i} cards={1} />
+          {Array.from({ length: itemsCount }, (_, i) => (
+            <SkeletonProductCard key={i} itemsCount={1} />
           ))}
         </div>
         <div className="skeleton-slider-product">
-          <SkeletonProductCard cards={1} />
+          <SkeletonProductCard itemsCount={1} />
         </div>
       </div>
       <div className="skeleton-slider-pagination">
