@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import CartContext from "../../context/CartContext/CartContext";
-import woocommerceServices from "../../services/woocommerceService";
+import useAllProducts from "../../hooks/useGetAllProducts";
 import SinglePosition from "./SinglePosition/SinglePosition";
 import Button from "../../components/Button/Button";
 import Slider from "../../components/Slider/Slider";
@@ -9,24 +9,15 @@ import "./Cart.scss";
 
 const Cart = () => {
   const [theBestSellers, setTheBestSellers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const { cartItems, clearCart } = useContext(CartContext);
+  const { products, isLoading } = useAllProducts();
 
   useEffect(() => {
-    const getAllProducts = async () => {
-      try {
-        const data = await woocommerceServices.getProducts();
-        const sortedProducts = data.sort(
-          (a, b) => b.total_sales - a.total_sales
-        );
-        setTheBestSellers(sortedProducts);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getAllProducts();
-  }, []);
+    const sortedProducts = products.sort(
+      (a, b) => b.total_sales - a.total_sales
+    );
+    setTheBestSellers(sortedProducts);
+  }, [products]);
 
   const total = cartItems.reduce(
     (total, product) => total + product.price * product.quantity,
@@ -63,7 +54,7 @@ const Cart = () => {
         <h2 className="cart-section-title">Najlepiej sprzedawane</h2>
         <div className="slider-conatiner">
           {isLoading ? (
-            <SkeletonSlider cards={3} />
+            <SkeletonSlider itemsCount={3} />
           ) : (
             <Slider products={theBestSellers} />
           )}
