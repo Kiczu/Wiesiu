@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from "react";
-import woocommerceServices from "../../services/woocommerceService";
 import useAllProducts from "../../hooks/useGetAllProducts";
 import { SORTING_OPTION } from "../../components/Selects/SortingSelects/SortingSelect";
 import useGetCategories from "../../hooks/useGetCategories";
