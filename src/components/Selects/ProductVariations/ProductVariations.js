@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useContext, useMemo } from "react";
 import Select from "react-select";
+import { ToastContainer, toast } from "react-toastify";
 import Button from "../../Button/Button";
 import CartContext from "../../../context/CartContext/CartContext";
+import "./ProductVariations.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductVariations = ({ options, productData }) => {
   const [selectedOptions, setSelectedOptions] = useState({});
@@ -81,6 +84,7 @@ const ProductVariations = ({ options, productData }) => {
         return;
       }
       addToCart(productVariant);
+      toast.success(`Dodano do koszyka!`);
     } else {
       const newProduct = {
         id: productData.id,
@@ -90,6 +94,7 @@ const ProductVariations = ({ options, productData }) => {
         image: productData.images[0].src,
       };
       addToCart(newProduct);
+      toast.success(`Dodano do koszyka!`);
     }
   };
 
@@ -128,6 +133,19 @@ const ProductVariations = ({ options, productData }) => {
       <Button disabled={buttonDisabled} variant={"blue"}>
         Dodaj do koszyka
       </Button>
+      <ToastContainer
+        className={"addtocart-toast"}
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </form>
   );
 };

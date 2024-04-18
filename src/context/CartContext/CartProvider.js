@@ -4,7 +4,6 @@ import woocommerceServices from "../../services/woocommerceService";
 
 const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-  // const [parentProduct, setParentProduct] = useState({});
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart"));
@@ -87,6 +86,12 @@ const CartProvider = ({ children }) => {
     }, 0);
   };
 
+  const getAllQuantity = () => {
+    return cartItems.reduce((total, product) => {
+      return total + product.quantity;
+    }, 0);
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -96,6 +101,7 @@ const CartProvider = ({ children }) => {
         removeFromCart,
         getCartTotal,
         minusQuantity,
+        getAllQuantity,
       }}
     >
       {children}

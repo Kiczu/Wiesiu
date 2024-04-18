@@ -1,0 +1,16 @@
+@use "../../../styles/index.scss" as *;
+
+.items-count {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    padding: 2px;
+    background-color: $blue;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}

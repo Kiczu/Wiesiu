@@ -5,6 +5,7 @@ import { HiMenu } from "react-icons/hi";
 import { IoCartOutline } from "react-icons/io5";
 import "../MobileMenu/MobileMenu.scss";
 import logo from "../../../assets/logo_wieslaw.webp";
+import ItemsCounter from "../ItemsCounter/ItemsCounter";
 
 const MobileMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,6 +24,7 @@ const MobileMenu = () => {
           <Link to={CART}>
             <i className="cart-icon">
               <IoCartOutline />
+              <ItemsCounter />
             </i>
           </Link>
           <button onClick={toggleMenu} className="hamburger-button">
