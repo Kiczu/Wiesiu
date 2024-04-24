@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
-import woocommerceServices from "../../services/woocommerceService";
+import useAllProducts from "../../hooks/useGetAllProducts";
 import { SORTING_OPTION } from "../../components/Selects/SortingSelects/SortingSelect";
+import useGetCategories from "../../hooks/useGetCategories";
 
 const sortFunctions = {
   [SORTING_OPTION.PRICE_DOWN]: (a, b) => a.price - b.price,
@@ -20,52 +21,30 @@ const useShopData = () => {
   const [productsByCategory, setProductsByCategory] = useState({});
   const [activeSort, setActiveSort] = useState("dateCreatedNewest");
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+
+  const allProductsHook = useAllProducts();
+  const allCategoriesHook = useGetCategories();
 
   const toggleMenu = () => {
     setIsFilterMenuOpen(!isFilterMenuOpen);
   };
 
   useEffect(() => {
-    const getAllProducts = async () => {
-      try {
-        const data = await woocommerceServices.getProducts();
-        setProducts(data);
-        setProductsByCategory(sortProductsByCategory(data));
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getAllProducts();
-  }, []);
+    setProducts(allProductsHook.products);
+    setProductsByCategory(sortProductsByCategory(allProductsHook.products));
+    setIsLoadingProducts(allProductsHook.isLoading);
+  }, [allProductsHook.products, allProductsHook.isLoading]);
 
   useEffect(() => {
-    const getAllProducts = async () => {
-      try {
-        const data = await woocommerceServices.getProducts();
-        setAllProducts(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getAllProducts();
-  }, []);
+    setAllProducts(allProductsHook.products);
+  }, [allProductsHook.products]);
 
   useEffect(() => {
-    const getCategories = async () => {
-      try {
-        const data = await woocommerceServices.getCategories();
-        const filteredCategories = data.filter(
-          (category) => category.count !== 0
-        );
-        const allCategory = { id: "all", name: "Wszystko", slug: "all" };
-
-        setCategories([allCategory, ...filteredCategories]);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getCategories();
-  }, []);
+    setCategories(allCategoriesHook.categories);
+    setIsLoadingCategories(allCategoriesHook.isLoading);
+  }, [allCategoriesHook.categories, allCategoriesHook.isLoading]);
 
   const sortProductsByCategory = (products) => {
     const sortedProducts = {};
@@ -113,6 +92,8 @@ const useShopData = () => {
     visibleProducts,
     toggleMenu,
     isFilterMenuOpen,
+    isLoadingProducts,
+    isLoadingCategories,
   };
 };
 

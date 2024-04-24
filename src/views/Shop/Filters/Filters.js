@@ -4,6 +4,7 @@ import { FaFilter } from "react-icons/fa";
 import { useClickAway } from "@uidotdev/usehooks";
 import SortingSelect from "../../../components/Selects/SortingSelects/SortingSelect";
 import "./Filters.scss";
+import SkeletonShopCategories from "../../../components/SkeletonComponents/SkeletonShopCategories/SkeletonShopCategories";
 
 const Filters = ({
   activeCategory,
@@ -12,6 +13,7 @@ const Filters = ({
   handleCategoryClick,
   handleSelectChange,
   toggleMenu,
+  isLoading,
 }) => {
   const filtersMenuToggle = classNames("categories-filter", {
     active: isFilterMenuOpen,
@@ -33,6 +35,8 @@ const Filters = ({
       </button>
       <div className={filtersMenuToggle}>
         <p className="categories-filter-title">Kategorie</p>
+        {isLoading && <SkeletonShopCategories itemsCount={5} />}
+        
         {categories.map((category) => (
           <button
             className={`categories-filter-button ${

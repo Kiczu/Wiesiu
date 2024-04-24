@@ -14,6 +14,8 @@ const Shop = () => {
     handleSelectChange,
     visibleProducts,
     toggleMenu,
+    isLoadingCategories,
+    isLoadingProducts,
   } = useShopData();
 
   return (
@@ -25,6 +27,7 @@ const Shop = () => {
         handleCategoryClick={handleCategoryClick}
         handleSelectChange={handleSelectChange}
         toggleMenu={toggleMenu}
+        isLoading={isLoadingCategories}
       />
       <div className="listing-column">
         <div className="sorting-filter">
@@ -32,7 +35,7 @@ const Shop = () => {
             onChange={handleSelectChange}
           />
         </div>
-        <ProductsGrid products={visibleProducts} />
+        <ProductsGrid products={visibleProducts} isLoading={isLoadingProducts} />
       </div>
     </div>
   );

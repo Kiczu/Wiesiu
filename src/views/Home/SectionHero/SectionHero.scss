@@ -3,7 +3,7 @@
 .section-hero {
   display: flex;
   align-items: center;
-  background: url("../../../assets/Home/SectionHero/Tlo_strona-glowna.png");
+  background: url("../../../assets/Home/SectionHero/Tlo_strona-glowna.png") no-repeat;
   min-height: 100vh;
   margin-top: $default-menu-height;
 

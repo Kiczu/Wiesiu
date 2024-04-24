@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import woocommerceApi from "../services/woocommerceService";
 
-const useWooCommerceProducts = (categoryId) => {
+const useGetProductsByCategoryId = (categoryId) => {
     const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     
     useEffect(() => {
         const fetchProducts = async () => {
@@ -11,12 +12,14 @@ const useWooCommerceProducts = (categoryId) => {
                 setProducts(data);
             } catch (error) {
                 console.error(error);
+            } finally {
+                setIsLoading(false);
             }
         };
         fetchProducts();
     }, [categoryId]);
 
-    return products;
+    return {products, isLoading};
 };
 
-export default useWooCommerceProducts;
+export default useGetProductsByCategoryId;
