@@ -27,10 +27,6 @@ const INITIAL_VALUES = {
   message: "",
 };
 
-const notify = () => {
-  toast("LeL");
-};
-
 const ContactForm = () => {
   const onSubmit = (values, { resetForm }) => {
     emailjs
