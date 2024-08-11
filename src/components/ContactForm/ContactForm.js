@@ -3,6 +3,8 @@ import * as yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import emailjs from "@emailjs/browser";
 import Button from "../Button/Button";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./ContactForm.scss";
 
 const validationSchema = yup.object().shape({
@@ -25,6 +27,10 @@ const INITIAL_VALUES = {
   message: "",
 };
 
+const notify = () => {
+  toast("LeL");
+};
+
 const ContactForm = () => {
   const onSubmit = (values, { resetForm }) => {
     emailjs
@@ -37,11 +43,11 @@ const ContactForm = () => {
         }
       )
       .then(
-        (response) => {
-          console.log("SUCCESS!", response.status, response.text);
+        () => {
+          toast.success(`Pomyślnie wysłano formularz! Dzięki za kontakt!`);
         },
         (err) => {
-          console.log("FAILED...", err);
+          toast.error(`Niestety nie udało się wysłać formularza - ${err}`);
         }
       );
     resetForm();
@@ -112,10 +118,21 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <Button variant={"blue"}>
-            Wyślij
-          </Button>
+          <Button variant={"blue"}>Wyślij</Button>
         </div>
+        <ToastContainer
+          className={"contactForm-toast"}
+          position="top-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </Form>
     </Formik>
   );
