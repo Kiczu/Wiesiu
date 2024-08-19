@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Wiesiu/static/css/main.73c49f44.css",
-    "main.js": "/Wiesiu/static/js/main.b4fbf03b.js",
+    "main.css": "/Wiesiu/static/css/main.47a7b825.css",
+    "main.js": "/Wiesiu/static/js/main.2edb2f8d.js",
     "static/media/Spotkania-i-warsztaty_01.png": "/Wiesiu/static/media/Spotkania-i-warsztaty_01.68dbcc830afe02a099c7.png",
     "static/media/Tlo_strona-glowna.png": "/Wiesiu/static/media/Tlo_strona-glowna.7e5c3052a0496e8adddf.png",
     "static/media/Warstwa-6.webp": "/Wiesiu/static/media/Warstwa-6.cda379e645f0b8987bde.webp",
@@ -9,11 +9,11 @@
     "static/media/facebook.webp": "/Wiesiu/static/media/facebook.c2c0f404d10234332a93.webp",
     "static/media/logo_wieslaw.webp": "/Wiesiu/static/media/logo_wieslaw.c68c76f94865ab6ccd7f.webp",
     "index.html": "/Wiesiu/index.html",
-    "main.73c49f44.css.map": "/Wiesiu/static/css/main.73c49f44.css.map",
-    "main.b4fbf03b.js.map": "/Wiesiu/static/js/main.b4fbf03b.js.map"
+    "main.47a7b825.css.map": "/Wiesiu/static/css/main.47a7b825.css.map",
+    "main.2edb2f8d.js.map": "/Wiesiu/static/js/main.2edb2f8d.js.map"
   },
   "entrypoints": [
-    "static/css/main.73c49f44.css",
-    "static/js/main.b4fbf03b.js"
+    "static/css/main.47a7b825.css",
+    "static/js/main.2edb2f8d.js"
   ]
 }
